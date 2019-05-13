@@ -11,5 +11,4 @@ ccb_get_catalogs(base_url = BASEURL)
 }
 \description{
 Retrieve catalogs from ccb
-Retrieve catalogs from ccb
 }

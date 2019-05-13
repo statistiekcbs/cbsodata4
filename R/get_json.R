@@ -11,11 +11,34 @@ get_value <- function(path, singleton = FALSE, verbose=TRUE){
   }
 }
 
-get_values <- function(path, output = tempfile(), progress_bar = interactive(), verbose = TRUE){
+download_value <- function(path, output_file, sep = ",", verbose = TRUE){
   if (verbose){
     message("Retrieving ", path)
   }
+
   res <- jsonlite::read_json(path, simplifyVector = TRUE)
-  of <- file(output, "wt")
-  write.csv(res$value, of, row.names = FALSE)
+  write.table( res$value, output_file
+             , row.names = FALSE
+             , na = ""
+             , quote = FALSE
+             , sep = sep
+             )
+
+  path <- res[["@odata.nextLink"]]
+  while(!is.null(path)){
+    if (verbose){
+      message("Retrieving ", path)
+    }
+    res <- jsonlite::read_json(path, simplifyVector = TRUE)
+    write.table( res$value
+               , output_file
+               , row.names = FALSE
+               , na        = ""
+               , quote     = FALSE
+               , sep       = sep
+               , col.names = FALSE
+               , append    = TRUE
+               )
+    path <- res[["@odata.nextLink"]]
+  }
 }
