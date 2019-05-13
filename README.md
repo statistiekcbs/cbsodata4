@@ -5,8 +5,13 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/cbsccb)](https://cran.r-project.org/package=cbsccb)
 [![Travis build
 status](https://travis-ci.org/edwindj/cbsccb.svg?branch=master)](https://travis-ci.org/edwindj/cbsccb)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/edwindj/cbsccb?branch=master&svg=true)](https://ci.appveyor.com/project/edwindj/cbsccb)
+
 <!-- badges: end -->
 
 The goal of cbsccb is to …
