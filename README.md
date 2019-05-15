@@ -8,7 +8,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/cbsccb)](https://cran.r-project.org/package=cbsccb)
 [![Travis build
-status](https://travis-ci.org/edwindj/cbsccb.svg?branch=master)](https://travis-ci.org/edwindj/cbsccb)
+status](https://travis-ci.org/statistiekcbs/cbsccb.svg?branch=master)](https://travis-ci.org/statistiekcbs/cbsccb)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/edwindj/cbsccb?branch=master&svg=true)](https://ci.appveyor.com/project/edwindj/cbsccb)
 
