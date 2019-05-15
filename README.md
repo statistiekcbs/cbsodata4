@@ -31,7 +31,7 @@ At the moment only a development version can be installed from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("edwindj/cbsccb")
+devtools::install_github("statistiekcbs/cbsccb")
 ```
 
 ## Example
