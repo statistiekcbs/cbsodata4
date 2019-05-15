@@ -18,14 +18,17 @@ The goal of cbsccb is to allow access to the CBS content cijfer bank
 
 ## Installation
 
-You can install the released version of cbsccb from
+\<– You can install the released version of cbsccb from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("cbsccb")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+–\>
+
+At the moment only a development version can be installed from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -33,8 +36,6 @@ devtools::install_github("edwindj/cbsccb")
 ```
 
 ## Example
-
-This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(cbsccb)

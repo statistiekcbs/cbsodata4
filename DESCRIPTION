@@ -10,5 +10,8 @@ LazyData: true
 Imports: 
     jsonlite
 Suggests:
-    tidyr
+    tidyr,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.1.1
+VignetteBuilder: knitr
