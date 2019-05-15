@@ -18,14 +18,13 @@ The goal of cbsccb is to allow access to the CBS content cijfer bank
 
 ## Installation
 
-\<– You can install the released version of cbsccb from
-[CRAN](https://CRAN.R-project.org) with:
+<!--
+You can install the released version of cbsccb from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("cbsccb")
 ```
-
-–\>
+-->
 
 At the moment only a development version can be installed from
 [GitHub](https://github.com/) with:
