@@ -19,13 +19,13 @@ ccb_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
   # retrieve period column (using timedimension)
   period_name <- meta$Dimensions$Identifier[meta$Dimensions$Kind == "TimeDimension"][1]
   #period_name <- names(unlist(sapply(x, attr, "is_time")))
-
+  x <- data
   if (!length(period_name)){
     warning("No time dimension found!")
     return(x)
   }
 
-  period <- x[[period_name[1]]]
+  period <- data[[period_name[1]]]
 
   PATTERN <- "(\\d{4})(\\w{2})(\\d{2})"
 

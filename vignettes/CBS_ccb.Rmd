@@ -16,4 +16,61 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(cbsccb)
+library(dplyr) # not needed but used for example
+```
+
+# Introduction
+
+```{r}
+catalogs <- ccb_get_catalogs() 
+catalogs %>% 
+  select(Identifier, Title)
+```
+
+
+```{r}
+datasets <- ccb_get_datasets()
+datasets %>% 
+  select(Identifier, Title) %>% 
+  head(2)
+```
+
+```{r}
+meta <- ccb_get_metadata("84120NED")
+ls.str(meta)
+```
+
+```{r}
+data <- ccb_get_data("84120NED")
+data %>% 
+  select(-Id, -ValueAttribute) %>% 
+  head(5)
+```
+
+
+```{r}
+data <- ccb_get_data("84120NED")
+
+data %>% 
+  select(-Id, -ValueAttribute) %>%
+  ccb_add_labels() %>% 
+  head(5) 
+```
+
+```{r}
+data <- ccb_get_data("84120NED")
+
+data %>% 
+  select(-Id, -ValueAttribute) %>%
+  ccb_add_date_column() %>% 
+  head(5) 
+```
+
+```{r}
+data <- ccb_get_data("84120NED")
+
+data %>% 
+  select(-Id, -ValueAttribute) %>%
+  ccb_add_unit() %>% 
+  head(5) 
 ```

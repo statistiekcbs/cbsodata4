@@ -4,10 +4,12 @@
 \alias{ccb_get_datasets}
 \title{Get the available datasets}
 \usage{
-ccb_get_datasets(base_url = BASEURL)
+ccb_get_datasets(base_url = BASEURL, verbose = FALSE)
 }
 \arguments{
 \item{base_url}{base url of the CCB API}
+
+\item{verbose}{Should the url request be printed?}
 }
 \description{
 Get the available datasets from ccb

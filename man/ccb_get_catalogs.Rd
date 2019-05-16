@@ -4,10 +4,12 @@
 \alias{ccb_get_catalogs}
 \title{Retrieve catalogs from ccb}
 \usage{
-ccb_get_catalogs(base_url = BASEURL)
+ccb_get_catalogs(base_url = BASEURL, verbose = FALSE)
 }
 \arguments{
 \item{base_url}{Default}
+
+\item{verbose}{if \code{TRUE} the communication to the server is shown.}
 }
 \description{
 Retrieve catalogs from ccb
