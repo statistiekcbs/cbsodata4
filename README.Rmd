@@ -43,6 +43,9 @@ devtools::install_github("statistiekcbs/cbsccb")
 
 ```{r example}
 library(cbsccb)
+
+# download the set of datasets
+datasets <- ccb_get_datasets()
 ## basic example code
 ```
 

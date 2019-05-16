@@ -38,5 +38,9 @@ devtools::install_github("statistiekcbs/cbsccb")
 
 ``` r
 library(cbsccb)
+
+# download the set of datasets
+datasets <- ccb_get_datasets()
+#> Retrieving http://beta.opendata.cbs.nl/OData4/Datasets
 ## basic example code
 ```
