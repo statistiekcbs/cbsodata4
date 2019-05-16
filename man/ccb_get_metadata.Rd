@@ -7,7 +7,7 @@
 ccb_get_metadata(id, catalog = "CBS", ..., verbose = FALSE)
 }
 \arguments{
-\item{id}{Identifier of publication}
+\item{id}{Identifier of publication or data retrieved with \code{\link{ccb_get_data}}}
 
 \item{catalog}{Catalog, @seealso \code{\link{ccb_get_catalogs}}}
 

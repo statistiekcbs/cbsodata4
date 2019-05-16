@@ -2,11 +2,15 @@
 #'
 #' Retrieve the metadata of a publication
 #' @export
-#' @param id Identifier of publication
+#' @param id Identifier of publication or data retrieved with \code{\link{ccb_get_data}}
 #' @param catalog Catalog, @seealso \code{\link{ccb_get_catalogs}}
 #' @param ... not used
 #' @param verbose Should the function report on retrieving the data
 ccb_get_metadata <- function(id, catalog = "CBS", ..., verbose = FALSE){
+  meta <- attr(id, "meta")
+  if (!is.null(meta)){
+    return(meta)
+  }
 
   path <- file.path(BASEURL, catalog, id)
 
@@ -46,4 +50,4 @@ ccb_get_metadata <- function(id, catalog = "CBS", ..., verbose = FALSE){
 }
 
 # m <- ccb_get_metadata("900001NED", "CBS-Maatwerk", verbose=TRUE)
-# m <- ccb_get_metadata("84120NED", verbose=T)
+#m <- ccb_get_metadata("84120NED", verbose=T)
