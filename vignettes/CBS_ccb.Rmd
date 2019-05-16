@@ -64,6 +64,13 @@ data %>%
   select(-Id, -ValueAttribute) %>%
   ccb_add_date_column() %>% 
   head(5) 
+
+library(tidyr)
+data %>% 
+  ccb_add_labels() %>% 
+  select(ends_with("Label"), Value) %>% 
+  spread(MeasureLabel, Value) %>% 
+  head()
 ```
 
 ```{r}
