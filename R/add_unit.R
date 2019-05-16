@@ -1,7 +1,10 @@
 #' Add unit column to data
 #'
 #' Add labels to codes
+#' @importFrom utils head tail
 #' @export
+#' @param data downloaded with \code{\link{ccb_get_data}}
+#' @param ... not used
 ccb_add_unit <- function(data, ...){
   meta <- attr(data, "meta")
   nms <- names(data)

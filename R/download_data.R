@@ -4,6 +4,7 @@
 #' @param id Identifier of publication
 #' @param download_dir directory where files are to be stored
 #' @param catalog Catalog to download from
+#' @param sep seperator to be used in writing the data
 #' @param ... not used
 #' @param verbose Should messages be printed...
 #' @export
@@ -19,7 +20,7 @@ ccb_download_data <- function( id
   meta <- ccb_get_metadata(id, catalog = catalog, verbose = verbose)
   for (n in names(meta)){
     path_n <- file.path(download_dir, paste0(n, ".csv"))
-    write.table(meta[[n]], path_n, sep = sep, na = "", row.names = FALSE)
+    write.table(meta[[n]], path_n, sep = sep, na = "", row.names = FALSE, ...)
   }
 
   path <- file.path(BASEURL, catalog, id, "Observations")
@@ -28,6 +29,8 @@ ccb_download_data <- function( id
   download_value( path
                 , output_file = path_obs
                 , verbose = verbose
+                , sep = sep
+                , ...
                 )
 
   if (verbose){

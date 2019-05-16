@@ -6,6 +6,11 @@
 \usage{
 ccb_add_unit(data, ...)
 }
+\arguments{
+\item{data}{downloaded with \code{\link{ccb_get_data}}}
+
+\item{...}{not used}
+}
 \description{
 Add labels to codes
 }

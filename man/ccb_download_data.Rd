@@ -16,6 +16,8 @@ ccb_download_data(id, download_dir = id, catalog = "CBS", ...,
 
 \item{...}{not used}
 
+\item{sep}{seperator to be used in writing the data}
+
 \item{verbose}{Should messages be printed...}
 }
 \description{

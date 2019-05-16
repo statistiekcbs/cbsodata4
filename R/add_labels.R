@@ -2,6 +2,8 @@
 #'
 #' Add labels to codes
 #' @export
+#' @param data downloaded with \code{\link{ccb_get_data}}
+#' @param ... not used
 ccb_add_labels <- function(data, ...){
   meta <- attr(data, "meta")
   # stopifnot(!is.null(meta), "Missing metadata")

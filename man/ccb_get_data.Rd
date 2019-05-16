@@ -2,11 +2,30 @@
 % Please edit documentation in R/get_data.R
 \name{ccb_get_data}
 \alias{ccb_get_data}
+\alias{ccb_get_observations}
 \title{Get data from the content cijfer bank}
 \usage{
 ccb_get_data(id, catalog = "CBS", ...,
   download_dir = file.path(tempdir(), id), verbose = FALSE,
   sep = ",")
+
+ccb_get_observations(id, catalog = "CBS", ...,
+  download_dir = file.path(tempdir(), id), verbose = FALSE,
+  sep = ",")
+}
+\arguments{
+\item{id}{Identifier of the Opendata table. Can be retrieve with ccb_get_datasets}
+
+\item{catalog}{Catalog in which the dataset is to be found}
+
+\item{...}{passed through to ccb_download_data}
+
+\item{download_dir}{directory in which the data and metadata is downloaded. By default this is
+temporary directory, but can be set manually}
+
+\item{verbose}{should}
+
+\item{sep}{separator to be used to download the data.}
 }
 \description{
 Get data from the content cijfer bank

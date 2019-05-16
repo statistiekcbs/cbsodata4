@@ -12,6 +12,8 @@ ccb_get_metadata(id, catalog = "CBS", ..., verbose = FALSE)
 \item{catalog}{Catalog, @seealso \code{\link{ccb_get_catalogs}}}
 
 \item{...}{not used}
+
+\item{verbose}{Should the function report on retrieving the data}
 }
 \description{
 Retrieve the metadata of a publication

@@ -5,6 +5,7 @@
 #' @param id Identifier of publication
 #' @param catalog Catalog, @seealso \code{\link{ccb_get_catalogs}}
 #' @param ... not used
+#' @param verbose Should the function report on retrieving the data
 ccb_get_metadata <- function(id, catalog = "CBS", ..., verbose = FALSE){
 
   path <- file.path(BASEURL, catalog, id)
