@@ -7,8 +7,10 @@
 ccb_add_labels <- function(data, ...){
   meta <- attr(data, "meta")
   # stopifnot(!is.null(meta), "Missing metadata")
+  nms <- names(data)
   dim_cols <- c("Measure", meta$Dimensions$Identifier)
   dim_codes <- paste0(dim_cols, "Codes")
+
   label_cols <- paste0(dim_cols, "Label")
   for (i in seq_along(dim_cols)){
     codes <- data[[dim_cols[i]]]
@@ -16,8 +18,13 @@ ccb_add_labels <- function(data, ...){
     idx <- match(codes, meta_dim$Identifier)
     data[[label_cols[i]]] <- meta_dim$Title[idx]
   }
-  # TODO reorder the label columns to be just after the codes
-  data
+
+  # reorder the label columns to be just after the code
+  i <- c( seq_along(nms)
+        , match(dim_cols, nms) + 0.5
+        )
+  o <- order(i)
+  data[, o]
 }
 
 

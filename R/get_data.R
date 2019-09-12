@@ -8,6 +8,7 @@
 #' temporary directory, but can be set manually
 #' @param verbose should
 #' @param sep separator to be used to download the data.
+#' @param includeId `logical`, should the Id column be downloaded?
 #' @export
 #' @rdname ccb_get_data
 ccb_get_data <- function( id
@@ -16,6 +17,7 @@ ccb_get_data <- function( id
                         , download_dir = file.path(tempdir(), id)
                         , verbose = FALSE
                         , sep = ","
+                        , includeId = TRUE
                         ){
   meta <- ccb_download_data(id, download_dir = download_dir, verbose = verbose, sep = sep)
   data <- read.table(file.path(download_dir, "Observations.csv"), header = TRUE, sep = sep)

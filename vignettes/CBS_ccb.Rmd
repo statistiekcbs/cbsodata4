@@ -74,8 +74,8 @@ data %>%
 ```
 
 ```{r}
+meta <- ccb_get_metadata("84120NED")
 data <- ccb_get_data("84120NED")
-
 data %>% 
   select(-Id, -ValueAttribute) %>%
   ccb_add_unit() %>% 
