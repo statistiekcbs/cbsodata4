@@ -7,11 +7,11 @@
 \usage{
 ccb_get_data(id, catalog = "CBS", ...,
   download_dir = file.path(tempdir(), id), verbose = FALSE,
-  sep = ",")
+  sep = ",", includeId = TRUE)
 
 ccb_get_observations(id, catalog = "CBS", ...,
   download_dir = file.path(tempdir(), id), verbose = FALSE,
-  sep = ",")
+  sep = ",", includeId = TRUE)
 }
 \arguments{
 \item{id}{Identifier of the Opendata table. Can be retrieve with ccb_get_datasets}
@@ -26,6 +26,8 @@ temporary directory, but can be set manually}
 \item{verbose}{should}
 
 \item{sep}{separator to be used to download the data.}
+
+\item{includeId}{`logical`, should the Id column be downloaded?}
 }
 \description{
 Get data from the content cijfer bank

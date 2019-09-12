@@ -23,7 +23,7 @@ original dataset with two added columns: \code{<period>_date} and
 }
 \description{
 Time periods in data of CBS are coded: yyyyXXww (e.g. 2018JJ00, 2018MM10, 2018KW02),
-which contains year (yyyy), type (XX) and index (ww). \code{cbs_add_date_column} converts
+which contains year (yyyy), type (XX) and index (ww). \code{ccb_add_date_column} converts
 these codes into a \code{\link{Date}} or \code{numeric}. In addition it adds
 a frequency column denoting the type of the column.
 }
