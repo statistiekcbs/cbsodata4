@@ -2,7 +2,9 @@ Package: cbsccb
 Type: Package
 Title: API to Statistics Netherlands Content Base (ccb)
 Version: 0.1.0
-Authors@R: c( person("Edwin", "de Jonge", role=c("aut", "cre"), email="e.dejonge@cbs.nl"), person("Jolien", "Oomens", role=c("aut")))
+Authors@R: c( person("Edwin", "de Jonge", role=c("aut", "cre"), email="e.dejonge@cbs.nl")
+            , person("Jolien", "Oomens", role=c("ctb"))
+            )
 Description: Use the Content Cijfer Bank of CBS.
 License: GPL-3
 Encoding: UTF-8
@@ -13,5 +15,5 @@ Suggests:
     tidyr,
     knitr,
     rmarkdown
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 VignetteBuilder: knitr

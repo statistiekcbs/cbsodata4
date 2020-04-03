@@ -2,9 +2,9 @@
 #'
 #' Add labels to codes
 #' @export
-#' @param data downloaded with \code{\link{ccb_get_data}}
+#' @param data downloaded with \code{\link{cbs4_get_data}}
 #' @param ... not used
-ccb_add_labels <- function(data, ...){
+cbs4_add_labels <- function(data, ...){
   meta <- attr(data, "meta")
   # stopifnot(!is.null(meta), "Missing metadata")
   nms <- names(data)
@@ -29,8 +29,8 @@ ccb_add_labels <- function(data, ...){
 
 
 # d <-
-#   ccb_get_data("84120NED") %>%
-#   ccb_add_labels() %>%
+#   cbs4_get_data("84120NED") %>%
+#   cbs4_add_labels() %>%
 #   glimpse()
 
 

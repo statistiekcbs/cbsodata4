@@ -3,9 +3,9 @@
 #' Add labels to codes
 #' @importFrom utils head tail
 #' @export
-#' @param data downloaded with \code{\link{ccb_get_data}}
+#' @param data downloaded with \code{\link{cbs4_get_data}}
 #' @param ... not used
-ccb_add_unit <- function(data, ...){
+cbs4_add_unit <- function(data, ...){
   meta <- attr(data, "meta")
   nms <- names(data)
   measure_codes <- meta$MeasureCodes
@@ -18,8 +18,8 @@ ccb_add_unit <- function(data, ...){
 
 
 # d <-
-#   ccb_get_data("84120NED") %>%
-#   ccb_add_unit() %>%
+#   cbs4_get_data("84120NED") %>%
+#   cbs4_add_unit() %>%
 #   glimpse()
 
 

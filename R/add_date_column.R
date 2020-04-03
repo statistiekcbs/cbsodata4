@@ -1,10 +1,10 @@
 #' Convert the time variable into either a date or numeric.
 #'
 #' Time periods in data of CBS are coded: yyyyXXww (e.g. 2018JJ00, 2018MM10, 2018KW02),
-#' which contains year (yyyy), type (XX) and index (ww). \code{ccb_add_date_column} converts
+#' which contains year (yyyy), type (XX) and index (ww). \code{cbs4_add_date_column} converts
 #' these codes into a \code{\link{Date}} or \code{numeric}. In addition it adds
 #' a frequency column denoting the type of the column.
-#' @param data \code{data.frame} retrieved using \code{\link{ccb_get_data}}
+#' @param data \code{data.frame} retrieved using \code{\link{cbs4_get_data}}
 #' @param date_type Type of date column: "Date", "numeric. Numeric creates a fractional
 #' number which signs the "middle" of the period. e.g. 2018JJ00 -> 2018.5 and
 #' 2018KW01 -> 2018.167. This is for the following reasons: otherwise 2018.0 could mean
@@ -14,7 +14,7 @@
 #' @return original dataset with two added columns: \code{<period>_date} and
 #' \code{<period>_freq}. This last column is a factor with levels: \code{Y}, \code{Q} and \code{M}
 #' @export
-ccb_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
+cbs4_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
   meta <- attr(data, "meta")
   # retrieve period column (using timedimension)
   period_name <- meta$Dimensions$Identifier[meta$Dimensions$Kind == "TimeDimension"][1]
@@ -75,5 +75,5 @@ ccb_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
   x
 }
 
-# x <- ccb_get_data("84120NED")
-# x1 <- ccb_add_date_column(x)
+# x <- cbs4_get_data("84120NED")
+# x1 <- cbs4_add_date_column(x)
