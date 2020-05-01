@@ -2,12 +2,12 @@
 % Please edit documentation in R/get_catalogs.R
 \name{cbs4_get_catalogs}
 \alias{cbs4_get_catalogs}
-\alias{cbs4_get_toc}
 \title{Retrieve catalogs from ccb}
 \usage{
-cbs4_get_catalogs(base_url = BASEURL, verbose = FALSE)
-
-cbs4_get_toc(base_url = BASEURL, verbose = FALSE)
+cbs4_get_catalogs(
+  base_url = BASEURL4,
+  verbose = getOption("cbsodataR.verbose", FALSE)
+)
 }
 \arguments{
 \item{base_url}{Default}
@@ -17,3 +17,8 @@ cbs4_get_toc(base_url = BASEURL, verbose = FALSE)
 \description{
 Retrieve catalogs from ccb
 }
+\seealso{
+Other datasets: 
+\code{\link{cbs4_get_datasets}()}
+}
+\concept{datasets}

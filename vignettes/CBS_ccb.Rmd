@@ -22,26 +22,26 @@ library(dplyr) # not needed but used for example
 # Introduction
 
 ```{r}
-catalogs <- ccb_get_catalogs() 
+catalogs <- cbs4_get_catalogs() 
 catalogs %>% 
   select(Identifier, Title)
 ```
 
 
 ```{r}
-datasets <- ccb_get_datasets()
+datasets <- cbs4_get_datasets()
 datasets %>% 
   select(Identifier, Title) %>% 
   head(2)
 ```
 
 ```{r}
-meta <- ccb_get_metadata("84120NED")
+meta <- cbs4_get_metadata("80416ned")
 ls.str(meta)
 ```
 
 ```{r}
-data <- ccb_get_data("84120NED")
+data <- cbs4_get_observations("80416ned")
 data %>% 
   select(-Id, -ValueAttribute) %>% 
   head(5)
@@ -49,35 +49,40 @@ data %>%
 
 
 ```{r}
-data <- ccb_get_data("84120NED")
+data <- cbs4_get_observations("80416ned")
 
 data %>% 
   select(-Id, -ValueAttribute) %>%
-  ccb_add_labels() %>% 
+  cbs4_add_labels() %>% 
   head(5) 
 ```
 
 ```{r}
-data <- ccb_get_data("84120NED")
+data <- cbs4_get_observations("80416ned")
 
 data %>% 
   select(-Id, -ValueAttribute) %>%
-  ccb_add_date_column() %>% 
+  cbs4_add_date_column() %>% 
   head(5) 
 
 library(tidyr)
 data %>% 
-  ccb_add_labels() %>% 
+  cbs4_add_labels() %>% 
   select(ends_with("Label"), Value) %>% 
   spread(MeasureLabel, Value) %>% 
   head()
 ```
 
 ```{r}
-meta <- ccb_get_metadata("84120NED")
-data <- ccb_get_data("84120NED")
+meta <- cbs4_get_metadata("80416ned")
+data <- cbs4_get_observations("80416ned")
 data %>% 
   select(-Id, -ValueAttribute) %>%
-  ccb_add_unit() %>% 
+  cbs4_add_unit() %>% 
   head(5) 
+```
+
+```{r}
+data <- cbs4_get_data("80416ned")
+head(data)
 ```

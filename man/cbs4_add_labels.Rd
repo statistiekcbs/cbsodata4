@@ -7,10 +7,15 @@
 cbs4_add_labels(data, ...)
 }
 \arguments{
-\item{data}{downloaded with \code{\link{cbs4_get_data}}}
+\item{data}{downloaded with \code{\link[=cbs4_get_data]{cbs4_get_data()}}}
 
 \item{...}{not used}
 }
 \description{
 Add labels to codes
 }
+\seealso{
+Other add metadata: 
+\code{\link{cbs4_add_date_column}()}
+}
+\concept{add metadata}

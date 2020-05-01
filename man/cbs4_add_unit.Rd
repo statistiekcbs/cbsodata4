@@ -7,7 +7,7 @@
 cbs4_add_unit(data, ...)
 }
 \arguments{
-\item{data}{downloaded with \code{\link{cbs4_get_data}}}
+\item{data}{downloaded with \code{\link[=cbs4_get_observations]{cbs4_get_observations()}}}
 
 \item{...}{not used}
 }

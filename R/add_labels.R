@@ -2,13 +2,15 @@
 #'
 #' Add labels to codes
 #' @export
-#' @param data downloaded with \code{\link{cbs4_get_data}}
+#' @param data downloaded with [cbs4_get_data()]
 #' @param ... not used
+#' @family add metadata
 cbs4_add_labels <- function(data, ...){
   meta <- attr(data, "meta")
   # stopifnot(!is.null(meta), "Missing metadata")
   nms <- names(data)
   dim_cols <- c("Measure", meta$Dimensions$Identifier)
+  dim_cols <- dim_cols[dim_cols %in% nms]
   dim_codes <- paste0(dim_cols, "Codes")
 
   label_cols <- paste0(dim_cols, "Label")

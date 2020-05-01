@@ -2,11 +2,12 @@
 #'
 #' Retrieve the metadata of a publication
 #' @export
-#' @param id Identifier of publication or data retrieved with \code{\link{cbs4_get_data}}
-#' @param catalog Catalog, @seealso \code{\link{cbs4_get_catalogs}}
+#' @param id Identifier of publication or data retrieved with [cbs4_get_data()]
+#' @param catalog Catalog, @seealso [cbs4_get_catalogs()]
 #' @param ... not used
 #' @param verbose Should the function report on retrieving the data
-cbs4_get_metadata <- function(id, catalog = "CBS", ..., base_url = BASEURL, catalog,verbose = FALSE){
+cbs4_get_metadata <- function(id, catalog = "CBS", ..., base_url = BASEURL4
+                             , verbose = getOption("cbsodataR.verbose", FALSE)){
   meta <- attr(id, "meta")
   if (!is.null(meta)){
     return(meta)
@@ -16,16 +17,15 @@ cbs4_get_metadata <- function(id, catalog = "CBS", ..., base_url = BASEURL, cata
 
   # caching
   path_cache <- file.path(tempdir(), paste0(catalog, "_", id, ".rds"))
-
   if (file.exists(path_cache)){
     if (verbose) {
       message("Reading metadata from cache: ", path_cache)
     }
     return(readRDS(path_cache))
   }
+  #
 
   meta <- get_value(path, verbose = verbose)
-
   codes <- grep("Codes$|Groups$", meta$name)
   name <- c("Dimensions", meta$name[codes])
 
@@ -44,8 +44,9 @@ cbs4_get_metadata <- function(id, catalog = "CBS", ..., base_url = BASEURL, cata
   if (verbose){
     message("Saving metadata in '", path_cache, "'")
   }
-
   saveRDS(m, path_cache)
+  #
+
   m
 }
 

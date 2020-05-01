@@ -4,12 +4,18 @@
 \alias{cbs4_get_metadata}
 \title{Retrieve the metadata of a publication}
 \usage{
-cbs4_get_metadata(id, catalog = "CBS", ..., verbose = FALSE)
+cbs4_get_metadata(
+  id,
+  catalog = "CBS",
+  ...,
+  base_url = BASEURL4,
+  verbose = getOption("cbsodataR.verbose", FALSE)
+)
 }
 \arguments{
-\item{id}{Identifier of publication or data retrieved with \code{\link{cbs4_get_data}}}
+\item{id}{Identifier of publication or data retrieved with \code{\link[=cbs4_get_data]{cbs4_get_data()}}}
 
-\item{catalog}{Catalog, @seealso \code{\link{cbs4_get_catalogs}}}
+\item{catalog}{Catalog, @seealso \code{\link[=cbs4_get_catalogs]{cbs4_get_catalogs()}}}
 
 \item{...}{not used}
 

@@ -2,15 +2,33 @@
 % Please edit documentation in R/get_datasets.R
 \name{cbs4_get_datasets}
 \alias{cbs4_get_datasets}
+\alias{cbs4_get_toc}
 \title{Get the available datasets}
 \usage{
-cbs4_get_datasets(base_url = BASEURL, verbose = FALSE)
+cbs4_get_datasets(
+  catalog = NULL,
+  base_url = BASEURL4,
+  verbose = getOption("cbsodataR.verbose", FALSE)
+)
+
+cbs4_get_toc(
+  catalog = NULL,
+  base_url = BASEURL4,
+  verbose = getOption("cbsodataR.verbose", FALSE)
+)
 }
 \arguments{
-\item{base_url}{base url of the CCB API}
+\item{catalog}{only show the datasets from that catalog.}
+
+\item{base_url}{base url of the CBS OData 4 API}
 
 \item{verbose}{Should the url request be printed?}
 }
 \description{
-Get the available datasets from ccb
+Get the available datasets from open data portal
 }
+\seealso{
+Other datasets: 
+\code{\link{cbs4_get_catalogs}()}
+}
+\concept{datasets}

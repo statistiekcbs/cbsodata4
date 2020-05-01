@@ -7,7 +7,7 @@
 cbs4_add_date_column(data, date_type = c("Date", "numeric"), ...)
 }
 \arguments{
-\item{data}{\code{data.frame} retrieved using \code{\link{cbs4_get_data}}}
+\item{data}{\code{data.frame} retrieved using \code{\link[=cbs4_get_data]{cbs4_get_data()}}}
 
 \item{date_type}{Type of date column: "Date", "numeric. Numeric creates a fractional
 number which signs the "middle" of the period. e.g. 2018JJ00 -> 2018.5 and
@@ -18,12 +18,17 @@ If all codes in the dataset have frequency "Y" the numeric output will be \code{
 \item{...}{future use.}
 }
 \value{
-original dataset with two added columns: \code{<period>_date} and
-\code{<period>_freq}. This last column is a factor with levels: \code{Y}, \code{Q} and \code{M}
+original dataset with two added columns: \verb{<period>_date} and
+\verb{<period>_freq}. This last column is a factor with levels: \code{Y}, \code{Q} and \code{M}
 }
 \description{
 Time periods in data of CBS are coded: yyyyXXww (e.g. 2018JJ00, 2018MM10, 2018KW02),
 which contains year (yyyy), type (XX) and index (ww). \code{cbs4_add_date_column} converts
-these codes into a \code{\link{Date}} or \code{numeric}. In addition it adds
+these codes into a \code{\link[=Date]{Date()}} or \code{numeric}. In addition it adds
 a frequency column denoting the type of the column.
 }
+\seealso{
+Other add metadata: 
+\code{\link{cbs4_add_labels}()}
+}
+\concept{add metadata}
