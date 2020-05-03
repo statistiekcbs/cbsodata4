@@ -8,6 +8,7 @@ cbs4_get_data(
   id,
   catalog = "CBS",
   ...,
+  name_measure_columns = TRUE,
   download_dir = file.path(tempdir(), id),
   verbose = FALSE,
   sep = ",",
@@ -20,6 +21,8 @@ cbs4_get_data(
 \item{catalog}{Catalog in which the dataset is to be found}
 
 \item{...}{passed through to cbs4_download_data}
+
+\item{name_measure_columns}{\code{logical} if \code{TRUE} the \code{Title} of the measure will be set as name column.}
 
 \item{download_dir}{directory in which the data and metadata is downloaded. By default this is
 temporary directory, but can be set manually}

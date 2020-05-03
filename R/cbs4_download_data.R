@@ -30,7 +30,7 @@ cbs4_download_data <- function( id
     m <- meta[[n]]
     if (is.data.frame(m)){
       path_n <- file.path(download_dir, paste0(n, ".csv"))
-      data.table::fwrite(m, path_n, sep = sep, na = "", row.names = FALSE, ...)
+      data.table::fwrite(m, path_n, sep = sep, na = "", row.names = FALSE)
     } else if (is.list(m)){
       path_n <- file.path(download_dir, paste0(n, ".yml"))
       yaml::write_yaml(m, path_n)
@@ -38,6 +38,10 @@ cbs4_download_data <- function( id
   }
 
   path <- file.path(BASEURL4, catalog, id, "Observations")
+  path <- paste0(path, get_query(...))
+  path <- utils::URLencode(path)
+
+  print(path)
   path_obs <- file.path(download_dir, "Observations.csv")
 
   # empty function
@@ -58,7 +62,6 @@ cbs4_download_data <- function( id
                 , verbose     = verbose
                 , sep         = sep
                 , progress_cb = progress_cb
-                , ...
                 )
 
   if (show_progress){

@@ -17,7 +17,7 @@ get_filter <- function(..., filter_list=list(...), select = NULL, .meta = NULL){
   if (length(filter_list) == 0){
     return(NULL)
   }
-  
+
   query <- sapply(names(filter_list), function(column){
     filter <- column_filter( column
                            , filter_list[[column]]
@@ -26,7 +26,7 @@ get_filter <- function(..., filter_list=list(...), select = NULL, .meta = NULL){
                            )
     paste0("(", as.character(filter, column = column), ")")
   })
-  
+
   paste0(query, collapse=" and ")
 }
 
@@ -42,9 +42,9 @@ get_query <- function(..., select=NULL){
   query <- ""
   filter <- get_filter(...)
   if (!is.null(filter)){
-    query = paste0(query, "&$filter=", filter)
+    query = paste0(query, "?$filter=", filter)
   }
-  
+
   select <- get_select(select)
   if (!is.null(select)){
     query = paste0(query, "&$select=", select)
