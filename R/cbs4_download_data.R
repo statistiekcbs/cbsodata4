@@ -6,6 +6,8 @@
 #' @param catalog Catalog to download from
 #' @param sep seperator to be used in writing the data
 #' @param ... not used
+#' @param show_progress `logical` if `TRUE` downloading shows a progress bar. Cannot be used
+#' together with `verbose=TRUE`
 #' @param verbose Should messages be printed...
 #' @export
 cbs4_download_data <- function( id
@@ -47,7 +49,7 @@ cbs4_download_data <- function( id
 
     progress_cb <- function(res){
       value <- utils::getTxtProgressBar(pb)
-      setTxtProgressBar(pb, value + NROW(res))
+      utils::setTxtProgressBar(pb, value + NROW(res))
     }
   }
 

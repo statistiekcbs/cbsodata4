@@ -6,7 +6,7 @@
 ^appveyor\.yml$
 ^doc$
 ^Meta$
-^examples$
+^example$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$

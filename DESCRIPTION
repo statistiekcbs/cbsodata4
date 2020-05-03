@@ -12,10 +12,10 @@ Imports:
     jsonlite,
     data.table,
     yaml
-Suggests:
+Suggests: 
     knitr,
     rmarkdown,
-    testthat
+    tinytest
 RoxygenNote: 7.1.0
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)

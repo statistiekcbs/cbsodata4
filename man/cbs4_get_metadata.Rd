@@ -19,6 +19,8 @@ cbs4_get_metadata(
 
 \item{...}{not used}
 
+\item{base_url}{alternative url that implements same interface as statistics netherlands.}
+
 \item{verbose}{Should the function report on retrieving the data}
 }
 \description{

@@ -23,6 +23,9 @@ cbs4_download_data(
 
 \item{...}{not used}
 
+\item{show_progress}{\code{logical} if \code{TRUE} downloading shows a progress bar. Cannot be used
+together with \code{verbose=TRUE}}
+
 \item{sep}{seperator to be used in writing the data}
 
 \item{verbose}{Should messages be printed...}

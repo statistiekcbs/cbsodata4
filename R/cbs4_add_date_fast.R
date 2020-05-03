@@ -1,6 +1,7 @@
 
 add_date <- function(d){
-  p <- data.table(id = m$PeriodenCodes$Identifier)
+  meta <- cbs4_get_metadata(d)
+  p <- data.table::data.table(id = meta$PeriodenCodes$Identifier)
 
   TYPE <- c( "JJ" = "Y"
            , "KW" = "Q"
@@ -13,6 +14,7 @@ add_date <- function(d){
   year <- NULL
   . <- NULL
   number <- NULL
+  `:=` <- NULL
 
   #
 
@@ -23,7 +25,7 @@ add_date <- function(d){
   p[, number := as.integer(substring(id, 7,8))]
   p[, year := as.integer(substring(id, 1,4))]
 
-  p[freq == "Y", date:= ISOdate(year, 1, 1)]
+  p[freq == "Y", date := ISOdate(year, 1, 1)]
   p[freq == "M", date:= ISOdate(year, number, 1)]
   p[freq == "Q", date:= ISOdate(year, 1 + 3*(number-1), 1)]
   data.table::setkey(p, id)

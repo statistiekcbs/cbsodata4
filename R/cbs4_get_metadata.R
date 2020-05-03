@@ -5,6 +5,7 @@
 #' @param id Identifier of publication or data retrieved with [cbs4_get_data()]
 #' @param catalog Catalog, @seealso [cbs4_get_catalogs()]
 #' @param ... not used
+#' @param base_url alternative url that implements same interface as statistics netherlands.
 #' @param verbose Should the function report on retrieving the data
 cbs4_get_metadata <- function(id, catalog = "CBS", ..., base_url = BASEURL4
                              , verbose = getOption("cbsodataR.verbose", FALSE)){
