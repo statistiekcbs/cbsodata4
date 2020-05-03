@@ -12,14 +12,14 @@ cbs4_get_datasets <- function( catalog = NULL, base_url = BASEURL4
   path_cache <- file.path(tempdir(), "datasets.rds")
 
   if (file.exists(path_cache)){
-    return(readRDS(path_cache))
+    ds <- readRDS(path_cache)
+  } else {
+    ds <- get_value( file.path(base_url, "Datasets")
+                   , verbose = verbose
+                   )
+
+    saveRDS(ds, path_cache)
   }
-
-  ds <- get_value( file.path(base_url, "Datasets")
-                 , verbose = verbose
-                 )
-
-  saveRDS(ds, path_cache)
 
   if (!is.null(catalog)){
     ds <- ds[ds$Catalog == catalog,]

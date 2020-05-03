@@ -1,22 +1,27 @@
-#' Get data from the content cijfer bank
+#' Get observations from cbs odata
 #'
 #' Get data from the content cijfer bank
-#' @param id Identifier of the Opendata table. Can be retrieved with cbs4_get_datasets
+#' @param id Identifier of the Opendata table. Can be retrieved with [cbs4_get_datasets()]
 #' @param catalog Catalog in which the dataset is to be found
 #' @param ... passed through to cbs4_download_data
 #' @param download_dir directory in which the data and metadata is downloaded. By default this is
 #' temporary directory, but can be set manually
-#' @param verbose should
+#' @param verbose if `TRUE` prints the steps taken to retrieve the data.
+#' @param show_progress if `TRUE` shows progress of data donwload, can't be used together
+#' with verbose.
 #' @param sep separator to be used to download the data.
 #' @param includeId `logical`, should the Id column be downloaded?
+#' @param as.data.table `logical`, should the result be of type data.table?
 #' @export
 cbs4_get_observations <- function( id
-                         , catalog = "CBS"
                          , ...
+                         , catalog = "CBS"
                          , download_dir = file.path(tempdir(), id)
                          , verbose = FALSE
+                         , show_progress = interactive()
                          , sep = ","
                          , includeId = TRUE
+                         , as.data.table = FALSE
                          ){
 
   toc <- cbs4_get_datasets()
@@ -29,19 +34,19 @@ cbs4_get_observations <- function( id
                             , ...
                             , download_dir = download_dir
                             , verbose = verbose
+                            , show_progress = show_progress
                             , sep = sep
                             )
 
-  #data <- read.table(file.path(download_dir, "Observations.csv"), header = TRUE, sep = sep)
-  data <- data.table::fread( file.path(download_dir, "Observations.csv")
+  obs <- data.table::fread( file.path(download_dir, "Observations.csv")
                            , header = TRUE
                            , sep = sep
-                           , data.table = TRUE
+                           , data.table = as.data.table
                            )
 
-  attr(data, "meta") <- meta
-  class(data) <- c("cbs4_observations", class(data))
-  data
+  attr(obs, "meta") <- meta
+  class(obs) <- c("cbs4_observations", class(obs))
+  obs
 }
 
 #' Get data from CBS
@@ -56,20 +61,24 @@ cbs4_get_data <- function( id
                          , download_dir = file.path(tempdir(), id)
                          , verbose = FALSE
                          , sep = ","
+                         , as.data.table = FALSE
                          ){
+
   obs <- cbs4_get_observations(id = id
                               , catalog = catalog
                               , ...
                               , download_dir = download_dir
                               , verbose = verbose
                               , sep = sep
+                              , as.data.table = TRUE # we use data.table to pivot
                               )
   m <- attr(obs, "meta")
-  d <- data.table::as.data.table(obs)
-
   lhs <- paste(m$Dimensions$Identifier, collapse = " + ")
   f <- stats::as.formula(paste(lhs, "~ Measure"))
-  d <- data.table::dcast(d, f, value.var = "Value")
+  if (verbose){
+    message("casting observations as data with: ", format(f))
+  }
+  d <- data.table::dcast(obs, f, value.var = "Value")
 
   labels <- c( setNames(m$MeasureCodes$Title, m$MeasureCodes$Identifier)
              , setNames(m$Dimensions$Title, m$Dimensions$Identifier)
@@ -80,8 +89,14 @@ cbs4_get_data <- function( id
     attr(d[[n]], "label") <- unname(labels[n])
   }
 
-  structure( as.data.frame(d)
+  if (!isTRUE(as.data.table)){
+    d <- as.data.frame(d)
+  }
+
+  structure( d
            , meta = m
+           , class = c("cbs4_data", class(d))
            )
 
 }
+
