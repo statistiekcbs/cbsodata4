@@ -15,24 +15,20 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(cbsccb)
-library(dplyr) # not needed but used for example
+library(cbsodata4)
 ```
 
 # Introduction
 
 ```{r}
 catalogs <- cbs4_get_catalogs() 
-catalogs %>% 
-  select(Identifier, Title)
+catalogs[,1:2]
 ```
 
 
 ```{r}
 datasets <- cbs4_get_datasets()
-datasets %>% 
-  select(Identifier, Title) %>% 
-  head(2)
+head(datasets[,c("Identifier", "Title")])
 ```
 
 ```{r}
@@ -41,45 +37,31 @@ ls.str(meta)
 ```
 
 ```{r}
-data <- cbs4_get_observations("80416ned")
-data %>% 
-  select(-Id, -ValueAttribute) %>% 
-  head(5)
+obs <- cbs4_get_observations("80416ned")
+head(obs)
 ```
 
 
 ```{r}
-data <- cbs4_get_observations("80416ned")
-
-data %>% 
-  select(-Id, -ValueAttribute) %>%
-  cbs4_add_labels() %>% 
-  head(5) 
+obs <- cbs4_get_observations("80416ned")
+obs <- cbs4_add_labels(obs)
+head(obs)
 ```
 
 ```{r}
-data <- cbs4_get_observations("80416ned")
+obs <- cbs4_get_observations("80416ned")
+obs <- cbs4_add_date_column(obs)
+head(obs)
 
-data %>% 
-  select(-Id, -ValueAttribute) %>%
-  cbs4_add_date_column() %>% 
-  head(5) 
-
-library(tidyr)
-data %>% 
-  cbs4_add_labels() %>% 
-  select(ends_with("Label"), Value) %>% 
-  spread(MeasureLabel, Value) %>% 
-  head()
+data <- cbs4_get_data("80416ned")
+head(data)
 ```
 
 ```{r}
 meta <- cbs4_get_metadata("80416ned")
-data <- cbs4_get_observations("80416ned")
-data %>% 
-  select(-Id, -ValueAttribute) %>%
-  cbs4_add_unit() %>% 
-  head(5) 
+obs <- cbs4_get_observations("80416ned")
+obs <- cbs4_add_unit(obs)
+head(obs)
 ```
 
 ```{r}

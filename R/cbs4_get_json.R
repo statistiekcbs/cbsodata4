@@ -1,4 +1,3 @@
-#' @importFrom utils read.table write.table
 get_value <- function(path, singleton = FALSE, verbose=TRUE){
   if (verbose){
     message("Retrieving ", path)

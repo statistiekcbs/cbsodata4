@@ -43,10 +43,10 @@ cbs4_download_data <- function( id
 
   if (show_progress){
     # we create a pb, that is used in progress_cb.
-    pb <- txtProgressBar(0, max = meta$Properties$ObservationCount)
+    pb <- utils::txtProgressBar(0, max = meta$Properties$ObservationCount)
 
     progress_cb <- function(res){
-      value <- getTxtProgressBar(pb)
+      value <- utils::getTxtProgressBar(pb)
       setTxtProgressBar(pb, value + NROW(res))
     }
   }

@@ -13,7 +13,6 @@ Imports:
     data.table,
     yaml
 Suggests:
-    tidyr,
     knitr,
     rmarkdown,
     testthat
