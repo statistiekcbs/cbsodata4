@@ -2,7 +2,7 @@
 title: "CBS_ccb"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{CBS_ccb}
+  %\VignetteIndexEntry{cbsodata4}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

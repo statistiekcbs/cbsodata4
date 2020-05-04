@@ -3,7 +3,7 @@
 language: R
 cache: packages
 warnings_are_errors: false
-r_binary_packages: [data.table,jsonlite,knitr,rmarkdown]
+r_binary_packages: [data.table,jsonlite,rmarkdown]
 
 #before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 #deploy:
