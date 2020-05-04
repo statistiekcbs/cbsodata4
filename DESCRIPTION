@@ -1,7 +1,7 @@
 Package: cbsodata4
 Type: Package
-Title: API to Statistics Netherlands Content Base (ccb)
-Version: 0.1.0
+Title: API to Statistics Netherlands Content.
+Version: 0.1.0.9000
 Authors@R: c( person("Edwin", "de Jonge", role=c("aut", "cre"), email="e.dejonge@cbs.nl")
             )
 Description: Use the Content Cijfer Bank of CBS.
