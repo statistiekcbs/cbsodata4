@@ -170,7 +170,6 @@
 <span class="co">#&gt;  $ Provenance          :'data.frame':    2 obs. of  2 variables:</span>
 <span class="co">#&gt;  $ RelatedSources      :'data.frame':    5 obs. of  2 variables:</span></pre></body></html></div>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
-<span class="co">#&gt; [1] "https://beta-odata4.cbs.nl/CBS/80416ned/Observations"</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)
 <span class="co">#&gt;   Id Measure ValueAttribute Value Perioden</span>
 <span class="co">#&gt; 1  0 E006512           None 1.325 20060101</span>
@@ -180,7 +179,6 @@
 <span class="co">#&gt; 5  4 E006528           None 1.007 20060102</span>
 <span class="co">#&gt; 6  5 E006498           None 0.542 20060102</span></pre></body></html></div>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
-<span class="co">#&gt; [1] "https://beta-odata4.cbs.nl/CBS/80416ned/Observations"</span>
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_labels.html">cbs4_add_labels</a></span>(<span class="no">obs</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)
 <span class="co">#&gt;   Id Measure   MeasureLabel ValueAttribute Value Perioden</span>
@@ -198,7 +196,6 @@
 <span class="co">#&gt; 5 2006 maandag 2 januari</span>
 <span class="co">#&gt; 6 2006 maandag 2 januari</span></pre></body></html></div>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
-<span class="co">#&gt; [1] "https://beta-odata4.cbs.nl/CBS/80416ned/Observations"</span>
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_date_column.html">cbs4_add_date_column</a></span>(<span class="no">obs</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)
 <span class="co">#&gt;   Id Measure ValueAttribute Value Perioden Perioden_Date Perioden_freq</span>
@@ -210,7 +207,6 @@
 <span class="co">#&gt; 6  5 E006498           None 0.542 20060102          &lt;NA&gt;          &lt;NA&gt;</span>
 
 <span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"80416ned"</span>)
-<span class="co">#&gt; [1] "https://beta-odata4.cbs.nl/CBS/80416ned/Observations"</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>)
 <span class="co">#&gt;   Perioden   LPG Benzine Euro95 Diesel</span>
 <span class="co">#&gt; 1 20060101 0.543          1.325  1.003</span>
@@ -221,7 +217,6 @@
 <span class="co">#&gt; 6 20060106 0.549          1.353  1.023</span></pre></body></html></div>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="st">"80416ned"</span>)
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
-<span class="co">#&gt; [1] "https://beta-odata4.cbs.nl/CBS/80416ned/Observations"</span>
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_unit.html">cbs4_add_unit</a></span>(<span class="no">obs</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)
 <span class="co">#&gt;   Id Measure ValueAttribute Value       Unit</span>
@@ -232,7 +227,6 @@
 <span class="co">#&gt; 5  4 E006528           None 1.007 euro/liter</span>
 <span class="co">#&gt; 6  5 E006498           None 0.542 euro/liter</span></pre></body></html></div>
 <div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"80416ned"</span>)
-<span class="co">#&gt; [1] "https://beta-odata4.cbs.nl/CBS/80416ned/Observations"</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>)
 <span class="co">#&gt;   Perioden   LPG Benzine Euro95 Diesel</span>
 <span class="co">#&gt; 1 20060101 0.543          1.325  1.003</span>
