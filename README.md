@@ -1,20 +1,20 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cbsccb
+# cbsodata4
 
 <!-- badges: start -->
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/cbsccb)](https://cran.r-project.org/package=cbsccb)
+status](https://www.r-pkg.org/badges/version/cbsodata4)](https://cran.r-project.org/package=cbsodata4)
 [![Travis build
-status](https://travis-ci.org/statistiekcbs/cbsccb.svg?branch=master)](https://travis-ci.org/statistiekcbs/cbsccb)
+status](https://travis-ci.org/statistiekcbs/cbsodata4.svg?branch=master)](https://travis-ci.org/statistiekcbs/cbsodata4)
 [![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/statistiekcbs/cbsccb?branch=master&svg=true)](https://ci.appveyor.com/project/edwindj/cbsccb)
+status](https://ci.appveyor.com/api/projects/status/github/statistiekcbs/cbsodata4?branch=master&svg=true)](https://ci.appveyor.com/project/edwindj/cbsodata4)
 
 <!-- badges: end -->
 
-The goal of cbsccb is to allow access to the CBS content cijfer bank
+The goal of cbsodata4 is allowing access to the Open Data API v4 of Statistics Netherlands.
 
 ## Installation
 
@@ -31,7 +31,7 @@ At the moment only a development version can be installed from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("statistiekcbs/cbsccb")
+devtools::install_github("statistiekcbs/cbsodata4")
 ```
 
 ## Example
