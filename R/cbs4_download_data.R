@@ -41,7 +41,6 @@ cbs4_download_data <- function( id
   path <- paste0(path, get_query(...))
   path <- utils::URLencode(path)
 
-  print(path)
   path_obs <- file.path(download_dir, "Observations.csv")
 
   # empty function

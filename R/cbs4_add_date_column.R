@@ -13,6 +13,7 @@
 #' @param ... future use.
 #' @return original dataset with two added columns: `<period>_date` and
 #' `<period>_freq`. This last column is a factor with levels: `Y`, `Q` and `M`
+#' @example ./example/cbs_add_date_column.R
 #' @export
 #' @family add metadata
 cbs4_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
@@ -73,6 +74,7 @@ cbs4_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
   idx <- c(i+1, i+2)
   x[idx] <- list(period, type1)
   names(x)[idx] <- paste0(period_name, paste0("_", c(date_type,"freq")))
+  attr(x, "meta") <- meta
   x
 }
 
