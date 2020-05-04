@@ -54,10 +54,10 @@ cbs_get_data( id      = "7196ENG"      # table id
 
 if (interactive()){
   cbs4_get_data( id        = "80784ned"    # table id
-               , Perioden  = "2019JJ00"   # Year 2019
-               , Geslacht  = "1100"       # code for total gender
+               , Perioden  = "2019JJ00"    # Year 2019
+               , Geslacht  = "1100"        # code for total gender
                , RegioS    = contains("PV")
-               , Measure  = "M003371_2"
+               , Measure   = "M003371_2"
                )
 }
 }
