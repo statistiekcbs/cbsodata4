@@ -18,16 +18,16 @@ expect_equal(f, list( Periods = c("2001JJ00","2002JJ00")
              )
 
 #  it parses a substringof
-f <- resolve_filter("substringof('KW', Periods)")
-expect_equal(f, list(Periods = quote(has_substring("KW"))))
+f <- resolve_filter("contains(Periods,'KW')")
+expect_equal(f, list(Periods = quote(contains("KW"))))
 
 # it parses a substringof and another thingy"
-f <- resolve_filter("(substringof('KW', Periods)) and RegioS eq 'GM0003'")
-expect_equal(f, list(Periods = quote(has_substring("KW")), RegioS = "GM0003"))
+f <- resolve_filter("(contains(Periods, 'KW')) and RegioS eq 'GM0003'")
+expect_equal(f, list(Periods = quote(contains("KW")), RegioS = "GM0003"))
 
 #  it parses a substringof or-ed with a value"
-f <- resolve_filter("substringof('KW', Periods) or Periods eq '2011JJ00'")
-expect_equal(f, list(Periods = quote(has_substring("KW") | "2011JJ00")))
+f <- resolve_filter("contains(Periods,'KW') or Periods eq '2011JJ00'")
+expect_equal(f, list(Periods = quote(contains("KW") | "2011JJ00")))
 
 # Eat your own dog food
 eyodf <- function(l){
@@ -43,14 +43,14 @@ l <- list(Perioden = c("2019JJ00", "2020JJ00"))
 f <- eyodf(l)
 expect_equal(f, l)
 
-l <- list(Perioden = has_substring("JJ"))
+l <- list(Perioden = contains("JJ"))
 f <- eyodf(l)
 expect_equal(f, l)
 
-l <- list(Perioden = has_substring(c("JJ", "KW")))
+l <- list(Perioden = contains(c("JJ", "KW")))
 f <- eyodf(l)
 expect_equal(f, l)
 
-l <- list(Perioden = has_substring("JJ") | "2019KW04")
+l <- list(Perioden = contains("JJ") | "2019KW04")
 f <- eyodf(l)
 expect_equal(f, l)

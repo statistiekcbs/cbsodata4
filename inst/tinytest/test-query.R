@@ -8,13 +8,13 @@ x <- eq(c("NL01", "GM0003"), "RegioS")
 expect_equal(as.character(x), "RegioS eq 'NL01' or RegioS eq 'GM0003'")
 
 #  it parses has_substring
-x <- has_substring("KW", "Perioden")
-expect_equal(as.character(x), "substringof('KW', Perioden)")
+x <- contains("KW", "Perioden")
+expect_equal(as.character(x), "contains(Perioden,'KW')")
 
 #  it parses two has_substring", {
-x <- has_substring(c("KW", "JJ"), "Perioden")
-expect_equal(as.character(x), "substringof('KW', Perioden) or substringof('JJ', Perioden)")
+x <- contains(c("KW", "JJ"), "Perioden")
+expect_equal(as.character(x), "contains(Perioden,'KW') or contains(Perioden,'JJ')")
 
 #  it parses eq | has_substring
-x <- eq("2019JJ00", "Perioden") | has_substring("KW", "Perioden")
-expect_equal(as.character(x), "Perioden eq '2019JJ00' or substringof('KW', Perioden)")
+x <- eq("2019JJ00", "Perioden") | contains("KW", "Perioden")
+expect_equal(as.character(x), "Perioden eq '2019JJ00' or contains(Perioden,'KW')")

@@ -36,7 +36,7 @@ eq <- function(x, column = NULL, allowed = NULL){
 
 #' Detect substring in column `column`
 #'
-#' Detects a substring in a column. `has_substring` filters the dataset at CBS:
+#' Detects a substring in a column. `contains` filters the dataset at CBS:
 #' rows that have a code that does not contain (one of) `x` are filtered out.
 #' @export
 #' @param x substring to be detected in column
@@ -45,14 +45,14 @@ eq <- function(x, column = NULL, allowed = NULL){
 #' is a code in `allowed`.
 #' @family query
 #' @example ./example/query.R
-has_substring <- function(x, column = NULL, allowed = NULL){
+contains <- function(x, column = NULL, allowed = NULL){
   size <- length(x) # bad init, but I don't know another way
 
   if (is.character(allowed)){
     m <- lapply(x, function(ss){
       m <- grep(ss, allowed)
       if (length(m) == 0){
-        warning( "substring: '", ss, "' does not match any keys"
+        warning( "contains: '", ss, "' does not match any keys"
                , call. = FALSE
                )
       }
@@ -65,7 +65,7 @@ has_substring <- function(x, column = NULL, allowed = NULL){
   structure(
     list( x = x
         , column = column
-        , cmd = "substringof"
+        , cmd = "contains"
         , size = size
         ),
     class = "query"
@@ -86,10 +86,10 @@ check_query <- function(x, allowed=NULL){
     return(eq(x$x, column = x$column, allowed = allowed))
   }
 
-  has_substring(x$x, column = x$column, allowed = allowed)
+  contains(x$x, column = x$column, allowed = allowed)
 }
 
-column_startswith <- function(x, column){
+q_startswith <- function(x, column){
   if (length(x) > 1){
     stop("'x' needs to be a single text")
   }
@@ -101,6 +101,20 @@ column_startswith <- function(x, column){
     class = "query"
   )
 }
+
+q_endswith <- function(x, column){
+  if (length(x) > 1){
+    stop("'x' needs to be a single text")
+  }
+  structure(
+    list( x = x
+          , column = column
+          , cmd = "endswith"
+    ),
+    class = "query"
+  )
+}
+
 
 is_query <- function(x){
   inherits(x, "query")
@@ -129,8 +143,10 @@ is_query <- function(x){
 as.character.query <- function(x, column = x$column, ...){
   query <- sapply(x$x, function(value){
     paste0( x$cmd
-          , "('", value, "', "
+          , "("
           , column
+          , ","
+          , "'", value, "'"
           , ")"
           )
   })
@@ -151,6 +167,17 @@ as.character.eq_query <- function(x, column = x$column, ...){
   paste(query, collapse = " or ")
 }
 
+#' @export
+print.query <-function(x, ...){
+  cat("["
+     , paste0("<", class(x), ">", collapse = ", ")
+     , "]"
+     , ": "
+     , as.character(x)
+     , sep = ""
+     )
+}
+
 #as.character(column_eq(c("NL01", "GM003"),"RegioS"))
 
 # as.character(column_contains("kw"))
@@ -158,4 +185,4 @@ as.character.eq_query <- function(x, column = x$column, ...){
 
 #resolve_deeplink("https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83913NED/table?dl=32399")
 
-#get_query(Perioden = eq("2019JJ00") | has_substring("KW", "JJ"), RegioS = c("GM0003","NL01"))
+#get_query(Perioden = eq("2019JJ00") | contains("KW", "JJ"), RegioS = c("GM0003","NL01"))

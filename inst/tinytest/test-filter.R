@@ -9,17 +9,17 @@ x <- get_filter(RegioS = c("NL01  ", "GM0003"))
 expect_equal(x, "(RegioS eq 'NL01  ' or RegioS eq 'GM0003')")
 
 #  it parses has_substring
-x <- get_filter(Perioden = has_substring("KW"))
-expect_equal(x, "(substringof('KW', Perioden))")
+x <- get_filter(Perioden = contains("KW"))
+expect_equal(x, "(contains(Perioden,'KW'))")
 
 #  it parses has_substring with multiple substrings
-x <- get_filter(Perioden = has_substring(c("KW", "JJ")))
-expect_equal(x, "(substringof('KW', Perioden) or substringof('JJ', Perioden))")
+x <- get_filter(Perioden = contains(c("KW", "JJ")))
+expect_equal(x, "(contains(Perioden,'KW') or contains(Perioden,'JJ'))")
 
 #  it parses has_substring and eq
-x <- get_filter(Perioden = has_substring("KW") | eq("2019JJ00"))
-expect_equal(x, "(substringof('KW', Perioden) or Perioden eq '2019JJ00')")
+x <- get_filter(Perioden = contains("KW") | "2019JJ00")
+expect_equal(x, "(contains(Perioden,'KW') or Perioden eq '2019JJ00')")
 
 #  it parses multiple columns
-x <- get_filter(Perioden = has_substring("KW"), RegioS = c("NL01  ", "GM0003"))
-expect_equal(x, "(substringof('KW', Perioden)) and (RegioS eq 'NL01  ' or RegioS eq 'GM0003')")
+x <- get_filter(Perioden = contains("KW"), RegioS = c("NL01", "GM0003"))
+expect_equal(x, "(contains(Perioden,'KW')) and (RegioS eq 'NL01' or RegioS eq 'GM0003')")

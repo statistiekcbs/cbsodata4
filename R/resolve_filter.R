@@ -21,10 +21,11 @@ resolve_filter <- function(filter, quoted = TRUE){
 
   nms <- character(length(a))
   EQ <- "(\\w+) eq '(.*)'"
-  SUBSTRINGOF <- "substringof\\('([^)]+)'\\s*,\\s*(\\w+)\\)"
+  CONTAINS <- "contains\\(\\s*(\\w+)\\s*,\\s*'([^)]+)'\\)"
+  #SUBSTRINGOF <- "substringof\\('([^)]+)'\\s*,\\s*(\\w+)\\)"
 
   eq_query <- lapply(a, function(x){grep(EQ, x)})
-  substringof_query <- lapply(a, function(x){grep(SUBSTRINGOF, x)})
+  contains_query <- lapply(a, function(x){grep(CONTAINS, x)})
 
   nms <- mapply(function(x, eq, ss){
     if (length(eq)){
@@ -32,9 +33,9 @@ resolve_filter <- function(filter, quoted = TRUE){
       sub(EQ, "\\1", x[eq])
     } else if (length(ss)){
       ss <- ss[1]
-      sub(SUBSTRINGOF, "\\2", x[ss])
+      sub(CONTAINS, "\\1", x[ss])
     }
-  }, a, eq_query, substringof_query)
+  }, a, eq_query, contains_query)
 
   cats <- mapply(function(x, eqs, column){
     if (length(eqs)){
@@ -46,11 +47,11 @@ resolve_filter <- function(filter, quoted = TRUE){
 
   substrings <- mapply(function(x, ss, column){
     if (length(ss)){
-      ss <- sub(SUBSTRINGOF, "\\1", x[ss])
-      ss <- substitute(has_substring(ss), list(ss = ss))
+      ss <- sub(CONTAINS, "\\2", x[ss])
+      ss <- substitute(contains(ss), list(ss = ss))
       ss
     }
-  }, a, substringof_query, nms)
+  }, a, contains_query, nms)
 
   cats <- mapply(function(eq, ss){
     if (length(eq)){
