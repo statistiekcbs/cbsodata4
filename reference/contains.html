@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Detect codes in a column — eq • cbsodata4</title>
+<title>Detect substring in column <code>column</code> — contains • cbsodata4</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Detect codes in a column — eq" />
-<meta property="og:description" content="Detects for codes in a column. eq filters the data set at CBS: rows that have
-a code that is not in x are filtered out." />
+<meta property="og:title" content="Detect substring in column <code>column</code> — contains" />
+<meta property="og:description" content="Detects a substring in a column. contains filters the dataset at CBS:
+rows that have a code that does not contain (one of) x are filtered out." />
 
 
 
@@ -116,28 +116,28 @@ a code that is not in x are filtered out." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Detect codes in a column</h1>
+    <h1>Detect substring in column <code>column</code></h1>
     
-    <div class="hidden name"><code>eq.Rd</code></div>
+    <div class="hidden name"><code>contains.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Detects for codes in a column. <code>eq</code> filters the data set at CBS: rows that have
-a code that is not in <code>x</code> are filtered out.</p>
+    <p>Detects a substring in a column. <code>contains</code> filters the dataset at CBS:
+rows that have a code that does not contain (one of) <code>x</code> are filtered out.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>eq</span>(<span class='no'>x</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>allowed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>contains</span>(<span class='no'>x</span>, <span class='kw'>column</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>allowed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>exact code(s) to be matched in <code>column</code></p></td>
+      <td><p>substring to be detected in column</p></td>
     </tr>
     <tr>
       <th>column</th>
-      <td><p>name of column.</p></td>
+      <td><p>column name</p></td>
     </tr>
     <tr>
       <th>allowed</th>
@@ -146,13 +146,10 @@ is a code in <code>allowed</code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>query object</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other query: 
-<code><a href='contains.html'>contains</a>()</code></p></div>
+<code><a href='eq.html'>eq</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
@@ -166,7 +163,7 @@ is a code in <code>allowed</code>.</p></td>
 <span class='co'>## Regions: "NL", "PV": provinces, "GM": municipalities</span>
 
 <span class='fu'>cbs_get_data</span>( <span class='kw'>id</span>      <span class='kw'>=</span> <span class='st'>"7196ENG"</span>      <span class='co'># table id</span>
-            , <span class='kw'>Periods</span> <span class='kw'>=</span> <span class='fu'><a href='contains.html'>contains</a></span>(<span class='st'>"JJ"</span>)     <span class='co'># all years</span>
+            , <span class='kw'>Periods</span> <span class='kw'>=</span> <span class='fu'>contains</span>(<span class='st'>"JJ"</span>)     <span class='co'># all years</span>
             , <span class='kw'>CPI</span>     <span class='kw'>=</span> <span class='st'>"000000"</span>       <span class='co'># Category code for total</span>
             )
 
@@ -177,13 +174,13 @@ is a code in <code>allowed</code>.</p></td>
 
 <span class='co'># combine either this</span>
 <span class='fu'>cbs_get_data</span>( <span class='kw'>id</span>      <span class='kw'>=</span> <span class='st'>"7196ENG"</span>      <span class='co'># table id</span>
-            , <span class='kw'>Periods</span> <span class='kw'>=</span> <span class='fu'><a href='contains.html'>contains</a></span>(<span class='st'>"JJ"</span>) <span class='kw'>|</span> <span class='st'>"2000MM01"</span> <span class='co'># all years and Jan 2001</span>
+            , <span class='kw'>Periods</span> <span class='kw'>=</span> <span class='fu'>contains</span>(<span class='st'>"JJ"</span>) <span class='kw'>|</span> <span class='st'>"2000MM01"</span> <span class='co'># all years and Jan 2001</span>
             , <span class='kw'>CPI</span>     <span class='kw'>=</span> <span class='st'>"000000"</span>       <span class='co'># Category code for total</span>
             )
 
 <span class='co'># or this: note the "eq" function</span>
 <span class='fu'>cbs_get_data</span>( <span class='kw'>id</span>      <span class='kw'>=</span> <span class='st'>"7196ENG"</span>      <span class='co'># table id</span>
-            , <span class='kw'>Periods</span> <span class='kw'>=</span> <span class='fu'>eq</span>(<span class='st'>"2000MM01"</span>) <span class='kw'>|</span> <span class='fu'><a href='contains.html'>contains</a></span>(<span class='st'>"JJ"</span>) <span class='co'># Jan 2000 and all years</span>
+            , <span class='kw'>Periods</span> <span class='kw'>=</span> <span class='fu'><a href='eq.html'>eq</a></span>(<span class='st'>"2000MM01"</span>) <span class='kw'>|</span> <span class='fu'>contains</span>(<span class='st'>"JJ"</span>) <span class='co'># Jan 2000 and all years</span>
             , <span class='kw'>CPI</span>     <span class='kw'>=</span> <span class='st'>"000000"</span>       <span class='co'># Category code for total</span>
             )
 }
@@ -192,7 +189,7 @@ is a code in <code>allowed</code>.</p></td>
   <span class='fu'><a href='cbs4_get_data.html'>cbs4_get_data</a></span>( <span class='kw'>id</span>        <span class='kw'>=</span> <span class='st'>"80784ned"</span>    <span class='co'># table id</span>
                , <span class='kw'>Perioden</span>  <span class='kw'>=</span> <span class='st'>"2019JJ00"</span>   <span class='co'># Year 2019</span>
                , <span class='kw'>Geslacht</span>  <span class='kw'>=</span> <span class='st'>"1100"</span>       <span class='co'># code for total gender</span>
-               , <span class='kw'>RegioS</span>    <span class='kw'>=</span> <span class='fu'><a href='contains.html'>contains</a></span>(<span class='st'>"PV"</span>)
+               , <span class='kw'>RegioS</span>    <span class='kw'>=</span> <span class='fu'>contains</span>(<span class='st'>"PV"</span>)
                , <span class='kw'>Measure</span>  <span class='kw'>=</span> <span class='st'>"M003371_2"</span>
                )
 }</div></pre>
