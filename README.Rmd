@@ -12,40 +12,50 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# cbsccb
+
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# cbsodata4
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/cbsccb)](https://cran.r-project.org/package=cbsccb)
-[![Travis build status](https://travis-ci.org/statistiekcbs/cbsccb.svg?branch=master)](https://travis-ci.org/statistiekcbs/cbsccb)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/edwindj/cbsccb?branch=master&svg=true)](https://ci.appveyor.com/project/edwindj/cbsccb)
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/cbsodata4)](https://cran.r-project.org/package=cbsodata4)
+[![Travis build
+status](https://travis-ci.org/statistiekcbs/cbsodata4.svg?branch=master)](https://travis-ci.org/statistiekcbs/cbsodata4)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/statistiekcbs/cbsodata4?branch=master&svg=true)](https://ci.appveyor.com/project/edwindj/cbsodata4)
 
 <!-- badges: end -->
 
-The goal of cbsccb is to allow access to the CBS content cijfer bank
+The goal of cbsodata4 is allowing access to the Open Data API v4 of Statistics Netherlands.
 
 ## Installation
 
-<!--
 You can install the released version of cbsccb from [CRAN](https://CRAN.R-project.org) with:
 
-``` r
-install.packages("cbsccb")
+<!--
+```r
+install.packages("cbsodata4")
 ```
--->
+!-->
 
-At the moment only a development version can be installed from [GitHub](https://github.com/) with:
+At the moment only a development version can be installed from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("statistiekcbs/cbsccb")
+devtools::install_github("statistiekcbs/cbsodata4")
 ```
+
 ## Example
 
-```{r example}
-library(cbsccb)
+```{r}
+library(cbsodata4)
 
 # download the set of datasets
-datasets <- ccb_get_datasets()
-## basic example code
+datasets <- cbs4_get_datasets()
+datasets$Title[1:6]
 ```
 

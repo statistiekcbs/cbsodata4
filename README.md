@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # cbsodata4
 
 <!-- badges: start -->
@@ -14,17 +16,19 @@ status](https://ci.appveyor.com/api/projects/status/github/statistiekcbs/cbsodat
 
 <!-- badges: end -->
 
-The goal of cbsodata4 is allowing access to the Open Data API v4 of Statistics Netherlands.
+The goal of cbsodata4 is allowing access to the Open Data API v4 of
+Statistics Netherlands.
 
 ## Installation
 
-<!--
-You can install the released version of cbsccb from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of cbsccb from
+[CRAN](https://CRAN.R-project.org) with:
 
-``` r
-install.packages("cbsccb")
+<!--
+```r
+install.packages("cbsodata4")
 ```
--->
+!-->
 
 At the moment only a development version can be installed from
 [GitHub](https://github.com/) with:
@@ -37,10 +41,15 @@ devtools::install_github("statistiekcbs/cbsodata4")
 ## Example
 
 ``` r
-library(cbsccb)
+library(cbsodata4)
 
 # download the set of datasets
-datasets <- ccb_get_datasets()
-#> Retrieving http://beta.opendata.cbs.nl/OData4/Datasets
-## basic example code
+datasets <- cbs4_get_datasets()
+datasets$Title[1:6]
+#> [1] "Bevolkingsontwikkeling; regio per maand"                              
+#> [2] "Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw" 
+#> [3] "Regionale kerncijfers Nederland"                                      
+#> [4] "Akkerbouwgewassen; productie naar regio"                              
+#> [5] "Melkaanvoer en zuivelproductie door zuivelfabrieken"                  
+#> [6] "Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte"
 ```
