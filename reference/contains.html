@@ -86,19 +86,10 @@ rows that have a code that does not contain (one of) x are filtered out." />
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/cbsodata4.html">Get started</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/CBS_cbsodata4.html">CBS_ccb</a>
-    </li>
-  </ul>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -187,10 +178,10 @@ is a code in <code>allowed</code>.</p></td>
 
 <span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
   <span class='fu'><a href='cbs4_get_data.html'>cbs4_get_data</a></span>( <span class='kw'>id</span>        <span class='kw'>=</span> <span class='st'>"80784ned"</span>    <span class='co'># table id</span>
-               , <span class='kw'>Perioden</span>  <span class='kw'>=</span> <span class='st'>"2019JJ00"</span>   <span class='co'># Year 2019</span>
-               , <span class='kw'>Geslacht</span>  <span class='kw'>=</span> <span class='st'>"1100"</span>       <span class='co'># code for total gender</span>
+               , <span class='kw'>Perioden</span>  <span class='kw'>=</span> <span class='st'>"2019JJ00"</span>    <span class='co'># Year 2019</span>
+               , <span class='kw'>Geslacht</span>  <span class='kw'>=</span> <span class='st'>"1100"</span>        <span class='co'># code for total gender</span>
                , <span class='kw'>RegioS</span>    <span class='kw'>=</span> <span class='fu'>contains</span>(<span class='st'>"PV"</span>)
-               , <span class='kw'>Measure</span>  <span class='kw'>=</span> <span class='st'>"M003371_2"</span>
+               , <span class='kw'>Measure</span>   <span class='kw'>=</span> <span class='st'>"M003371_2"</span>
                )
 }</div></pre>
   </div>

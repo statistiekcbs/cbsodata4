@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the available datasets — cbs4_get_datasets • cbsodata4</title>
+<title>Get available datasets — cbs4_get_datasets • cbsodata4</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Get the available datasets — cbs4_get_datasets" />
-<meta property="og:description" content="Get the available datasets from open data portal" />
+<meta property="og:title" content="Get available datasets — cbs4_get_datasets" />
+<meta property="og:description" content="Get the available datasets from open data portal statline." />
 
 
 
@@ -85,19 +85,10 @@
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/cbsodata4.html">Get started</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/CBS_cbsodata4.html">CBS_ccb</a>
-    </li>
-  </ul>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -115,25 +106,25 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the available datasets</h1>
+    <h1>Get available datasets</h1>
     
     <div class="hidden name"><code>cbs4_get_datasets.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get the available datasets from open data portal</p>
+    <p>Get the available datasets from open data portal statline.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cbs4_get_datasets</span>(
-  <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
   <span class='kw'>base_url</span> <span class='kw'>=</span> <span class='no'>BASEURL4</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodataR.verbose"</span>, <span class='fl'>FALSE</span>)
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.verbose"</span>, <span class='fl'>FALSE</span>)
 )
 
 <span class='fu'>cbs4_get_toc</span>(
-  <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
   <span class='kw'>base_url</span> <span class='kw'>=</span> <span class='no'>BASEURL4</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodataR.verbose"</span>, <span class='fl'>FALSE</span>)
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.verbose"</span>, <span class='fl'>FALSE</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -141,7 +132,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>catalog</th>
-      <td><p>only show the datasets from that catalog.</p></td>
+      <td><p>only show the datasets from that catalog. If <code>NULL</code>
+all datasets of all catalogs will be returned.</p></td>
     </tr>
     <tr>
       <th>base_url</th>
@@ -153,6 +145,13 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Setting the catalog to <code>NULL</code> will return all</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>the datasets are downloaded only once per R session and cached. Subsequent calls to
+<code>cbs4_get_datasets</code> will use the results of the first call.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other datasets: 
