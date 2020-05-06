@@ -1,7 +1,7 @@
 #' Add human readable labels to a table
 #'
 #' `cbs4_get_observations()` downloads a data table in which the `Measure` and
-#' dimension columns contain `Codes` from the `Key` columns of `MeasureCodes` and
+#' dimension columns contain `Codes` from the `Identifier` columns of `MeasureCodes` and
 #' `<Dimension>Codes`
 #' `data.frame`s that can be found in the metadata downloaded with `cbs4_get_metadata()`.
 #'

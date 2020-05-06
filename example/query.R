@@ -1,41 +1,48 @@
-\dontrun{
-cbs_get_data( id      = "7196ENG"      # table id
-            , Periods = "2000MM03"     # March 2000
-            , CPI     = "000000"       # Category code for total
-            )
-
-# useful substrings:
-## Periods: "JJ": years, "KW": quarters, "MM", months
-## Regions: "NL", "PV": provinces, "GM": municipalities
-
-cbs_get_data( id      = "7196ENG"      # table id
-            , Periods = contains("JJ")     # all years
-            , CPI     = "000000"       # Category code for total
-            )
-
-cbs_get_data( id      = "7196ENG"      # table id
-            , Periods = c("2000MM03","2001MM12")     # March 2000 and Dec 2001
-            , CPI     = "000000"       # Category code for total
-            )
-
-# combine either this
-cbs_get_data( id      = "7196ENG"      # table id
-            , Periods = contains("JJ") | "2000MM01" # all years and Jan 2001
-            , CPI     = "000000"       # Category code for total
-            )
-
-# or this: note the "eq" function
-cbs_get_data( id      = "7196ENG"      # table id
-            , Periods = eq("2000MM01") | contains("JJ") # Jan 2000 and all years
-            , CPI     = "000000"       # Category code for total
-            )
-}
-
 if (interactive()){
-  cbs4_get_data( id        = "80784ned"    # table id
-               , Perioden  = "2019JJ00"    # Year 2019
-               , Geslacht  = "1100"        # code for total gender
-               , RegioS    = contains("PV")
-               , Measure   = "M003371_2"
+
+  # filter on Perioden (see meta$PeriodenCodes)
+  cbs4_get_data("84287NED"
+               , Perioden = "2019MM12" # december 2019
                )
+
+  # filter on multiple Perioden (see meta$PeriodenCodes)
+  cbs4_get_data("84287NED"
+               , Perioden = c("2019MM12", "2020MM01") # december 2019, january 2020
+               )
+
+  # to filter on a dimension just add the filter to the query
+
+  # filter on Perioden (see meta$PeriodenCodes)
+  cbs4_get_data("84287NED"
+               , Perioden = "2019MM12" # december 2019
+               , BedrijfstakkenBranchesSBI2008 = "T001081"
+               )
+
+
+  # filter on Perioden with contains
+  cbs4_get_data("84287NED"
+                , Perioden = contains("2020")
+                , BedrijfstakkenBranchesSBI2008 = "T001081"
+  )
+
+  # filter on Perioden with multiple contains
+  cbs4_get_data("84287NED"
+                , Perioden = contains(c("2019MM1", "2020"))
+                , BedrijfstakkenBranchesSBI2008 = "T001081"
+  )
+
+  # filter on Perioden with contains or = "2019MM12
+  cbs4_get_data("84287NED"
+                , Perioden = contains("2020") | "2019MM12"
+                , BedrijfstakkenBranchesSBI2008 = "T001081"
+  )
+
+  # This all works on observations too
+  cbs4_get_observations( id        = "80784ned"    # table id
+                       , Perioden  = "2019JJ00"    # Year 2019
+                       , Geslacht  = "1100"        # code for total gender
+                       , RegioS    = contains("PV")
+                       , Measure   = "M003371_2"
+                       )
+
 }
