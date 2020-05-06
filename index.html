@@ -95,7 +95,98 @@ install.packages("cbsodata4")
 <span class="co">#&gt; [3] "Regionale kerncijfers Nederland"                                      </span>
 <span class="co">#&gt; [4] "Akkerbouwgewassen; productie naar regio"                              </span>
 <span class="co">#&gt; [5] "Melkaanvoer en zuivelproductie door zuivelfabrieken"                  </span>
-<span class="co">#&gt; [6] "Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte"</span></pre></div>
+<span class="co">#&gt; [6] "Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte"</span>
+
+
+<span class="co"># filter on Perioden (see meta$PeriodenCodes)</span>
+<span class="fu"><a href="reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"84287NED"</span>
+             , <span class="kw">Perioden</span> <span class="kw">=</span> <span class="st">"2019MM12"</span> <span class="co"># december 2019</span>
+             )
+<span class="co">#&gt;   Perioden BedrijfstakkenBranchesSBI2008 Vacature-indicator</span>
+<span class="co">#&gt; 1 2019MM12                        300007               0.23</span>
+<span class="co">#&gt; 2 2019MM12                        307500               0.07</span>
+<span class="co">#&gt; 3 2019MM12                        350000               0.22</span>
+<span class="co">#&gt; 4 2019MM12                       T001081               0.21</span>
+
+<span class="co"># filter on multiple Perioden (see meta$PeriodenCodes)</span>
+<span class="fu"><a href="reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"84287NED"</span>
+             , <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"2019MM12"</span>, <span class="st">"2020MM01"</span>) <span class="co"># december 2019, january 2020</span>
+             )
+<span class="co">#&gt;   Perioden BedrijfstakkenBranchesSBI2008 Vacature-indicator</span>
+<span class="co">#&gt; 1 2019MM12                        300007               0.23</span>
+<span class="co">#&gt; 2 2019MM12                        307500               0.07</span>
+<span class="co">#&gt; 3 2019MM12                        350000               0.22</span>
+<span class="co">#&gt; 4 2019MM12                       T001081               0.21</span>
+<span class="co">#&gt; 5 2020MM01                        300007               0.21</span>
+<span class="co">#&gt; 6 2020MM01                        307500               0.05</span>
+<span class="co">#&gt; 7 2020MM01                        350000               0.15</span>
+<span class="co">#&gt; 8 2020MM01                       T001081               0.19</span>
+
+<span class="co"># to filter on a dimension just add the filter to the query</span>
+
+<span class="co"># filter on Perioden (see meta$PeriodenCodes)</span>
+<span class="fu"><a href="reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"84287NED"</span>
+             , <span class="kw">Perioden</span> <span class="kw">=</span> <span class="st">"2019MM12"</span> <span class="co"># december 2019</span>
+             , <span class="kw">BedrijfstakkenBranchesSBI2008</span> <span class="kw">=</span> <span class="st">"T001081"</span>
+             )
+<span class="co">#&gt;   Perioden BedrijfstakkenBranchesSBI2008 Vacature-indicator</span>
+<span class="co">#&gt; 1 2019MM12                       T001081               0.21</span>
+
+
+<span class="co"># filter on Perioden with contains</span>
+<span class="fu"><a href="reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"84287NED"</span>
+              , <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="reference/contains.html">contains</a></span>(<span class="st">"2020"</span>)
+              , <span class="kw">BedrijfstakkenBranchesSBI2008</span> <span class="kw">=</span> <span class="st">"T001081"</span>
+)
+<span class="co">#&gt;   Perioden BedrijfstakkenBranchesSBI2008 Vacature-indicator</span>
+<span class="co">#&gt; 1 2020MM01                       T001081               0.19</span>
+<span class="co">#&gt; 2 2020MM02                       T001081               0.15</span>
+<span class="co">#&gt; 3 2020MM03                       T001081               0.09</span>
+
+<span class="co"># filter on Perioden with multiple contains</span>
+<span class="fu"><a href="reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"84287NED"</span>
+              , <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="reference/contains.html">contains</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"2019MM1"</span>, <span class="st">"2020"</span>))
+              , <span class="kw">BedrijfstakkenBranchesSBI2008</span> <span class="kw">=</span> <span class="st">"T001081"</span>
+)
+<span class="co">#&gt;   Perioden BedrijfstakkenBranchesSBI2008 Vacature-indicator</span>
+<span class="co">#&gt; 1 2019MM10                       T001081               0.24</span>
+<span class="co">#&gt; 2 2019MM11                       T001081               0.23</span>
+<span class="co">#&gt; 3 2019MM12                       T001081               0.21</span>
+<span class="co">#&gt; 4 2020MM01                       T001081               0.19</span>
+<span class="co">#&gt; 5 2020MM02                       T001081               0.15</span>
+<span class="co">#&gt; 6 2020MM03                       T001081               0.09</span>
+
+<span class="co"># filter on Perioden with contains or = "2019MM12</span>
+<span class="fu"><a href="reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"84287NED"</span>
+              , <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="reference/contains.html">contains</a></span>(<span class="st">"2020"</span>) <span class="kw">|</span> <span class="st">"2019MM12"</span>
+              , <span class="kw">BedrijfstakkenBranchesSBI2008</span> <span class="kw">=</span> <span class="st">"T001081"</span>
+)
+<span class="co">#&gt;   Perioden BedrijfstakkenBranchesSBI2008 Vacature-indicator</span>
+<span class="co">#&gt; 1 2019MM12                       T001081               0.21</span>
+<span class="co">#&gt; 2 2020MM01                       T001081               0.19</span>
+<span class="co">#&gt; 3 2020MM02                       T001081               0.15</span>
+<span class="co">#&gt; 4 2020MM03                       T001081               0.09</span>
+
+<span class="co"># This all works on observations too</span>
+<span class="fu"><a href="reference/cbs4_get_observations.html">cbs4_get_observations</a></span>( <span class="kw">id</span>        <span class="kw">=</span> <span class="st">"80784ned"</span>    <span class="co"># table id</span>
+                     , <span class="kw">Perioden</span>  <span class="kw">=</span> <span class="st">"2019JJ00"</span>    <span class="co"># Year 2019</span>
+                     , <span class="kw">Geslacht</span>  <span class="kw">=</span> <span class="st">"1100"</span>        <span class="co"># code for total gender</span>
+                     , <span class="kw">RegioS</span>    <span class="kw">=</span> <span class="fu"><a href="reference/contains.html">contains</a></span>(<span class="st">"PV"</span>)
+                     , <span class="kw">Measure</span>   <span class="kw">=</span> <span class="st">"M003371_2"</span>
+                     )
+<span class="co">#&gt;      Id   Measure ValueAttribute Value Geslacht Perioden RegioS</span>
+<span class="co">#&gt; 1  3213 M003371_2           None  7988     1100 2019JJ00   PV20</span>
+<span class="co">#&gt; 2  3753 M003371_2           None 12734     1100 2019JJ00   PV21</span>
+<span class="co">#&gt; 3  4293 M003371_2           None  8378     1100 2019JJ00   PV22</span>
+<span class="co">#&gt; 4  4833 M003371_2           None 19339     1100 2019JJ00   PV23</span>
+<span class="co">#&gt; 5  5373 M003371_2           None  5759     1100 2019JJ00   PV24</span>
+<span class="co">#&gt; 6  5913 M003371_2           None 27455     1100 2019JJ00   PV25</span>
+<span class="co">#&gt; 7  6453 M003371_2           None  7123     1100 2019JJ00   PV26</span>
+<span class="co">#&gt; 8  6993 M003371_2           None 15868     1100 2019JJ00   PV27</span>
+<span class="co">#&gt; 9  7533 M003371_2           None 23615     1100 2019JJ00   PV28</span>
+<span class="co">#&gt; 10 8073 M003371_2           None  8313     1100 2019JJ00   PV29</span>
+<span class="co">#&gt; 11 8613 M003371_2           None 30685     1100 2019JJ00   PV30</span>
+<span class="co">#&gt; 12 9153 M003371_2           None 13114     1100 2019JJ00   PV31</span></pre></div>
 </div>
 </div>
   </div>
