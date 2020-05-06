@@ -1,5 +1,5 @@
 ---
-title: "CBS_ccb"
+title: "cbsodata4 Access to CBS / Statistics Netherlands data"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{cbsodata4}
