@@ -10,7 +10,7 @@
 #' @param base_url optionally specify a different server. Useful for
 #' third party data services implementing the same protocol.
 #' @return information object with table id, select, filter and query statement.
-# resolve_deeplink <- function(deeplink, ..., base_url = getOption("cbsodataR.base_url", BASEURL4)){
+# resolve_deeplink <- function(deeplink, ..., base_url = getOption("cbsodata4.base_url", BASEURL4)){
 #
 #   id <- sub(".*/dataset/(\\w+)/.*", "\\1", deeplink)
 #   query <- sub(".*\\?(.*)", "\\1", deeplink)

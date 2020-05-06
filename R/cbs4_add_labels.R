@@ -1,6 +1,13 @@
-#' Add labels to codes
+#' Add human readable labels to a table
 #'
-#' Add labels to codes
+#' `cbs4_get_observations()` downloads a data table in which the `Measure` and
+#' dimension columns contain `Codes` from the `Key` columns of `MeasureCodes` and
+#' `<Dimension>Codes`
+#' `data.frame`s that can be found in the metadata downloaded with `cbs4_get_metadata()`.
+#'
+#' `cbs4_get_observations()` adds for the `Measure` and each `<Dimension>` column an extra column
+#' `MeasureLabel` ( `<Dimension>Label`) that contains the `Title` of each code.
+#' @example ./example/cbs4_add_labels.R
 #' @export
 #' @param data downloaded with [cbs4_get_data()]
 #' @param ... not used
@@ -28,12 +35,3 @@ cbs4_add_labels <- function(data, ...){
   o <- order(i)
   data[, o]
 }
-
-
-# d <-
-#   cbs4_get_data("84120NED") %>%
-#   cbs4_add_labels() %>%
-#   glimpse()
-
-
-# View(meta$MeasureCodes)

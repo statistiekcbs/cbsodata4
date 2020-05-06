@@ -6,7 +6,7 @@
 \usage{
 cbs4_get_catalogs(
   base_url = BASEURL4,
-  verbose = getOption("cbsodataR.verbose", FALSE)
+  verbose = getOption("cbsodata4.verbose", FALSE)
 )
 }
 \arguments{

@@ -9,7 +9,7 @@ cbs4_get_metadata(
   catalog = "CBS",
   ...,
   base_url = BASEURL4,
-  verbose = getOption("cbsodataR.verbose", FALSE)
+  verbose = getOption("cbsodata4.verbose", FALSE)
 )
 }
 \arguments{

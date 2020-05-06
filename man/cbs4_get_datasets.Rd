@@ -3,29 +3,37 @@
 \name{cbs4_get_datasets}
 \alias{cbs4_get_datasets}
 \alias{cbs4_get_toc}
-\title{Get the available datasets}
+\title{Get available datasets}
 \usage{
 cbs4_get_datasets(
-  catalog = NULL,
+  catalog = "CBS",
   base_url = BASEURL4,
-  verbose = getOption("cbsodataR.verbose", FALSE)
+  verbose = getOption("cbsodata4.verbose", FALSE)
 )
 
 cbs4_get_toc(
-  catalog = NULL,
+  catalog = "CBS",
   base_url = BASEURL4,
-  verbose = getOption("cbsodataR.verbose", FALSE)
+  verbose = getOption("cbsodata4.verbose", FALSE)
 )
 }
 \arguments{
-\item{catalog}{only show the datasets from that catalog.}
+\item{catalog}{only show the datasets from that catalog. If \code{NULL}
+all datasets of all catalogs will be returned.}
 
 \item{base_url}{base url of the CBS OData 4 API}
 
 \item{verbose}{Should the url request be printed?}
 }
 \description{
-Get the available datasets from open data portal
+Get the available datasets from open data portal statline.
+}
+\details{
+Setting the catalog to \code{NULL} will return all
+}
+\note{
+the datasets are downloaded only once per R session and cached. Subsequent calls to
+\code{cbs4_get_datasets} will use the results of the first call.
 }
 \seealso{
 Other datasets: 

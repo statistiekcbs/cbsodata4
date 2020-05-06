@@ -2,7 +2,7 @@
 % Please edit documentation in R/cbs4_add_labels.R
 \name{cbs4_add_labels}
 \alias{cbs4_add_labels}
-\title{Add labels to codes}
+\title{Add human readable labels to a table}
 \usage{
 cbs4_add_labels(data, ...)
 }
@@ -12,7 +12,28 @@ cbs4_add_labels(data, ...)
 \item{...}{not used}
 }
 \description{
-Add labels to codes
+\code{cbs4_get_observations()} downloads a data table in which the \code{Measure} and
+dimension columns contain \code{Codes} from the \code{Key} columns of \code{MeasureCodes} and
+\verb{<Dimension>Codes}
+\code{data.frame}s that can be found in the metadata downloaded with \code{cbs4_get_metadata()}.
+}
+\details{
+\code{cbs4_get_observations()} adds for the \code{Measure} and each \verb{<Dimension>} column an extra column
+\code{MeasureLabel} ( \verb{<Dimension>Label}) that contains the \code{Title} of each code.
+}
+\examples{
+obs <- cbs4_get_observations("84287NED", Perioden="2019MM12")
+obs # without label columns
+
+obs_labeled <- cbs4_add_labels(obs)
+obs_labeled
+
+
+d <- cbs4_get_data("84287NED", Perioden="2019MM12")
+d # cbs4_get_data automagically labels measure columns.
+d_labeled <- cbs4_add_labels(d)
+d_labeled
+
 }
 \seealso{
 Other add metadata: 

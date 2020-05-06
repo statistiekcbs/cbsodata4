@@ -1,13 +1,18 @@
-#' Get the available datasets
+#' Get available datasets
 #'
-#' Get the available datasets from open data portal
-#' @param catalog only show the datasets from that catalog.
+#' Get the available datasets from open data portal statline.
+#'
+#' Setting the catalog to `NULL` will return all
+#' @note the datasets are downloaded only once per R session and cached. Subsequent calls to
+#' `cbs4_get_datasets` will use the results of the first call.
+#' @param catalog only show the datasets from that catalog. If `NULL`
+#' all datasets of all catalogs will be returned.
 #' @param base_url base url of the CBS OData 4 API
 #' @param verbose Should the url request be printed?
 #' @family datasets
 #' @export
-cbs4_get_datasets <- function( catalog = NULL, base_url = BASEURL4
-                             , verbose = getOption("cbsodataR.verbose", FALSE)
+cbs4_get_datasets <- function( catalog = "CBS", base_url = BASEURL4
+                             , verbose = getOption("cbsodata4.verbose", FALSE)
                              ){
   path_cache <- file.path(tempdir(), "datasets.rds")
 
@@ -22,7 +27,7 @@ cbs4_get_datasets <- function( catalog = NULL, base_url = BASEURL4
   }
 
   if (!is.null(catalog)){
-    ds <- ds[ds$Catalog == catalog,]
+    ds <- ds[ds$Catalog %in% catalog,]
   }
 
   ds
