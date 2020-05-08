@@ -9,7 +9,7 @@
 #' @example ./example/query.R
 #' @param id Identifier of the Opendata table. Can be retrieved with [cbs4_get_datasets()]
 #' @param catalog Catalog in which the dataset is to be found.
-#' @param ... optional selections on data, passed through to cbs4_download_data. See examples
+#' @param ... optional selections on data, passed through to cbs4_download. See examples
 #' @param download_dir directory in which the data and metadata is downloaded. By default this is
 #' temporary directory, but can be set manually
 #' @param verbose if `TRUE` prints the steps taken to retrieve the data.
@@ -35,7 +35,7 @@ cbs4_get_observations <- function( id
     stop("Table '", id, "' can not be found in catalog '", catalog ,"'.", call. = FALSE)
   }
 
-  meta <- cbs4_download_data( id
+  meta <- cbs4_download( id
                             , catalog = catalog
                             , ...
                             , download_dir = download_dir

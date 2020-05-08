@@ -10,7 +10,7 @@
 #' together with `verbose=TRUE`
 #' @param verbose Should messages be printed...
 #' @export
-cbs4_download_data <- function( id
+cbs4_download <- function( id
                               , download_dir = id
                               , ...
                               , catalog = "CBS"
@@ -75,6 +75,6 @@ cbs4_download_data <- function( id
 }
 
 # id <- "84120NED"
-# m <- cbs4_download_data("84120NED", verbose = T)
-# cbs4_download_data("83765NED", verbose = T)
-# cbs4_download_data("81575NED", verbose = T)
+# m <- cbs4_download("84120NED", verbose = T)
+# cbs4_download("83765NED", verbose = T)
+# cbs4_download("81575NED", verbose = T)

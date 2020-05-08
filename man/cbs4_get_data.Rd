@@ -20,7 +20,7 @@ cbs4_get_data(
 
 \item{catalog}{Catalog in which the dataset is to be found.}
 
-\item{...}{optional selections on data, passed through to cbs4_download_data. See examples}
+\item{...}{optional selections on data, passed through to cbs4_download. See examples}
 
 \item{name_measure_columns}{\code{logical} if \code{TRUE} the \code{Title} of the measure will be set as name column.}
 

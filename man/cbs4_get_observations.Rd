@@ -19,7 +19,7 @@ cbs4_get_observations(
 \arguments{
 \item{id}{Identifier of the Opendata table. Can be retrieved with \code{\link[=cbs4_get_datasets]{cbs4_get_datasets()}}}
 
-\item{...}{optional selections on data, passed through to cbs4_download_data. See examples}
+\item{...}{optional selections on data, passed through to cbs4_download. See examples}
 
 \item{catalog}{Catalog in which the dataset is to be found.}
 
