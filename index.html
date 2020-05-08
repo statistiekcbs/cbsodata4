@@ -89,7 +89,7 @@ install.packages("cbsodata4")
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cbsodata4</span>)</pre></div>
-<p>Retrieve a list of all CBS / Statistics Netherlands tables with:</p>
+<p>Retrieve a list of all CBS / Statistics Netherlands tables with <code>cbs4_get_datasets</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="co"># download the set of datasets</span>
 <span class="no">datasets</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/cbs4_get_datasets.html">cbs4_get_datasets</a></span>()
 <span class="no">datasets</span>[<span class="fl">1</span>:<span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Identifier"</span>, <span class="st">"Title"</span>)]
@@ -105,7 +105,7 @@ install.packages("cbsodata4")
 <span class="co">#&gt; 3                                      Regionale kerncijfers Nederland</span>
 <span class="co">#&gt; 4                              Akkerbouwgewassen; productie naar regio</span>
 <span class="co">#&gt; 5                  Melkaanvoer en zuivelproductie door zuivelfabrieken</span></pre></div>
-<p>Get metadata of table <code>&lt;Identifier&gt;</code> (e.g. 60006) with:</p>
+<p>Get metadata of table <code>&lt;Identifier&gt;</code> (e.g. 60006) with <code>cbs4_get_metadata</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="kw">id</span><span class="kw">=</span><span class="st">"60006"</span>)
 <span class="no">meta</span>$<span class="no">Properties</span>$<span class="no">Title</span>
 <span class="co">#&gt; [1] "Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw"</span>
@@ -121,7 +121,7 @@ install.packages("cbsodata4")
 <span class="no">meta</span>$<span class="no">Dimensions</span>[, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Identifier"</span>, <span class="st">"Title"</span>)]
 <span class="co">#&gt;   Identifier    Title</span>
 <span class="co">#&gt; 1   Perioden Perioden</span></pre></div>
-<p>Retrieve data with:</p>
+<p>Retrieve data with <code>cbs4_get_data</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="r"><span class="co"># wide format, each measure its own column</span>
 <span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"60006"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>[, <span class="fl">1</span>:<span class="fl">4</span>])
@@ -132,7 +132,7 @@ install.packages("cbsodata4")
 <span class="co">#&gt; 4 1990KW03                          250    240              270</span>
 <span class="co">#&gt; 5 1990KW04                          160    145              370</span>
 <span class="co">#&gt; 6 1991JJ00                          780    665             1305</span></pre></div>
-<p>or</p>
+<p>or <code>cbs4_get_observations</code></p>
 <div class="sourceCode" id="cb6"><pre class="r"><span class="co"># long format, one Value column</span>
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"60006"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)
@@ -143,7 +143,7 @@ install.packages("cbsodata4")
 <span class="co">#&gt; 4  3   M003013           None   135 1990KW01</span>
 <span class="co">#&gt; 5  4   M003019           None   365 1990KW01</span>
 <span class="co">#&gt; 6  5   M003026           None   520 1990KW02</span></pre></div>
-<p>Add labels with:</p>
+<p>Add labels to a dataset with <code>cbs4_add_labels</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/cbs4_add_labels.html">cbs4_add_labels</a></span>(<span class="no">data</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>[,<span class="fl">1</span>:<span class="fl">4</span>])
 <span class="co">#&gt;   Perioden    PeriodenLabel Totaal niet-productieve uren Overig</span>
@@ -170,13 +170,13 @@ install.packages("cbsodata4")
 <span class="co">#&gt; 4 1990 1e kwartaal</span>
 <span class="co">#&gt; 5 1990 1e kwartaal</span>
 <span class="co">#&gt; 6 1990 2e kwartaal</span></pre></div>
-<p>For more information see <code><a href="articles/cbsodata4.html">vignette("cbsodata4")</a></code></p>
-<p>Find non-standard CBS catalogs with:</p>
+<p>Find non-standard CBS catalogs with <code>cbs4_get_catalogs</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="no">catalogs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/cbs4_get_catalogs.html">cbs4_get_catalogs</a></span>()
 <span class="no">catalogs</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Identifier"</span>, <span class="st">"Title"</span>)]
 <span class="co">#&gt;   Identifier                 Title</span>
 <span class="co">#&gt; 1        CBS CBS databank StatLine</span>
 <span class="co">#&gt; 2    CBS-asd        CBS aanvullend</span></pre></div>
+<p>For more information see <code><a href="articles/cbsodata4.html">vignette("cbsodata4")</a></code></p>
 </div>
 </div>
   </div>
