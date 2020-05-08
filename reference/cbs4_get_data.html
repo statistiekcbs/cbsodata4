@@ -135,11 +135,11 @@
     </tr>
     <tr>
       <th>catalog</th>
-      <td><p>Catalog in which the dataset is to be found</p></td>
+      <td><p>Catalog in which the dataset is to be found.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>passed through to cbs4_download_data</p></td>
+      <td><p>optional selections on data, passed through to cbs4_download. See examples</p></td>
     </tr>
     <tr>
       <th>name_measure_columns</th>
@@ -165,6 +165,55 @@ temporary directory, but can be set manually</p></td>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
+
+  <span class='co'># filter on Perioden (see meta$PeriodenCodes)</span>
+  <span class='fu'>cbs4_get_data</span>(<span class='st'>"84287NED"</span>
+               , <span class='kw'>Perioden</span> <span class='kw'>=</span> <span class='st'>"2019MM12"</span> <span class='co'># december 2019</span>
+               )
+
+  <span class='co'># filter on multiple Perioden (see meta$PeriodenCodes)</span>
+  <span class='fu'>cbs4_get_data</span>(<span class='st'>"84287NED"</span>
+               , <span class='kw'>Perioden</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2019MM12"</span>, <span class='st'>"2020MM01"</span>) <span class='co'># december 2019, january 2020</span>
+               )
+
+  <span class='co'># to filter on a dimension just add the filter to the query</span>
+
+  <span class='co'># filter on Perioden (see meta$PeriodenCodes)</span>
+  <span class='fu'>cbs4_get_data</span>(<span class='st'>"84287NED"</span>
+               , <span class='kw'>Perioden</span> <span class='kw'>=</span> <span class='st'>"2019MM12"</span> <span class='co'># december 2019</span>
+               , <span class='kw'>BedrijfstakkenBranchesSBI2008</span> <span class='kw'>=</span> <span class='st'>"T001081"</span>
+               )
+
+
+  <span class='co'># filter on Perioden with contains</span>
+  <span class='fu'>cbs4_get_data</span>(<span class='st'>"84287NED"</span>
+                , <span class='kw'>Perioden</span> <span class='kw'>=</span> <span class='fu'><a href='contains.html'>contains</a></span>(<span class='st'>"2020"</span>)
+                , <span class='kw'>BedrijfstakkenBranchesSBI2008</span> <span class='kw'>=</span> <span class='st'>"T001081"</span>
+  )
+
+  <span class='co'># filter on Perioden with multiple contains</span>
+  <span class='fu'>cbs4_get_data</span>(<span class='st'>"84287NED"</span>
+                , <span class='kw'>Perioden</span> <span class='kw'>=</span> <span class='fu'><a href='contains.html'>contains</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2019MM1"</span>, <span class='st'>"2020"</span>))
+                , <span class='kw'>BedrijfstakkenBranchesSBI2008</span> <span class='kw'>=</span> <span class='st'>"T001081"</span>
+  )
+
+  <span class='co'># filter on Perioden with contains or = "2019MM12</span>
+  <span class='fu'>cbs4_get_data</span>(<span class='st'>"84287NED"</span>
+                , <span class='kw'>Perioden</span> <span class='kw'>=</span> <span class='fu'><a href='contains.html'>contains</a></span>(<span class='st'>"2020"</span>) <span class='kw'>|</span> <span class='st'>"2019MM12"</span>
+                , <span class='kw'>BedrijfstakkenBranchesSBI2008</span> <span class='kw'>=</span> <span class='st'>"T001081"</span>
+  )
+
+  <span class='co'># This all works on observations too</span>
+  <span class='fu'><a href='cbs4_get_observations.html'>cbs4_get_observations</a></span>( <span class='kw'>id</span>        <span class='kw'>=</span> <span class='st'>"80784ned"</span>    <span class='co'># table id</span>
+                       , <span class='kw'>Perioden</span>  <span class='kw'>=</span> <span class='st'>"2019JJ00"</span>    <span class='co'># Year 2019</span>
+                       , <span class='kw'>Geslacht</span>  <span class='kw'>=</span> <span class='st'>"1100"</span>        <span class='co'># code for total gender</span>
+                       , <span class='kw'>RegioS</span>    <span class='kw'>=</span> <span class='fu'><a href='contains.html'>contains</a></span>(<span class='st'>"PV"</span>)
+                       , <span class='kw'>Measure</span>   <span class='kw'>=</span> <span class='st'>"M003371_2"</span>
+                       )
+
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
