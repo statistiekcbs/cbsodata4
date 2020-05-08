@@ -13,7 +13,7 @@ cbs4_add_labels(data, ...)
 }
 \description{
 \code{cbs4_get_observations()} downloads a data table in which the \code{Measure} and
-dimension columns contain \code{Codes} from the \code{Key} columns of \code{MeasureCodes} and
+dimension columns contain \code{Codes} from the \code{Identifier} columns of \code{MeasureCodes} and
 \verb{<Dimension>Codes}
 \code{data.frame}s that can be found in the metadata downloaded with \code{cbs4_get_metadata()}.
 }
@@ -22,15 +22,17 @@ dimension columns contain \code{Codes} from the \code{Key} columns of \code{Meas
 \code{MeasureLabel} ( \verb{<Dimension>Label}) that contains the \code{Title} of each code.
 }
 \examples{
+# works on observations
 obs <- cbs4_get_observations("84287NED", Perioden="2019MM12")
 obs # without label columns
 
 obs_labeled <- cbs4_add_labels(obs)
 obs_labeled
 
-
+# works on data
 d <- cbs4_get_data("84287NED", Perioden="2019MM12")
 d # cbs4_get_data automagically labels measure columns.
+
 d_labeled <- cbs4_add_labels(d)
 d_labeled
 

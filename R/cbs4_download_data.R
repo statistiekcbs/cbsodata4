@@ -1,23 +1,23 @@
-#' Download the data file
+#' Download observations and metadata
 #'
-#' Download the data file
+#' Download observations and metadata to a directory
 #' @param id Identifier of publication
 #' @param download_dir directory where files are to be stored
+#' @param ... optional selection statement to retrieve a subset of the data.
 #' @param catalog Catalog to download from
 #' @param sep seperator to be used in writing the data
-#' @param ... not used
 #' @param show_progress `logical` if `TRUE` downloading shows a progress bar. Cannot be used
 #' together with `verbose=TRUE`
 #' @param verbose Should messages be printed...
 #' @export
 cbs4_download_data <- function( id
-                             , download_dir = id
-                             , catalog = "CBS"
-                             , ...
-                             , show_progress = interactive()
-                             , sep = ","
-                             , verbose = FALSE
-                             ){
+                              , download_dir = id
+                              , ...
+                              , catalog = "CBS"
+                              , show_progress = interactive()
+                              , sep = ","
+                              , verbose = FALSE
+                              ){
   if (show_progress && verbose){
     warning("verbose and show_progress can't be used together, show_progess was set to FALSE.", call. = FALSE)
     show_progress <- FALSE

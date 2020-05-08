@@ -18,9 +18,9 @@ cbs4_get_data(
 \arguments{
 \item{id}{Identifier of the Opendata table. Can be retrieved with \code{\link[=cbs4_get_datasets]{cbs4_get_datasets()}}}
 
-\item{catalog}{Catalog in which the dataset is to be found}
+\item{catalog}{Catalog in which the dataset is to be found.}
 
-\item{...}{passed through to cbs4_download_data}
+\item{...}{optional selections on data, passed through to cbs4_download_data. See examples}
 
 \item{name_measure_columns}{\code{logical} if \code{TRUE} the \code{Title} of the measure will be set as name column.}
 
@@ -35,4 +35,54 @@ temporary directory, but can be set manually}
 }
 \description{
 Get data from CBS
+}
+\examples{
+if (interactive()){
+
+  # filter on Perioden (see meta$PeriodenCodes)
+  cbs4_get_data("84287NED"
+               , Perioden = "2019MM12" # december 2019
+               )
+
+  # filter on multiple Perioden (see meta$PeriodenCodes)
+  cbs4_get_data("84287NED"
+               , Perioden = c("2019MM12", "2020MM01") # december 2019, january 2020
+               )
+
+  # to filter on a dimension just add the filter to the query
+
+  # filter on Perioden (see meta$PeriodenCodes)
+  cbs4_get_data("84287NED"
+               , Perioden = "2019MM12" # december 2019
+               , BedrijfstakkenBranchesSBI2008 = "T001081"
+               )
+
+
+  # filter on Perioden with contains
+  cbs4_get_data("84287NED"
+                , Perioden = contains("2020")
+                , BedrijfstakkenBranchesSBI2008 = "T001081"
+  )
+
+  # filter on Perioden with multiple contains
+  cbs4_get_data("84287NED"
+                , Perioden = contains(c("2019MM1", "2020"))
+                , BedrijfstakkenBranchesSBI2008 = "T001081"
+  )
+
+  # filter on Perioden with contains or = "2019MM12
+  cbs4_get_data("84287NED"
+                , Perioden = contains("2020") | "2019MM12"
+                , BedrijfstakkenBranchesSBI2008 = "T001081"
+  )
+
+  # This all works on observations too
+  cbs4_get_observations( id        = "80784ned"    # table id
+                       , Perioden  = "2019JJ00"    # Year 2019
+                       , Geslacht  = "1100"        # code for total gender
+                       , RegioS    = contains("PV")
+                       , Measure   = "M003371_2"
+                       )
+
+}
 }

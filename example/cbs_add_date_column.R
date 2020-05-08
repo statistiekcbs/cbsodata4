@@ -1,10 +1,11 @@
 if (interactive()){
+
   # works on observations...
   obs <- cbs4_get_observations( id        = "80784ned"    # table id
                               , Perioden  = "2019JJ00" # Year 2019
                               , Geslacht  = "1100"       # code for total gender
                               , RegioS    = "NL01"       # code for region NL
-                              , Measure  = "M003371_2"
+                              , Measure   = "M003371_2"
                               )
 
   # add a Periods_Date column

@@ -45,11 +45,20 @@ cbs4_get_metadata <- function(id, catalog = "CBS", ..., base_url = BASEURL4
   if (verbose){
     message("Saving metadata in '", path_cache, "'")
   }
+  m <- structure(m, class="cbs4_meta")
   saveRDS(m, path_cache)
-  #
-
   m
 }
 
-# m <- cbs4_get_metadata("900001NED", "CBS-Maatwerk", verbose=TRUE)
-#m <- cbs4_get_metadata("84120NED", verbose=T)
+#' @export
+print.cbs4_meta <- function(x, ...){
+  e <- deparse(substitute(x))
+  with(x$Properties,{
+    cat("cbs odata: '", Identifier ,"':\n"
+       , '"', Title, '"\n'
+       , "dimensions: ", paste0(x$Dimensions$Identifier, collapse = ", "), "\n"
+       , "For more info use ", e, "$.\n"
+       , sep = ""
+       )
+  })
+}
