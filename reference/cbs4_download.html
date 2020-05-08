@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • cbsodata4</title>
+<title>Download observations and metadata — cbs4_download • cbsodata4</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Download observations and metadata — cbs4_download" />
+<meta property="og:description" content="Download observations and metadata to a directory" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -103,96 +104,63 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Download observations and metadata</h1>
+    
+    <div class="hidden name"><code>cbs4_download.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Download observations and metadata to a directory</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>cbs4_download</span>(
+  <span class='no'>id</span>,
+  <span class='kw'>download_dir</span> <span class='kw'>=</span> <span class='no'>id</span>,
+  <span class='no'>...</span>,
+  <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
+  <span class='kw'>show_progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>(),
+  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="cbs4_add_date_column.html">cbs4_add_date_column()</a></code> </p>
-        </td>
-        <td><p>Convert the time variable into either a date or numeric.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cbs4_add_labels.html">cbs4_add_labels()</a></code> </p>
-        </td>
-        <td><p>Add human readable labels to a table</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cbs4_add_unit.html">cbs4_add_unit()</a></code> </p>
-        </td>
-        <td><p>Add unit column to data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cbs4_download.html">cbs4_download()</a></code> </p>
-        </td>
-        <td><p>Download observations and metadata</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cbs4_get_catalogs.html">cbs4_get_catalogs()</a></code> </p>
-        </td>
-        <td><p>Retrieve catalogs from ccb</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cbs4_get_data.html">cbs4_get_data()</a></code> </p>
-        </td>
-        <td><p>Get data from CBS</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cbs4_get_datasets.html">cbs4_get_datasets()</a></code> <code><a href="cbs4_get_datasets.html">cbs4_get_toc()</a></code> </p>
-        </td>
-        <td><p>Get available datasets</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cbs4_get_metadata.html">cbs4_get_metadata()</a></code> </p>
-        </td>
-        <td><p>Retrieve the metadata of a publication</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cbs4_get_observations.html">cbs4_get_observations()</a></code> </p>
-        </td>
-        <td><p>Get observations from a table.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="eq.html">eq()</a></code> </p>
-        </td>
-        <td><p>Detect codes in a column</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>id</th>
+      <td><p>Identifier of publication</p></td>
+    </tr>
+    <tr>
+      <th>download_dir</th>
+      <td><p>directory where files are to be stored</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>optional selection statement to retrieve a subset of the data.</p></td>
+    </tr>
+    <tr>
+      <th>catalog</th>
+      <td><p>Catalog to download from</p></td>
+    </tr>
+    <tr>
+      <th>show_progress</th>
+      <td><p><code>logical</code> if <code>TRUE</code> downloading shows a progress bar. Cannot be used
+together with <code>verbose=TRUE</code></p></td>
+    </tr>
+    <tr>
+      <th>sep</th>
+      <td><p>seperator to be used in writing the data</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Should messages be printed...</p></td>
+    </tr>
     </table>
-  </div>
 
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
