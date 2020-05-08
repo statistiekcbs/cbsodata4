@@ -47,7 +47,8 @@ devtools::install_github("statistiekcbs/cbsodata4")
 library(cbsodata4)
 ```
 
-Retrieve a list of all CBS / Statistics Netherlands tables with:
+Retrieve a list of all CBS / Statistics Netherlands tables with
+`cbs4_get_datasets`:
 
 ``` r
 # download the set of datasets
@@ -67,7 +68,8 @@ datasets[1:5, c("Identifier", "Title")]
 #> 5                  Melkaanvoer en zuivelproductie door zuivelfabrieken
 ```
 
-Get metadata of table `<Identifier>` (e.g. 60006) with:
+Get metadata of table `<Identifier>` (e.g. 60006) with
+`cbs4_get_metadata`:
 
 ``` r
 meta <- cbs4_get_metadata(id="60006")
@@ -87,7 +89,7 @@ meta$Dimensions[, c("Identifier", "Title")]
 #> 1   Perioden Perioden
 ```
 
-Retrieve data with:
+Retrieve data with `cbs4_get_data`:
 
 ``` r
 # wide format, each measure its own column
@@ -102,7 +104,7 @@ head(data[, 1:4])
 #> 6 1991JJ00                          780    665             1305
 ```
 
-or
+or `cbs4_get_observations`
 
 ``` r
 # long format, one Value column
@@ -117,7 +119,7 @@ head(obs)
 #> 6  5   M003026           None   520 1990KW02
 ```
 
-Add labels with:
+Add labels to a dataset with `cbs4_add_labels`:
 
 ``` r
 data <- cbs4_add_labels(data)
@@ -148,9 +150,7 @@ head(obs)
 #> 6 1990 2e kwartaal
 ```
 
-For more information see `vignette("cbsodata4")`
-
-Find non-standard CBS catalogs with:
+Find non-standard CBS catalogs with `cbs4_get_catalogs`:
 
 ``` r
 catalogs <- cbs4_get_catalogs()
@@ -159,3 +159,5 @@ catalogs[,c("Identifier", "Title")]
 #> 1        CBS CBS databank StatLine
 #> 2    CBS-asd        CBS aanvullend
 ```
+
+For more information see `vignette("cbsodata4")`

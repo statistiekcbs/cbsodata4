@@ -59,7 +59,7 @@ devtools::install_github("statistiekcbs/cbsodata4")
 library(cbsodata4)
 ```
 
-Retrieve a list of all CBS / Statistics Netherlands tables with:
+Retrieve a list of all CBS / Statistics Netherlands tables with `cbs4_get_datasets`:
 
 ```{r}
 # download the set of datasets
@@ -67,7 +67,7 @@ datasets <- cbs4_get_datasets()
 datasets[1:5, c("Identifier", "Title")]
 ```
 
-Get metadata of table `<Identifier>` (e.g. 60006) with:
+Get metadata of table `<Identifier>` (e.g. 60006) with `cbs4_get_metadata`:
 
 ```{r}
 meta <- cbs4_get_metadata(id="60006")
@@ -78,7 +78,7 @@ meta$MeasureCodes[,c("Identifier", "Title")]
 meta$Dimensions[, c("Identifier", "Title")]
 ```
 
-Retrieve data with:
+Retrieve data with `cbs4_get_data`:
 
 ```{r}
 # wide format, each measure its own column
@@ -86,7 +86,7 @@ data <- cbs4_get_data("60006")
 head(data[, 1:4])
 ```
 
-or 
+or `cbs4_get_observations`
 
 ```{r}
 # long format, one Value column
@@ -94,7 +94,7 @@ obs <- cbs4_get_observations("60006")
 head(obs)
 ```
 
-Add labels with:
+Add labels to a dataset with `cbs4_add_labels`:
 
 ```{r}
 data <- cbs4_add_labels(data)
@@ -104,11 +104,12 @@ obs <- cbs4_add_labels(obs)
 head(obs)
 ```
 
-For more information see `vignette("cbsodata4")`
 
-Find non-standard CBS catalogs with:
+Find non-standard CBS catalogs with `cbs4_get_catalogs`:
 
 ```{r}
 catalogs <- cbs4_get_catalogs()
 catalogs[,c("Identifier", "Title")]
 ```
+
+For more information see `vignette("cbsodata4")`
