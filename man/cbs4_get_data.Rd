@@ -11,7 +11,7 @@ cbs4_get_data(
   name_measure_columns = TRUE,
   show_progress = interactive() && !verbose,
   download_dir = file.path(tempdir(), id),
-  verbose = FALSE,
+  verbose = getOption("cbsodata4.verbose", FALSE),
   sep = ",",
   as.data.table = FALSE
 )

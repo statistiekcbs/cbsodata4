@@ -11,7 +11,7 @@ cbs4_download(
   catalog = "CBS",
   show_progress = interactive() && !verbose,
   sep = ",",
-  verbose = FALSE
+  verbose = getOption("cbsodata4.verbose", FALSE)
 )
 }
 \arguments{

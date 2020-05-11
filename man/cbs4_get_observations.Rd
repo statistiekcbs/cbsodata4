@@ -9,8 +9,8 @@ cbs4_get_observations(
   ...,
   catalog = "CBS",
   download_dir = file.path(tempdir(), id),
-  verbose = FALSE,
   show_progress = interactive() && !verbose,
+  verbose = getOption("cbsodata4.verbose", FALSE),
   sep = ",",
   includeId = TRUE,
   as.data.table = FALSE
@@ -26,10 +26,10 @@ cbs4_get_observations(
 \item{download_dir}{directory in which the data and metadata is downloaded. By default this is
 temporary directory, but can be set manually}
 
-\item{verbose}{if \code{TRUE} prints the steps taken to retrieve the data.}
-
 \item{show_progress}{if \code{TRUE} shows progress of data donwload, can't be used together
 with verbose.}
+
+\item{verbose}{if \code{TRUE} prints the steps taken to retrieve the data.}
 
 \item{sep}{separator to be used to download the data.}
 

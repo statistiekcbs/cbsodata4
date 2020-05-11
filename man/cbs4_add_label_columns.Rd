@@ -22,20 +22,21 @@ dimension columns contain \code{Codes} from the \code{Identifier} columns of \co
 \code{MeasureLabel} ( \verb{<Dimension>Label}) that contains the \code{Title} of each code.
 }
 \examples{
-# works on observations
-obs <- cbs4_get_observations("84287NED", Perioden="2019MM12")
-obs # without label columns
+if (interactive()){
+  # works on observations
+  obs <- cbs4_get_observations("84287NED", Perioden="2019MM12")
+  obs # without label columns
 
-obs_labeled <- cbs4_add_label_columns(obs)
-obs_labeled
+  obs_labeled <- cbs4_add_label_columns(obs)
+  obs_labeled
 
-# works on data
-d <- cbs4_get_data("84287NED", Perioden="2019MM12")
-d # cbs4_get_data automagically labels measure columns.
+  # works on data
+  d <- cbs4_get_data("84287NED", Perioden="2019MM12")
+  d # cbs4_get_data automagically labels measure columns.
 
-d_labeled <- cbs4_add_label_columns(d)
-d_labeled
-
+  d_labeled <- cbs4_add_label_columns(d)
+  d_labeled
+}
 }
 \seealso{
 \code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}
