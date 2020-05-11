@@ -19,7 +19,7 @@ cbs4_download <- function( id
                               , catalog = "CBS"
                               , show_progress = interactive() && !verbose
                               , sep = ","
-                              , verbose = FALSE
+                              , verbose = getOption("cbsodata4.verbose", FALSE)
                               ){
   if (show_progress && verbose){
     warning("verbose and show_progress can't be used together, show_progess was set to FALSE.", call. = FALSE)

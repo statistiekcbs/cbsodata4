@@ -25,9 +25,8 @@ cbs4_get_observations <- function( id
                                    , ...
                                    , catalog = "CBS"
                                    , download_dir = file.path(tempdir(), id)
-                                   , verbose = FALSE
                                    , show_progress = interactive() && !verbose
-                                   , sep = ","
+                                   , verbose = getOption("cbsodata4.verbose", FALSE)                                   , sep = ","
                                    , includeId = TRUE
                                    , as.data.table = FALSE
 ){
