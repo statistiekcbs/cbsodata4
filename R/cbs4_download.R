@@ -1,6 +1,8 @@
 #' Download observations and metadata
 #'
-#' Download observations and metadata to a directory
+#' Download observations and metadata to a directory. This function is the working
+#' horse for [cbs4_get_data()] and [cbs4_get_observations()] and has many of the same
+#' options.
 #' @param id Identifier of publication
 #' @param download_dir directory where files are to be stored
 #' @param ... optional selection statement to retrieve a subset of the data.
@@ -15,7 +17,7 @@ cbs4_download <- function( id
                               , download_dir = id
                               , ...
                               , catalog = "CBS"
-                              , show_progress = interactive()
+                              , show_progress = interactive() && !verbose
                               , sep = ","
                               , verbose = FALSE
                               ){
@@ -48,8 +50,10 @@ cbs4_download <- function( id
   progress_cb <- invisible
 
   if (show_progress){
+    pb_max <- meta$Properties$ObservationCount # this can be done more accurately...
+
     # we create a pb, that is used in progress_cb.
-    pb <- utils::txtProgressBar(0, max = meta$Properties$ObservationCount)
+    pb <- utils::txtProgressBar(0, max = pb_max)
 
     progress_cb <- function(res){
       value <- utils::getTxtProgressBar(pb)
@@ -65,6 +69,7 @@ cbs4_download <- function( id
                 )
 
   if (show_progress){
+    utils::setTxtProgressBar(pb, pb_max)
     close(pb)
   }
 

@@ -9,7 +9,7 @@ cbs4_download(
   download_dir = id,
   ...,
   catalog = "CBS",
-  show_progress = interactive(),
+  show_progress = interactive() && !verbose,
   sep = ",",
   verbose = FALSE
 )
@@ -31,7 +31,9 @@ together with \code{verbose=TRUE}}
 \item{verbose}{Should messages be printed...}
 }
 \description{
-Download observations and metadata to a directory
+Download observations and metadata to a directory. This function is the working
+horse for \code{\link[=cbs4_get_data]{cbs4_get_data()}} and \code{\link[=cbs4_get_observations]{cbs4_get_observations()}} and has many of the same
+options.
 }
 \seealso{
 Other data-download: 
