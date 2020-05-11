@@ -1,5 +1,7 @@
 ---
-output: github_document
+output: 
+  github_document:
+    df_print: kable
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -106,7 +108,7 @@ Add labels to a dataset with `cbs4_add_label_columns`:
 
 ```{r}
 data <- cbs4_add_label_columns(data)
-head(data[,1:4])
+head(data[,1:5])
 
 obs <- cbs4_add_label_columns(obs)
 head(obs)
