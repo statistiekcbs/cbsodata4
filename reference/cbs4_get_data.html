@@ -40,7 +40,9 @@
 
 
 <meta property="og:title" content="Get data from CBS — cbs4_get_data" />
-<meta property="og:description" content="Get data from CBS" />
+<meta property="og:description" content="Get data from table id. The data of a CBS opendata table is in so-called wide
+format. Each Measure has its own column.  For a long format see cbs4_get_observations()
+which has one Measure column and a Value column." />
 
 
 
@@ -117,7 +119,9 @@
     </div>
 
     <div class="ref-description">
-    <p>Get data from CBS</p>
+    <p>Get data from table <code>id</code>. The data of a CBS opendata table is in so-called wide
+format. Each <code>Measure</code> has its own column.  For a long format see <code><a href='cbs4_get_observations.html'>cbs4_get_observations()</a></code>
+which has one <code>Measure</code> column and a <code>Value</code> column.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cbs4_get_data</span>(
@@ -125,6 +129,7 @@
   <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
   <span class='no'>...</span>,
   <span class='kw'>name_measure_columns</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>show_progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>() <span class='kw'>&amp;&amp;</span> !<span class='no'>verbose</span>,
   <span class='kw'>download_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>id</span>),
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>,
@@ -148,7 +153,13 @@
     </tr>
     <tr>
       <th>name_measure_columns</th>
-      <td><p><code>logical</code> if <code>TRUE</code> the <code>Title</code> of the measure will be set as name column.</p></td>
+      <td><p><code>logical</code> if <code>TRUE</code> the <code>Title</code> of the measure will be set as
+name column.</p></td>
+    </tr>
+    <tr>
+      <th>show_progress</th>
+      <td><p>if <code>TRUE</code> shows progress of data donwload, can't be used together
+with verbose.</p></td>
     </tr>
     <tr>
       <th>download_dir</th>
@@ -169,6 +180,12 @@ temporary directory, but can be set manually</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>cbs4_get_metadata</p>
+<p>Other data-download: 
+<code><a href='cbs4_download.html'>cbs4_download</a>()</code>,
+<code><a href='cbs4_get_observations.html'>cbs4_get_observations</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
