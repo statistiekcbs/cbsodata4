@@ -44,7 +44,7 @@ head(obs)
 
 ```{r}
 obs <- cbs4_get_observations("80416ned")
-obs <- cbs4_add_labels(obs)
+obs <- cbs4_add_label_columns(obs)
 head(obs)
 ```
 
@@ -60,7 +60,7 @@ head(data)
 ```{r}
 meta <- cbs4_get_metadata("80416ned")
 obs <- cbs4_get_observations("80416ned")
-obs <- cbs4_add_unit(obs)
+obs <- cbs4_add_unit_column(obs)
 head(obs)
 ```
 

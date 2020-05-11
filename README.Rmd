@@ -34,6 +34,14 @@ in beta testing.
 
 It will be the successor of R package [cbsodataR](https://CRAN.R-project.org/package=cbsodataR).
 
+- It uses the new / more efficient OData4 API
+
+- The function names for `cbs4_add_*` are more consistent.
+
+- The download storage is faster (using `data.table`)
+
+- It offers a familiar wide data formate for users (`cbs4_get_data`) as well as the default long format (`cbs4_get_observations`).
+
 ## Installation
 
 <!--
@@ -94,13 +102,13 @@ obs <- cbs4_get_observations("60006")
 head(obs)
 ```
 
-Add labels to a dataset with `cbs4_add_labels`:
+Add labels to a dataset with `cbs4_add_label_columns`:
 
 ```{r}
-data <- cbs4_add_labels(data)
+data <- cbs4_add_label_columns(data)
 head(data[,1:4])
 
-obs <- cbs4_add_labels(obs)
+obs <- cbs4_add_label_columns(obs)
 head(obs)
 ```
 

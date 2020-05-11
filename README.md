@@ -22,6 +22,15 @@ Statistics Netherlands, which is in beta testing.
 It will be the successor of R package
 [cbsodataR](https://CRAN.R-project.org/package=cbsodataR).
 
+  - It uses the new / more efficient OData4 API
+
+  - The function names for `cbs4_add_*` are more consistent.
+
+  - The download storage is faster (using `data.table`)
+
+  - It offers a familiar wide data formate for users (`cbs4_get_data`)
+    as well as the default long format (`cbs4_get_observations`).
+
 ## Installation
 
 <!--
@@ -119,10 +128,10 @@ head(obs)
 #> 6  5   M003026           None   520 1990KW02
 ```
 
-Add labels to a dataset with `cbs4_add_labels`:
+Add labels to a dataset with `cbs4_add_label_columns`:
 
 ``` r
-data <- cbs4_add_labels(data)
+data <- cbs4_add_label_columns(data)
 head(data[,1:4])
 #>   Perioden    PeriodenLabel Totaal niet-productieve uren Overig
 #> 1 1990JJ00             1990                          695    645
@@ -132,7 +141,7 @@ head(data[,1:4])
 #> 5 1990KW04 1990 4e kwartaal                          160    145
 #> 6 1991JJ00             1991                          780    665
 
-obs <- cbs4_add_labels(obs)
+obs <- cbs4_add_label_columns(obs)
 head(obs)
 #>   Id   Measure                 MeasureLabel ValueAttribute Value Perioden
 #> 1  0   M003026 Theoretisch beschikbare uren           None   520 1990KW01
