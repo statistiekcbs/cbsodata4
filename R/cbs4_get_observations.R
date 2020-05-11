@@ -7,6 +7,7 @@
 #' each variable/topic/Measure has its own column.
 #'
 #' @example ./example/query.R
+#' @export
 #' @param id Identifier of the Opendata table. Can be retrieved with [cbs4_get_datasets()]
 #' @param catalog Catalog in which the dataset is to be found.
 #' @param ... optional selections on data, passed through to cbs4_download. See examples
@@ -18,13 +19,14 @@
 #' @param sep separator to be used to download the data.
 #' @param includeId `logical`, should the Id column be downloaded?
 #' @param as.data.table `logical`, should the result be of type data.table?
-#' @export
+#' @family data-download
+#' @seealso cbs4_get_metadata
 cbs4_get_observations <- function( id
                                    , ...
                                    , catalog = "CBS"
                                    , download_dir = file.path(tempdir(), id)
                                    , verbose = FALSE
-                                   , show_progress = interactive()
+                                   , show_progress = interactive() && !verbose
                                    , sep = ","
                                    , includeId = TRUE
                                    , as.data.table = FALSE

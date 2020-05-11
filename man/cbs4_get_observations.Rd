@@ -10,7 +10,7 @@ cbs4_get_observations(
   catalog = "CBS",
   download_dir = file.path(tempdir(), id),
   verbose = FALSE,
-  show_progress = interactive(),
+  show_progress = interactive() && !verbose,
   sep = ",",
   includeId = TRUE,
   as.data.table = FALSE
@@ -94,3 +94,11 @@ if (interactive()){
 
 }
 }
+\seealso{
+cbs4_get_metadata
+
+Other data-download: 
+\code{\link{cbs4_download}()},
+\code{\link{cbs4_get_data}()}
+}
+\concept{data-download}

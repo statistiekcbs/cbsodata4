@@ -33,3 +33,9 @@ together with \code{verbose=TRUE}}
 \description{
 Download observations and metadata to a directory
 }
+\seealso{
+Other data-download: 
+\code{\link{cbs4_get_data}()},
+\code{\link{cbs4_get_observations}()}
+}
+\concept{data-download}

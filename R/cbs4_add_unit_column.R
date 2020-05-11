@@ -6,6 +6,8 @@
 #' @example  ./example/cbs4_add_unit_column.R
 #' @param data downloaded with [cbs4_get_observations()]
 #' @param ... not used
+#' @family add metadata columns
+#' @seealso [cbs4_get_metadata()]
 cbs4_add_unit_column <- function(data, ...){
 
   if (!inherits(data, "cbs4_observations")){

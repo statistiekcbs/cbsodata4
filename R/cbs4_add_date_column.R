@@ -15,7 +15,8 @@
 #' `<period>_freq`. This last column is a factor with levels: `Y`, `Q` and `M`
 #' @example ./example/cbs_add_date_column.R
 #' @export
-#' @family add metadata
+#' @family add metadata columns
+#' @seealso [cbs4_get_metadata()]
 cbs4_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
 
   if (!(inherits(data, "cbs4_data") || inherits(data, "cbs4_observations"))){

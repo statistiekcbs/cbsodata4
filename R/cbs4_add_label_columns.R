@@ -11,7 +11,8 @@
 #' @export
 #' @param data downloaded with [cbs4_get_data()]
 #' @param ... not used
-#' @family add metadata
+#' @family add metadata columns
+#' @seealso [cbs4_get_metadata()]
 cbs4_add_label_columns <- function(data, ...){
   if (!(inherits(data, "cbs4_data") || inherits(data, "cbs4_observations"))){
     stop("cbs4_add_label_columns only works on data retrieved with cbs4_get_data or cbs4_get_observations."

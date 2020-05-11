@@ -10,6 +10,7 @@
 #' together with `verbose=TRUE`
 #' @param verbose Should messages be printed...
 #' @export
+#' @family data-download
 cbs4_download <- function( id
                               , download_dir = id
                               , ...

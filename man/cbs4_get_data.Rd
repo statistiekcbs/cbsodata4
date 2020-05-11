@@ -9,6 +9,7 @@ cbs4_get_data(
   catalog = "CBS",
   ...,
   name_measure_columns = TRUE,
+  show_progress = interactive() && !verbose,
   download_dir = file.path(tempdir(), id),
   verbose = FALSE,
   sep = ",",
@@ -22,7 +23,11 @@ cbs4_get_data(
 
 \item{...}{optional selections on data, passed through to cbs4_download. See examples}
 
-\item{name_measure_columns}{\code{logical} if \code{TRUE} the \code{Title} of the measure will be set as name column.}
+\item{name_measure_columns}{\code{logical} if \code{TRUE} the \code{Title} of the measure will be set as
+name column.}
+
+\item{show_progress}{if \code{TRUE} shows progress of data donwload, can't be used together
+with verbose.}
 
 \item{download_dir}{directory in which the data and metadata is downloaded. By default this is
 temporary directory, but can be set manually}
@@ -34,7 +39,9 @@ temporary directory, but can be set manually}
 \item{as.data.table}{\code{logical}, should the result be of type data.table?}
 }
 \description{
-Get data from CBS
+Get data from table \code{id}. The data of a CBS opendata table is in so-called wide
+format. Each \code{Measure} has its own column.  For a long format see \code{\link[=cbs4_get_observations]{cbs4_get_observations()}}
+which has one \code{Measure} column and a \code{Value} column.
 }
 \examples{
 if (interactive()){
@@ -86,3 +93,11 @@ if (interactive()){
 
 }
 }
+\seealso{
+cbs4_get_metadata
+
+Other data-download: 
+\code{\link{cbs4_download}()},
+\code{\link{cbs4_get_observations}()}
+}
+\concept{data-download}

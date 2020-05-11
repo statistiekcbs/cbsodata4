@@ -24,3 +24,11 @@ if (interactive()){
   obs_unit # with unit column
 }
 }
+\seealso{
+\code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}
+
+Other add metadata columns: 
+\code{\link{cbs4_add_date_column}()},
+\code{\link{cbs4_add_label_columns}()}
+}
+\concept{add metadata columns}

@@ -38,7 +38,10 @@ d_labeled
 
 }
 \seealso{
-Other add metadata: 
-\code{\link{cbs4_add_date_column}()}
+\code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}
+
+Other add metadata columns: 
+\code{\link{cbs4_add_date_column}()},
+\code{\link{cbs4_add_unit_column}()}
 }
-\concept{add metadata}
+\concept{add metadata columns}

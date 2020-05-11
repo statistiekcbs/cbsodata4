@@ -1,15 +1,21 @@
 #' Get data from CBS
 #'
-#' Get data from CBS
-#' @example ./example/query.R
+#' Get data from table `id`. The data of a CBS opendata table is in so-called wide
+#' format. Each `Measure` has its own column.  For a long format see [cbs4_get_observations()]
+#' which has one `Measure` column and a `Value` column.
+##' @example ./example/query.R
 #' @export
 #' @importFrom stats setNames
 #' @inheritParams cbs4_get_observations
-#' @param name_measure_columns `logical` if `TRUE` the `Title` of the measure will be set as name column.
+#' @param name_measure_columns `logical` if `TRUE` the `Title` of the measure will be set as
+#' name column.
+#' @family data-download
+#' @seealso cbs4_get_metadata
 cbs4_get_data <- function( id
                          , catalog = "CBS"
                          , ...
                          , name_measure_columns = TRUE
+                         , show_progress = interactive() && !verbose
                          , download_dir = file.path(tempdir(), id)
                          , verbose = FALSE
                          , sep = ","
