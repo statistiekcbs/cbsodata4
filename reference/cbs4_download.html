@@ -40,7 +40,9 @@
 
 
 <meta property="og:title" content="Download observations and metadata — cbs4_download" />
-<meta property="og:description" content="Download observations and metadata to a directory" />
+<meta property="og:description" content="Download observations and metadata to a directory. This function is the working
+horse for cbs4_get_data() and cbs4_get_observations() and has many of the same
+options." />
 
 
 
@@ -117,7 +119,9 @@
     </div>
 
     <div class="ref-description">
-    <p>Download observations and metadata to a directory</p>
+    <p>Download observations and metadata to a directory. This function is the working
+horse for <code><a href='cbs4_get_data.html'>cbs4_get_data()</a></code> and <code><a href='cbs4_get_observations.html'>cbs4_get_observations()</a></code> and has many of the same
+options.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cbs4_download</span>(
@@ -125,7 +129,7 @@
   <span class='kw'>download_dir</span> <span class='kw'>=</span> <span class='no'>id</span>,
   <span class='no'>...</span>,
   <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
-  <span class='kw'>show_progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>(),
+  <span class='kw'>show_progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>() <span class='kw'>&amp;&amp;</span> !<span class='no'>verbose</span>,
   <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
