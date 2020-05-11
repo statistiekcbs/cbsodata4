@@ -133,8 +133,8 @@ each variable/topic/Measure has its own column.</p>
   <span class='no'>...</span>,
   <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
   <span class='kw'>download_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>id</span>),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>show_progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>() <span class='kw'>&amp;&amp;</span> !<span class='no'>verbose</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.verbose"</span>, <span class='fl'>FALSE</span>),
   <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>,
   <span class='kw'>includeId</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>as.data.table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
@@ -161,13 +161,13 @@ each variable/topic/Measure has its own column.</p>
 temporary directory, but can be set manually</p></td>
     </tr>
     <tr>
-      <th>verbose</th>
-      <td><p>if <code>TRUE</code> prints the steps taken to retrieve the data.</p></td>
-    </tr>
-    <tr>
       <th>show_progress</th>
       <td><p>if <code>TRUE</code> shows progress of data donwload, can't be used together
 with verbose.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>if <code>TRUE</code> prints the steps taken to retrieve the data.</p></td>
     </tr>
     <tr>
       <th>sep</th>

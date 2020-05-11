@@ -153,43 +153,21 @@ dimension columns contain <code>Codes</code> from the <code>Identifier</code> co
 <code><a href='cbs4_add_unit_column.html'>cbs4_add_unit_column</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># works on observations</span>
-<span class='no'>obs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cbs4_get_observations.html'>cbs4_get_observations</a></span>(<span class='st'>"84287NED"</span>, <span class='kw'>Perioden</span><span class='kw'>=</span><span class='st'>"2019MM12"</span>)
-<span class='no'>obs</span> <span class='co'># without label columns</span></div><div class='output co'>#&gt;     Id Measure ValueAttribute Value Perioden BedrijfstakkenBranchesSBI2008
-#&gt; 1 1064 M002042           None  0.23 2019MM12                        300007
-#&gt; 2  797 M002042           None  0.22 2019MM12                        350000
-#&gt; 3  530 M002042           None  0.07 2019MM12                        307500
-#&gt; 4  263 M002042           None  0.21 2019MM12                       T001081</div><div class='input'>
-<span class='no'>obs_labeled</span> <span class='kw'>&lt;-</span> <span class='fu'>cbs4_add_label_columns</span>(<span class='no'>obs</span>)
-<span class='no'>obs_labeled</span></div><div class='output co'>#&gt;     Id Measure       MeasureLabel ValueAttribute Value Perioden PeriodenLabel
-#&gt; 1 1064 M002042 Vacature-indicator           None  0.23 2019MM12 2019 december
-#&gt; 2  797 M002042 Vacature-indicator           None  0.22 2019MM12 2019 december
-#&gt; 3  530 M002042 Vacature-indicator           None  0.07 2019MM12 2019 december
-#&gt; 4  263 M002042 Vacature-indicator           None  0.21 2019MM12 2019 december
-#&gt;   BedrijfstakkenBranchesSBI2008 BedrijfstakkenBranchesSBI2008Label
-#&gt; 1                        300007    G-N Commerciële dienstverlening
-#&gt; 2                        350000                   F Bouwnijverheid
-#&gt; 3                        307500                        C Industrie
-#&gt; 4                       T001081  A-U Alle economische activiteiten</div><div class='input'>
-<span class='co'># works on data</span>
-<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cbs4_get_data.html'>cbs4_get_data</a></span>(<span class='st'>"84287NED"</span>, <span class='kw'>Perioden</span><span class='kw'>=</span><span class='st'>"2019MM12"</span>)
-<span class='no'>d</span> <span class='co'># cbs4_get_data automagically labels measure columns.</span></div><div class='output co'>#&gt;   Perioden BedrijfstakkenBranchesSBI2008 Vacature-indicator
-#&gt; 1 2019MM12                        300007               0.23
-#&gt; 2 2019MM12                        307500               0.07
-#&gt; 3 2019MM12                        350000               0.22
-#&gt; 4 2019MM12                       T001081               0.21</div><div class='input'>
-<span class='no'>d_labeled</span> <span class='kw'>&lt;-</span> <span class='fu'>cbs4_add_label_columns</span>(<span class='no'>d</span>)
-<span class='no'>d_labeled</span></div><div class='output co'>#&gt;   Perioden PeriodenLabel BedrijfstakkenBranchesSBI2008
-#&gt; 1 2019MM12 2019 december                        300007
-#&gt; 2 2019MM12 2019 december                        307500
-#&gt; 3 2019MM12 2019 december                        350000
-#&gt; 4 2019MM12 2019 december                       T001081
-#&gt;   BedrijfstakkenBranchesSBI2008Label Vacature-indicator
-#&gt; 1    G-N Commerciële dienstverlening               0.23
-#&gt; 2                        C Industrie               0.07
-#&gt; 3                   F Bouwnijverheid               0.22
-#&gt; 4  A-U Alle economische activiteiten               0.21</div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
+  <span class='co'># works on observations</span>
+  <span class='no'>obs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cbs4_get_observations.html'>cbs4_get_observations</a></span>(<span class='st'>"84287NED"</span>, <span class='kw'>Perioden</span><span class='kw'>=</span><span class='st'>"2019MM12"</span>)
+  <span class='no'>obs</span> <span class='co'># without label columns</span>
+
+  <span class='no'>obs_labeled</span> <span class='kw'>&lt;-</span> <span class='fu'>cbs4_add_label_columns</span>(<span class='no'>obs</span>)
+  <span class='no'>obs_labeled</span>
+
+  <span class='co'># works on data</span>
+  <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cbs4_get_data.html'>cbs4_get_data</a></span>(<span class='st'>"84287NED"</span>, <span class='kw'>Perioden</span><span class='kw'>=</span><span class='st'>"2019MM12"</span>)
+  <span class='no'>d</span> <span class='co'># cbs4_get_data automagically labels measure columns.</span>
+
+  <span class='no'>d_labeled</span> <span class='kw'>&lt;-</span> <span class='fu'>cbs4_add_label_columns</span>(<span class='no'>d</span>)
+  <span class='no'>d_labeled</span>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
