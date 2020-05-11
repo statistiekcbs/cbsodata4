@@ -1,6 +1,8 @@
 ---
-title: "cbsodata4 Access to CBS / Statistics Netherlands data"
-output: rmarkdown::html_vignette
+title: "cbsodata4 access to CBS / Statistics Netherlands data"
+output: 
+  rmarkdown::html_vignette:
+    df_print: kable
 vignette: >
   %\VignetteIndexEntry{cbsodata4}
   %\VignetteEngine{knitr::rmarkdown}
