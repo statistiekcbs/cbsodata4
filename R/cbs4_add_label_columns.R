@@ -7,14 +7,14 @@
 #'
 #' `cbs4_get_observations()` adds for the `Measure` and each `<Dimension>` column an extra column
 #' `MeasureLabel` ( `<Dimension>Label`) that contains the `Title` of each code.
-#' @example ./example/cbs4_add_labels.R
+#' @example ./example/cbs4_add_label_columns.R
 #' @export
 #' @param data downloaded with [cbs4_get_data()]
 #' @param ... not used
 #' @family add metadata
-cbs4_add_labels <- function(data, ...){
+cbs4_add_label_columns <- function(data, ...){
   if (!(inherits(data, "cbs4_data") || inherits(data, "cbs4_observations"))){
-    stop("cbs4_add_labels only works on data retrieved with cbs4_get_data or cbs4_get_observations."
+    stop("cbs4_add_label_columns only works on data retrieved with cbs4_get_data or cbs4_get_observations."
         , call. = FALSE
         )
   }

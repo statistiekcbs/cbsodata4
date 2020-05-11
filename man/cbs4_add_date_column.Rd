@@ -58,6 +58,6 @@ if (interactive()){
 }
 \seealso{
 Other add metadata: 
-\code{\link{cbs4_add_labels}()}
+\code{\link{cbs4_add_label_columns}()}
 }
 \concept{add metadata}
