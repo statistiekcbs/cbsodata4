@@ -8,10 +8,10 @@
 #' @param base_url alternative url that implements same interface as statistics netherlands.
 #' @param verbose Should the function report on retrieving the data
 cbs4_get_metadata <- function( id
-                             , catalog = "CBS"
+                             , catalog  = "CBS"
                              , ...
                              , base_url = BASEURL4
-                             , verbose = getOption("cbsodata4.verbose", FALSE)
+                             , verbose  = getOption("cbsodata4.verbose", FALSE)
                              ){
   meta <- attr(id, "meta")
   if (!is.null(meta)){

@@ -53,7 +53,7 @@ cbs4_download <- function( id
     pb_max <- meta$Properties$ObservationCount # this can be done more accurately...
 
     # we create a pb, that is used in progress_cb.
-    pb <- utils::txtProgressBar(0, max = pb_max)
+    pb <- utils::txtProgressBar(0, max = pb_max, style=3)
 
     progress_cb <- function(res){
       value <- utils::getTxtProgressBar(pb)
