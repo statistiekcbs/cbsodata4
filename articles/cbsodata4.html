@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cbsodata4</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9000</span>
       </span>
     </div>
 
@@ -50,7 +50,14 @@
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/statistiekcbs/cbsodata4/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -66,7 +73,7 @@
       <h1 data-toc-skip>cbsodata4 Access to CBS / Statistics Netherlands data</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/statistiekcbs/cbsodata4/blob/master/vignettes/cbsodata4.Rmd"><code>vignettes/cbsodata4.Rmd</code></a></small>
       <div class="hidden name"><code>cbsodata4.Rmd</code></div>
 
     </div>
@@ -170,7 +177,7 @@
 <span class="co">#&gt; 5  4 E006528           None 1.007 20060102</span>
 <span class="co">#&gt; 6  5 E006498           None 0.542 20060102</span></pre></body></html></div>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
-<span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_labels.html">cbs4_add_labels</a></span>(<span class="no">obs</span>)
+<span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_label_columns.html">cbs4_add_label_columns</a></span>(<span class="no">obs</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)
 <span class="co">#&gt;   Id Measure   MeasureLabel ValueAttribute Value Perioden</span>
 <span class="co">#&gt; 1  0 E006512 Benzine Euro95           None 1.325 20060101</span>
@@ -208,7 +215,7 @@
 <span class="co">#&gt; 6 20060106 0.549          1.353  1.023</span></pre></body></html></div>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="st">"80416ned"</span>)
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
-<span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_unit.html">cbs4_add_unit</a></span>(<span class="no">obs</span>)
+<span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_unit_column.html">cbs4_add_unit_column</a></span>(<span class="no">obs</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)
 <span class="co">#&gt;   Id Measure ValueAttribute Value       Unit</span>
 <span class="co">#&gt; 1  0 E006512           None 1.325 euro/liter</span>

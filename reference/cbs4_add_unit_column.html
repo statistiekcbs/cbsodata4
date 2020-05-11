@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download observations and metadata — cbs4_download • cbsodata4</title>
+<title>Add unit column to data — cbs4_add_unit_column • cbsodata4</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Download observations and metadata — cbs4_download" />
-<meta property="og:description" content="Download observations and metadata to a directory" />
+<meta property="og:title" content="Add unit column to data — cbs4_add_unit_column" />
+<meta property="og:description" content="Add labels to codes" />
 
 
 
@@ -111,60 +111,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download observations and metadata</h1>
-    <small class="dont-index">Source: <a href='https://github.com/statistiekcbs/cbsodata4/blob/master/R/cbs4_download.R'><code>R/cbs4_download.R</code></a></small>
-    <div class="hidden name"><code>cbs4_download.Rd</code></div>
+    <h1>Add unit column to data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/statistiekcbs/cbsodata4/blob/master/R/cbs4_add_unit_column.R'><code>R/cbs4_add_unit_column.R</code></a></small>
+    <div class="hidden name"><code>cbs4_add_unit_column.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Download observations and metadata to a directory</p>
+    <p>Add labels to codes</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cbs4_download</span>(
-  <span class='no'>id</span>,
-  <span class='kw'>download_dir</span> <span class='kw'>=</span> <span class='no'>id</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
-  <span class='kw'>show_progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>(),
-  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>cbs4_add_unit_column</span>(<span class='no'>data</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>Identifier of publication</p></td>
-    </tr>
-    <tr>
-      <th>download_dir</th>
-      <td><p>directory where files are to be stored</p></td>
+      <th>data</th>
+      <td><p>downloaded with <code><a href='cbs4_get_observations.html'>cbs4_get_observations()</a></code></p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>optional selection statement to retrieve a subset of the data.</p></td>
-    </tr>
-    <tr>
-      <th>catalog</th>
-      <td><p>Catalog to download from</p></td>
-    </tr>
-    <tr>
-      <th>show_progress</th>
-      <td><p><code>logical</code> if <code>TRUE</code> downloading shows a progress bar. Cannot be used
-together with <code>verbose=TRUE</code></p></td>
-    </tr>
-    <tr>
-      <th>sep</th>
-      <td><p>seperator to be used in writing the data</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Should messages be printed...</p></td>
+      <td><p>not used</p></td>
     </tr>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
+  <span class='co'># works only on observations</span>
+  <span class='no'>obs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='cbs4_get_observations.html'>cbs4_get_observations</a></span>(<span class='st'>"84287NED"</span>, <span class='kw'>Perioden</span><span class='kw'>=</span><span class='st'>"2019MM12"</span>)
+  <span class='no'>obs</span> <span class='co'># without Unit column</span>
+
+  <span class='no'>obs_unit</span> <span class='kw'>&lt;-</span> <span class='fu'>cbs4_add_unit_column</span>(<span class='no'>obs</span>)
+  <span class='no'>obs_unit</span> <span class='co'># with unit column</span>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
