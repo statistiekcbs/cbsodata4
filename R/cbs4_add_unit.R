@@ -3,9 +3,15 @@
 #' Add labels to codes
 #' @importFrom utils head tail
 #' @export
+#' @example  ./example/cbs4_add_unit.R
 #' @param data downloaded with [cbs4_get_observations()]
 #' @param ... not used
 cbs4_add_unit <- function(data, ...){
+
+  if (!inherits(data, "cbs4_observations")){
+    stop("cbs4_add_unit only works on data retrieved with cbs4_get_observations.", call. = FALSE)
+  }
+
   meta <- attr(data, "meta")
   nms <- names(data)
   measure_codes <- meta$MeasureCodes

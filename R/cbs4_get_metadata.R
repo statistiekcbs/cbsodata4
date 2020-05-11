@@ -2,13 +2,17 @@
 #'
 #' Retrieve the metadata of a publication
 #' @export
-#' @param id Identifier of publication or data retrieved with [cbs4_get_data()]
-#' @param catalog Catalog, @seealso [cbs4_get_catalogs()]
+#' @param id Identifier of publication or data retrieved with [cbs4_get_data()]/[cbs4_get_observations()]
+#' @param catalog Catalog, from the set of [cbs4_get_catalogs()]
 #' @param ... not used
 #' @param base_url alternative url that implements same interface as statistics netherlands.
 #' @param verbose Should the function report on retrieving the data
-cbs4_get_metadata <- function(id, catalog = "CBS", ..., base_url = BASEURL4
-                             , verbose = getOption("cbsodata4.verbose", FALSE)){
+cbs4_get_metadata <- function( id
+                             , catalog = "CBS"
+                             , ...
+                             , base_url = BASEURL4
+                             , verbose = getOption("cbsodata4.verbose", FALSE)
+                             ){
   meta <- attr(id, "meta")
   if (!is.null(meta)){
     return(meta)

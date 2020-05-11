@@ -1,10 +1,13 @@
 Package: cbsodata4
 Type: Package
-Title: API to Statistics Netherlands Content.
-Version: 0.1.0.9000
+Title: Statistics Netherlands (CBS) Open Data API Client v4
+Version: 0.3.0.9000
 Authors@R: c( person("Edwin", "de Jonge", role=c("aut", "cre"), email="e.dejonge@cbs.nl")
             )
-Description: Use the Content Cijfer Bank of CBS.
+Description: The data and meta data from Statistics
+   8   │     Netherlands (<https://www.cbs.nl>) can be browsed and downloaded. T
+       │ he client uses
+   9   │     the OData v4 API of Statistics Netherlands.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -16,6 +19,8 @@ Suggests:
     knitr,
     rmarkdown,
     tinytest
+URL: https://github.com/statistiekcbs/cbsodata4
+BugReports: https://github.com/statistiekcbs/cbsodata4/issues
 RoxygenNote: 7.1.0
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)

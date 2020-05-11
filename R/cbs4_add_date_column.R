@@ -17,6 +17,13 @@
 #' @export
 #' @family add metadata
 cbs4_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
+
+  if (!(inherits(data, "cbs4_data") || inherits(data, "cbs4_observations"))){
+    stop("cbs4_add_date_column only works on data retrieved with cbs4_get_data or cbs4_get_observations."
+         , call. = FALSE
+    )
+  }
+
   meta <- attr(data, "meta")
   # retrieve period column (using timedimension)
   period_name <- meta$Dimensions$Identifier[meta$Dimensions$Kind == "TimeDimension"][1]
