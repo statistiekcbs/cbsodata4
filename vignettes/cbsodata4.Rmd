@@ -1,5 +1,6 @@
 ---
-title: "cbsodata4 access to CBS / Statistics Netherlands data"
+title: "Intro: cbsodata4"
+subtitle: "Access to all CBS / Statistics Netherlands data"
 output: 
   rmarkdown::html_vignette:
     df_print: kable
@@ -9,64 +10,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+```{r child="cbsodata4.md"}
 ```
 
-```{r setup}
-library(cbsodata4)
-```
-
-# Introduction
-
-```{r}
-catalogs <- cbs4_get_catalogs() 
-catalogs[,1:2]
-```
-
-
-```{r}
-datasets <- cbs4_get_datasets()
-head(datasets[,c("Identifier", "Title")])
-```
-
-```{r}
-meta <- cbs4_get_metadata("80416ned")
-ls.str(meta)
-```
-
-```{r}
-obs <- cbs4_get_observations("80416ned")
-head(obs)
-```
-
-
-```{r}
-obs <- cbs4_get_observations("80416ned")
-obs <- cbs4_add_label_columns(obs)
-head(obs)
-```
-
-```{r}
-obs <- cbs4_get_observations("80416ned")
-obs <- cbs4_add_date_column(obs)
-head(obs)
-
-data <- cbs4_get_data("80416ned")
-head(data)
-```
-
-```{r}
-meta <- cbs4_get_metadata("80416ned")
-obs <- cbs4_get_observations("80416ned")
-obs <- cbs4_add_unit_column(obs)
-head(obs)
-```
-
-```{r}
-data <- cbs4_get_data("80416ned")
-head(data)
-```
