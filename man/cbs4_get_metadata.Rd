@@ -13,9 +13,9 @@ cbs4_get_metadata(
 )
 }
 \arguments{
-\item{id}{Identifier of publication or data retrieved with \code{\link[=cbs4_get_data]{cbs4_get_data()}}}
+\item{id}{Identifier of publication or data retrieved with \code{\link[=cbs4_get_data]{cbs4_get_data()}}/\code{\link[=cbs4_get_observations]{cbs4_get_observations()}}}
 
-\item{catalog}{Catalog, @seealso \code{\link[=cbs4_get_catalogs]{cbs4_get_catalogs()}}}
+\item{catalog}{Catalog, from the set of \code{\link[=cbs4_get_catalogs]{cbs4_get_catalogs()}}}
 
 \item{...}{not used}
 
