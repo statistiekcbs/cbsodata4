@@ -39,12 +39,12 @@ eq <- function(x, column = NULL, allowed = NULL){
 #' Detects a substring in a column. `contains` filters the dataset at CBS:
 #' rows that have a code that does not contain (one of) `x` are filtered out.
 #' @export
+#' @example ./example/query.R
 #' @param x substring to be detected in column
 #' @param column column name
 #' @param allowed `character` with allowed values. If supplied it will check if `x`
 #' is a code in `allowed`.
 #' @family query
-#' @example ./example/query.R
 contains <- function(x, column = NULL, allowed = NULL){
   size <- length(x) # bad init, but I don't know another way
 

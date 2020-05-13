@@ -43,7 +43,7 @@ cbs4_download <- function( id
   }
 
   path <- file.path(BASEURL4, catalog, id, "Observations")
-  path <- paste0(path, get_query(...))
+  path <- paste0(path, get_query(..., .meta = meta))
   path <- utils::URLencode(path)
 
   path_obs <- file.path(download_dir, "Observations.csv")
@@ -64,10 +64,11 @@ cbs4_download <- function( id
   }
 
   download_value( path
-                , output_file = path_obs
-                , verbose     = verbose
-                , sep         = sep
-                , progress_cb = progress_cb
+                , output_file     = path_obs
+                , empty_selection = get_empty_data.frame(meta)
+                , verbose         = verbose
+                , sep             = sep
+                , progress_cb     = progress_cb
                 )
 
   if (show_progress){
@@ -80,6 +81,18 @@ cbs4_download <- function( id
   }
 
   invisible(meta)
+}
+
+# usefull for empty selections
+get_empty_data.frame <- function(meta){
+  d <-
+    data.frame( Id = integer()
+              , Measure = character()
+              , ValueAttribute = character()
+              , Value = numeric()
+              )
+  d[meta$Dimensions$Identifier] <- character()
+  d
 }
 
 # id <- "84120NED"

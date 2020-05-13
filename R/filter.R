@@ -19,10 +19,11 @@ get_filter <- function(..., filter_list=list(...), select = NULL, .meta = NULL){
   }
 
   query <- sapply(names(filter_list), function(column){
+    columnCodes <- paste0(column, "Codes")
     filter <- column_filter( column
                            , filter_list[[column]]
                            # check if values are allowed
-                           , allowed = .meta[[column]][["Key"]]
+                           , allowed = .meta[[columnCodes]][["Identifier"]]
                            )
     paste0("(", as.character(filter, column = column), ")")
   })
@@ -38,9 +39,9 @@ get_select <- function(select){
   query
 }
 
-get_query <- function(..., select=NULL){
+get_query <- function(..., select=NULL, .meta = NULL){
   query <- ""
-  filter <- get_filter(...)
+  filter <- get_filter(..., .meta = .meta)
   if (!is.null(filter)){
     query = paste0(query, "?$filter=", filter)
   }

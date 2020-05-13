@@ -11,17 +11,23 @@ get_value <- function(path, singleton = FALSE, verbose=TRUE){
   }
 }
 
-download_value <- function( path, output_file, sep = ","
+download_value <- function( path
+                          , output_file
+                          , empty_selection
+                          , sep = ","
                           , progress_cb = invisible
                           , verbose = TRUE
                           ){
   if (verbose){
     message("Retrieving ", path)
   }
-
+#
   progress_cb(NULL)
 
   res <- jsonlite::read_json(path, simplifyVector = TRUE)
+  if (!is.data.frame(res$value)){
+    res$value <- empty_selection
+  }
   data.table::fwrite( res$value, output_file
                     , row.names = FALSE
                     , na = ""
