@@ -265,7 +265,7 @@
 <div id="data-retrieval" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-retrieval" class="anchor"></a>Data retrieval</h2>
-<p>With <code>cbs4_get_observations</code> and <code>cbs4_get_data</code> data can be retrieved. By default this will be downloaded in a temporary directory, but this can be set explicitly with the argument <code>output_dir</code>.</p>
+<p>With <code>cbs4_get_observations</code> and <code>cbs4_get_data</code> data can be retrieved. By default this will be downloaded in a temporary directory, but this can be set explicitly with the argument <code>download_dir</code>.</p>
 <p><code>cbs4_get_observations</code> is the format in which the data is downloaded from SN. It is in so-called long format. It contains one <code>Measure</code> column, describing the topics/variable, one <code>Value</code> column describing the statistical value, one or more Dimension columns and some extra columns with value specific metadata.</p>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)</pre></body></html></div>

@@ -168,6 +168,19 @@ all datasets of all catalogs will be returned.</p></td>
     <div class='dont-index'><p>Other datasets: 
 <code><a href='cbs4_get_catalogs.html'>cbs4_get_catalogs</a>()</code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
+  <span class='co'># retrieve the main datasets (catalog = "CBS")</span>
+  <span class='no'>ds</span> <span class='kw'>&lt;-</span> <span class='fu'>cbs4_get_datasets</span>()
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>ds</span>))
+
+  <span class='co'># see cbs4_get_catalogs() to retrieve all catalogs</span>
+  <span class='no'>ds_asd</span> <span class='kw'>&lt;-</span> <span class='fu'>cbs4_get_datasets</span>(<span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS-asd"</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>ds_asd</span>))
+
+  <span class='no'>ds_all</span> <span class='kw'>&lt;-</span> <span class='fu'>cbs4_get_datasets</span>(<span class='kw'>catalog</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>ds_all</span>))
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

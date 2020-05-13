@@ -40,7 +40,12 @@
 
 
 <meta property="og:title" content="Retrieve the metadata of a publication — cbs4_get_metadata" />
-<meta property="og:description" content="Retrieve the metadata of a publication" />
+<meta property="og:description" content="Retrieve the metadata of a publication.
+The meta object contains all metadata properties of cbsodata in the form
+of data.frames. Each data.frame describes properties of the SN
+table: “Dimensions”, “MeasureCodes” and one ore more
+“\&amp;lt;Dimension\&amp;gt;Codes” describing the meta data of the borders of a SN
+table." />
 
 
 
@@ -117,7 +122,12 @@
     </div>
 
     <div class="ref-description">
-    <p>Retrieve the metadata of a publication</p>
+    <p>Retrieve the metadata of a publication.
+The meta object contains all metadata properties of cbsodata in the form
+of data.frames. Each <code>data.frame</code> describes properties of the SN
+table: “Dimensions”, “MeasureCodes” and one ore more
+“\&lt;Dimension\&gt;Codes” describing the meta data of the borders of a SN
+table.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cbs4_get_metadata</span>(
