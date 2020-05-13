@@ -2,7 +2,7 @@
 % Please edit documentation in R/cbs4_get_catalogs.R
 \name{cbs4_get_catalogs}
 \alias{cbs4_get_catalogs}
-\title{Retrieve catalogs from ccb}
+\title{Retrieve all (alternative) catalogs of Statistics Netherlands}
 \usage{
 cbs4_get_catalogs(
   base_url = BASEURL4,
@@ -15,7 +15,9 @@ cbs4_get_catalogs(
 \item{verbose}{if \code{TRUE} the communication to the server is shown.}
 }
 \description{
-Retrieve catalogs from ccb
+Retrieve catalogs of Statistics Netherlands. Beside the main "CBS" catalog
+other catalogs contain extra datasets that are not part of the main production
+of SN.
 }
 \seealso{
 Other datasets: 

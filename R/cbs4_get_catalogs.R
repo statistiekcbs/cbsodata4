@@ -1,6 +1,8 @@
-#' Retrieve catalogs from ccb
+#' Retrieve all (alternative) catalogs of Statistics Netherlands
 #'
-#' Retrieve catalogs from ccb
+#' Retrieve catalogs of Statistics Netherlands. Beside the main "CBS" catalog
+#' other catalogs contain extra datasets that are not part of the main production
+#' of SN.
 #' @export
 #' @param base_url Default
 #' @param verbose if `TRUE` the communication to the server is shown.

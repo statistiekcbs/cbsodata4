@@ -20,7 +20,7 @@
 #' @param includeId `logical`, should the Id column be downloaded?
 #' @param as.data.table `logical`, should the result be of type data.table?
 #' @family data-download
-#' @seealso cbs4_get_metadata
+#' @seealso [cbs4_get_metadata()]
 cbs4_get_observations <- function( id
                                    , ...
                                    , catalog = "CBS"

@@ -33,7 +33,8 @@ together with \code{verbose=TRUE}}
 \description{
 Download observations and metadata to a directory. This function is the working
 horse for \code{\link[=cbs4_get_data]{cbs4_get_data()}} and \code{\link[=cbs4_get_observations]{cbs4_get_observations()}} and has many of the same
-options.
+options. This function is useful if you do not want to load an entire dataset
+into memory, but just download the data and metadata in csv format.
 }
 \seealso{
 Other data-download: 

@@ -95,7 +95,7 @@ if (interactive()){
 }
 }
 \seealso{
-cbs4_get_metadata
+\code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}
 
 Other data-download: 
 \code{\link{cbs4_download}()},

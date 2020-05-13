@@ -10,7 +10,7 @@
 #' @param name_measure_columns `logical` if `TRUE` the `Title` of the measure will be set as
 #' name column.
 #' @family data-download
-#' @seealso cbs4_get_metadata
+#' @seealso [cbs4_get_metadata()]
 cbs4_get_data <- function( id
                          , catalog = "CBS"
                          , ...

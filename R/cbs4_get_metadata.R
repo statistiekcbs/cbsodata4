@@ -1,6 +1,11 @@
 #' Retrieve the metadata of a publication
 #'
-#' Retrieve the metadata of a publication
+#' Retrieve the metadata of a publication.
+#' The meta object contains all metadata properties of cbsodata in the form
+#' of data.frames. Each `data.frame` describes properties of the SN
+#' table: “Dimensions”, “MeasureCodes” and one ore more
+#' “\<Dimension\>Codes” describing the meta data of the borders of a SN
+#' table.
 #' @export
 #' @param id Identifier of publication or data retrieved with [cbs4_get_data()]/[cbs4_get_observations()]
 #' @param catalog Catalog, from the set of [cbs4_get_catalogs()]

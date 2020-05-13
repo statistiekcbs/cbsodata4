@@ -39,6 +39,20 @@ Setting the catalog to \code{NULL} will return all
 the datasets are downloaded only once per R session and cached. Subsequent calls to
 \code{cbs4_get_datasets} will use the results of the first call.
 }
+\examples{
+if (interactive()){
+  # retrieve the main datasets (catalog = "CBS")
+  ds <- cbs4_get_datasets()
+  print(nrow(ds))
+
+  # see cbs4_get_catalogs() to retrieve all catalogs
+  ds_asd <- cbs4_get_datasets(catalog = "CBS-asd")
+  print(nrow(ds_asd))
+
+  ds_all <- cbs4_get_datasets(catalog = NULL)
+  print(nrow(ds_all))
+}
+}
 \seealso{
 Other datasets: 
 \code{\link{cbs4_get_catalogs}()}

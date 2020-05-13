@@ -2,7 +2,9 @@
 #'
 #' Download observations and metadata to a directory. This function is the working
 #' horse for [cbs4_get_data()] and [cbs4_get_observations()] and has many of the same
-#' options.
+#' options. This function is useful if you do not want to load an entire dataset
+#' into memory, but just download the data and metadata in csv format.
+#'
 #' @param id Identifier of publication
 #' @param download_dir directory where files are to be stored
 #' @param ... optional selection statement to retrieve a subset of the data.

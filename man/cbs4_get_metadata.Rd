@@ -24,5 +24,10 @@ cbs4_get_metadata(
 \item{verbose}{Should the function report on retrieving the data}
 }
 \description{
-Retrieve the metadata of a publication
+Retrieve the metadata of a publication.
+The meta object contains all metadata properties of cbsodata in the form
+of data.frames. Each \code{data.frame} describes properties of the SN
+table: “Dimensions”, “MeasureCodes” and one ore more
+“\<Dimension\>Codes” describing the meta data of the borders of a SN
+table.
 }

@@ -5,6 +5,7 @@
 #' Setting the catalog to `NULL` will return all
 #' @note the datasets are downloaded only once per R session and cached. Subsequent calls to
 #' `cbs4_get_datasets` will use the results of the first call.
+#' @example ./example/cbs4_get_datasets.R
 #' @param catalog only show the datasets from that catalog. If `NULL`
 #' all datasets of all catalogs will be returned.
 #' @param convert_dates Converts date columns in Date-Time type (in stead of `character`)
