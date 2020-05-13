@@ -145,10 +145,58 @@
 <span class="co">#&gt; "Pompprijzen motorbrandstoffen; brandstofsoort, per dag"</span>
 <span class="co">#&gt; dimensions: Perioden</span>
 <span class="co">#&gt; For more info use x$.</span></pre></body></html></div>
-<p>The meta object contains all metadata properties of cbsodata in the form of data.frames. Each data.frame describes properties of the SN table: “Dimensions”, “MeasureCodes” and one ore more “<dimension>Codes” describing the meta data of the borders of a SN table.</dimension></p>
+<p>The meta object contains all metadata properties of cbsodata in the form of <code>data.frame</code>s. Each <code>data.frame</code> describes properties of the SN table: “Dimensions”, “MeasureCodes” and one ore more “&lt;Dimension&gt;Codes” describing the meta data of the borders of a SN table.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">meta_petrol</span>)
-<span class="co">#&gt; [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes" </span>
-<span class="co">#&gt; [5] "Properties"</span>
+<span class="co">#&gt; [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes"  "Properties"</span>
+<span class="no">meta_petrol</span>$<span class="no">MeasureCodes</span>[, <span class="fl">1</span>:<span class="fl">3</span>]</pre></body></html></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">Identifier</th>
+<th align="right">Index</th>
+<th align="left">Title</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">E006512</td>
+<td align="right">1</td>
+<td align="left">Benzine Euro95</td>
+</tr>
+<tr class="even">
+<td align="left">E006528</td>
+<td align="right">2</td>
+<td align="left">Diesel</td>
+</tr>
+<tr class="odd">
+<td align="left">E006498</td>
+<td align="right">3</td>
+<td align="left">LPG</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">meta_petrol</span>$<span class="no">Dimensions</span></pre></body></html></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">Identifier</th>
+<th align="left">Title</th>
+<th align="left">Description</th>
+<th align="left">Kind</th>
+<th align="left">MapYear</th>
+<th align="left">ReleasePolicy</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">Perioden</td>
+<td align="left">Perioden</td>
+<td align="left"></td>
+<td align="left">TimeDimension</td>
+<td align="left">NA</td>
+<td align="left">False</td>
+</tr></tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># just 1 dimension with the following categories:</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">meta_petrol</span>$<span class="no">PeriodenCodes</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
@@ -213,12 +261,13 @@
 </table>
 </div>
 </div>
-<div id="data-download" class="section level2">
+<div id="data-retrieval" class="section level2">
 <h2 class="hasAnchor">
-<a href="#data-download" class="anchor"></a>Data download</h2>
-<p>With <code>cbs4_get_observations</code> and <code>cbs4_get_data</code> data can be retrieved. By default this default will be downloaed in a temporary directory.</p>
+<a href="#data-retrieval" class="anchor"></a>Data retrieval</h2>
+<p>With <code>cbs4_get_observations</code> and <code>cbs4_get_data</code> data can be retrieved. By default this will be downloaded in a temporary directory, but this can be set explicitly with the argument <code>output_dir</code>.</p>
 <p><code>cbs4_get_observations</code> is the format in which the data is downloaded from SN. It is in so-called long format. It contains one <code>Measure</code> column, describing the topics/variable, one <code>Value</code> column describing the statistical value, one or more Dimension columns and some extra columns with value specific metadata.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
+<span class="co">#&gt;   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
@@ -276,8 +325,9 @@
 </table>
 </div>
 <p><code>cbs4_get_data</code> returns the data in so-called wide format in which each <code>Measure</code> has its own column. For many uses this is a more natural format. It is a pivoted version of <code><a href="../reference/cbs4_get_observations.html">cbs4_get_observations()</a></code>.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># same </span>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># same </span>
 <span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"80416ned"</span>)
+<span class="co">#&gt;   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
@@ -331,7 +381,8 @@
 <h3 class="hasAnchor">
 <a href="#adding-category-label-columns" class="anchor"></a>adding category label columns</h3>
 <p>The Dimension and Measure columns use codes/keys/identifiers to describe categories. These can be found in the metadata, but can also be automatically added using <code>cbs4_add_label_columns</code>.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
+<span class="co">#&gt;   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%</span>
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_label_columns.html">cbs4_add_label_columns</a></span>(<span class="no">obs</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)</pre></body></html></div>
 <div class="kable-table">
@@ -404,7 +455,8 @@
 </table>
 </div>
 <p>or</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"80416ned"</span>)
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"80416ned"</span>)
+<span class="co">#&gt;   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%</span>
 <span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_label_columns.html">cbs4_add_label_columns</a></span>(<span class="no">data</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>)</pre></body></html></div>
 <div class="kable-table">
@@ -467,7 +519,8 @@
 <h3 class="hasAnchor">
 <a href="#adding-date-column" class="anchor"></a>Adding Date column</h3>
 <p>The period/time columns of Statistics Netherlands (CBS) contain coded time periods: e.g. 2018JJ00 (i.e. 2018), 2018KW03 (i.e. 2018 Q3), 2016MM04 (i.e. 2016 April). With <code>cbs4_add_date_column</code> the time periods will be converted and added to the data:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
+<span class="co">#&gt;   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%</span>
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_date_column.html">cbs4_add_date_column</a></span>(<span class="no">obs</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)</pre></body></html></div>
 <div class="kable-table">
@@ -539,8 +592,9 @@
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb10"><html><body><pre class="r">
+<div class="sourceCode" id="cb12"><html><body><pre class="r">
 <span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"80416ned"</span>)
+<span class="co">#&gt;   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%</span>
 <span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_date_column.html">cbs4_add_date_column</a></span>(<span class="no">data</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>)</pre></body></html></div>
 <div class="kable-table">
@@ -610,7 +664,8 @@
 <h3 class="hasAnchor">
 <a href="#adding-a-unit-column" class="anchor"></a>Adding a Unit column</h3>
 <p>Each <code>Measure</code> has a measure unit, which can be added to observations with <code><a href="../reference/cbs4_add_unit_column.html">cbs4_add_unit_column()</a></code></p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
+<span class="co">#&gt;   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%</span>
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_unit_column.html">cbs4_add_unit_column</a></span>(<span class="no">obs</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)</pre></body></html></div>
 <div class="kable-table">
@@ -681,7 +736,7 @@
 <ul>
 <li>To filter you will need to use the values found in the <code>Identifier</code> column in the <code>cbs4_get_metadata</code> objects. e.g. for year 2020, the code is “2020JJ00”.</li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="st">"60006"</span>)
+<!-- end list --><div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="st">"60006"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">meta</span>$<span class="no">PeriodenCodes</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
@@ -752,12 +807,46 @@
 </tbody>
 </table>
 </div>
-<p>obs &lt;- cbs4_get_observations(“60006”)</p>
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">meta</span>$<span class="no">MeasureCodes</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Identifier"</span>,<span class="st">"Title"</span>)]</pre></body></html></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">Identifier</th>
+<th align="left">Title</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">M003026</td>
+<td align="left">Theoretisch beschikbare uren</td>
+</tr>
+<tr class="even">
+<td align="left">M002994_2</td>
+<td align="left">Totaal niet-productieve uren</td>
+</tr>
+<tr class="odd">
+<td align="left">M003031</td>
+<td align="left">Vorst- en neerslagverlet</td>
+</tr>
+<tr class="even">
+<td align="left">M003013</td>
+<td align="left">Overig</td>
+</tr>
+<tr class="odd">
+<td align="left">M003019</td>
+<td align="left">Productieve uren</td>
+</tr>
+</tbody>
+</table>
+</div>
 <ul>
-<li>To filter for values in a column add <code>&lt;column_name&gt; = values</code> to <code>cbs4_get_observations</code> (or <code>cbs4_get_data</code>) e.g. <code>Perioden = c("2020JJ00", "2020JJ0")</code>
+<li>To filter for values in a column add <code>&lt;column_name&gt; = values</code> to <code>cbs4_get_observations</code> (or <code>cbs4_get_data</code>) e.g. <code>Perioden = c("2019KW04", "2020KW01")</code>
 </li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"60006"</span>, <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"2019JJ00"</span>, <span class="st">"2020JJ0"</span>))
+<!-- end list --><div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"60006"</span>
+                            , <span class="kw">Measure</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"M003026"</span>,<span class="st">"M003019"</span>)     <span class="co"># selection on Measures</span>
+                            , <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"2019KW04"</span>, <span class="st">"2020KW01"</span>) <span class="co"># selection on Perioden</span>
+                            )
+<span class="co">#&gt;   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |=                                                                                               |   1%  |                                                                                                        |================================================================================================| 100%</span>
 <span class="fu"><a href="../reference/cbs4_add_label_columns.html">cbs4_add_label_columns</a></span>(<span class="no">obs</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
@@ -772,49 +861,40 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">745</td>
+<td align="right">740</td>
 <td align="left">M003026</td>
 <td align="left">Theoretisch beschikbare uren</td>
 <td align="left">None</td>
-<td align="right">2090</td>
-<td align="left">2019JJ00</td>
-<td align="left">2019</td>
+<td align="right">530</td>
+<td align="left">2019KW04</td>
+<td align="left">2019 4e kwartaal</td>
 </tr>
 <tr class="even">
-<td align="right">746</td>
-<td align="left">M002994_2</td>
-<td align="left">Totaal niet-productieve uren</td>
-<td align="left">None</td>
-<td align="right">615</td>
-<td align="left">2019JJ00</td>
-<td align="left">2019</td>
-</tr>
-<tr class="odd">
-<td align="right">747</td>
-<td align="left">M003031</td>
-<td align="left">Vorst- en neerslagverlet</td>
-<td align="left">None</td>
-<td align="right">70</td>
-<td align="left">2019JJ00</td>
-<td align="left">2019</td>
-</tr>
-<tr class="even">
-<td align="right">748</td>
-<td align="left">M003013</td>
-<td align="left">Overig</td>
-<td align="left">None</td>
-<td align="right">545</td>
-<td align="left">2019JJ00</td>
-<td align="left">2019</td>
-</tr>
-<tr class="odd">
-<td align="right">749</td>
+<td align="right">744</td>
 <td align="left">M003019</td>
 <td align="left">Productieve uren</td>
 <td align="left">None</td>
-<td align="right">1475</td>
-<td align="left">2019JJ00</td>
-<td align="left">2019</td>
+<td align="right">370</td>
+<td align="left">2019KW04</td>
+<td align="left">2019 4e kwartaal</td>
+</tr>
+<tr class="odd">
+<td align="right">750</td>
+<td align="left">M003026</td>
+<td align="left">Theoretisch beschikbare uren</td>
+<td align="left">None</td>
+<td align="right">520</td>
+<td align="left">2020KW01</td>
+<td align="left">2020 1e kwartaal</td>
+</tr>
+<tr class="even">
+<td align="right">754</td>
+<td align="left">M003019</td>
+<td align="left">Productieve uren</td>
+<td align="left">None</td>
+<td align="right">405</td>
+<td align="left">2020KW01</td>
+<td align="left">2020 1e kwartaal</td>
 </tr>
 </tbody>
 </table>
@@ -823,152 +903,112 @@
 <li>To filter for values in a column that have a substring e.g. “JJ” you can use <code>&lt;column_name&gt; = contains(&lt;substring&gt;)</code> to <code>cbs4_get_data</code> e.g.  <code>Perioden = contains("JJ")</code>
 </li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"60006"</span>, <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="../reference/contains.html">contains</a></span>(<span class="st">"2019"</span>))
+<!-- end list --><div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"60006"</span>
+                     , <span class="kw">Measure</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"M003026"</span>,<span class="st">"M003019"</span>)     <span class="co"># selection on Measures</span>
+                     , <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="../reference/contains.html">contains</a></span>(<span class="st">"2019"</span>) <span class="co"># retrieve all periods with 2019</span>
+                     )
+<span class="co">#&gt;   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |=                                                                                               |   1%  |                                                                                                        |================================================================================================| 100%</span>
 <span class="no">data</span></pre></body></html></div>
 <div class="kable-table">
 <table class="table">
-<colgroup>
-<col width="7%">
-<col width="25%">
-<col width="5%">
-<col width="14%">
-<col width="25%">
-<col width="21%">
-</colgroup>
 <thead><tr class="header">
 <th align="left">Perioden</th>
-<th align="right">Totaal niet-productieve uren</th>
-<th align="right">Overig</th>
 <th align="right">Productieve uren</th>
 <th align="right">Theoretisch beschikbare uren</th>
-<th align="right">Vorst- en neerslagverlet</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">2019JJ00</td>
-<td align="right">615</td>
-<td align="right">545</td>
 <td align="right">1475</td>
 <td align="right">2090</td>
-<td align="right">70</td>
 </tr>
 <tr class="even">
 <td align="left">2019KW01</td>
-<td align="right">140</td>
-<td align="right">110</td>
 <td align="right">375</td>
 <td align="right">510</td>
-<td align="right">30</td>
 </tr>
 <tr class="odd">
 <td align="left">2019KW02</td>
-<td align="right">105</td>
-<td align="right">100</td>
 <td align="right">415</td>
 <td align="right">520</td>
-<td align="right">5</td>
 </tr>
 <tr class="even">
 <td align="left">2019KW03</td>
-<td align="right">205</td>
-<td align="right">195</td>
 <td align="right">320</td>
 <td align="right">530</td>
-<td align="right">10</td>
 </tr>
 <tr class="odd">
 <td align="left">2019KW04</td>
-<td align="right">155</td>
-<td align="right">135</td>
 <td align="right">370</td>
 <td align="right">530</td>
-<td align="right">20</td>
 </tr>
 </tbody>
 </table>
 </div>
 <ul>
-<li>To combine values and substring use the “|” operator: `Periods = contains(“2019”) | “2020KW01”</li>
+<li>To combine values and substring use the “|” operator: <code>Periods = contains("2019") | "2020KW01"</code>
+</li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"60006"</span>, <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="../reference/contains.html">contains</a></span>(<span class="st">"2019"</span>) <span class="kw">|</span> <span class="st">"2020KW01"</span>)
+<!-- end list --><div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"60006"</span>
+                     , <span class="kw">Measure</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"M003026"</span>,<span class="st">"M003019"</span>)         <span class="co"># selection on Measures</span>
+                     , <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="../reference/contains.html">contains</a></span>(<span class="st">"2019"</span>) <span class="kw">|</span> <span class="st">"2020KW01"</span> <span class="co"># retrieve all periods with 2019</span>
+                     )
+<span class="co">#&gt;   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |==                                                                                              |   2%  |                                                                                                        |================================================================================================| 100%</span>
 <span class="no">data</span></pre></body></html></div>
 <div class="kable-table">
 <table class="table">
-<colgroup>
-<col width="7%">
-<col width="25%">
-<col width="5%">
-<col width="14%">
-<col width="25%">
-<col width="21%">
-</colgroup>
 <thead><tr class="header">
 <th align="left">Perioden</th>
-<th align="right">Totaal niet-productieve uren</th>
-<th align="right">Overig</th>
 <th align="right">Productieve uren</th>
 <th align="right">Theoretisch beschikbare uren</th>
-<th align="right">Vorst- en neerslagverlet</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">2019JJ00</td>
-<td align="right">615</td>
-<td align="right">545</td>
 <td align="right">1475</td>
 <td align="right">2090</td>
-<td align="right">70</td>
 </tr>
 <tr class="even">
 <td align="left">2019KW01</td>
-<td align="right">140</td>
-<td align="right">110</td>
 <td align="right">375</td>
 <td align="right">510</td>
-<td align="right">30</td>
 </tr>
 <tr class="odd">
 <td align="left">2019KW02</td>
-<td align="right">105</td>
-<td align="right">100</td>
 <td align="right">415</td>
 <td align="right">520</td>
-<td align="right">5</td>
 </tr>
 <tr class="even">
 <td align="left">2019KW03</td>
-<td align="right">205</td>
-<td align="right">195</td>
 <td align="right">320</td>
 <td align="right">530</td>
-<td align="right">10</td>
 </tr>
 <tr class="odd">
 <td align="left">2019KW04</td>
-<td align="right">155</td>
-<td align="right">135</td>
 <td align="right">370</td>
 <td align="right">530</td>
-<td align="right">20</td>
 </tr>
 <tr class="even">
 <td align="left">2020KW01</td>
-<td align="right">120</td>
-<td align="right">100</td>
 <td align="right">405</td>
 <td align="right">520</td>
-<td align="right">20</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<div id="download-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#download-data" class="anchor"></a>Download data</h1>
-<p>Data can also be downloaded explicitly by using <code>cbs4_download_table</code></p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">catalogs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_catalogs.html">cbs4_get_catalogs</a></span>()
+<div id="download-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#download-data" class="anchor"></a>Download data</h2>
+<p>Data and metadata of a table can also be downloaded explicitly by using <code>cbs4_download</code>. This can be an option if you don’t want to load the data into memory (which both <code>cbs4_get_data</code> and <code>cbs4_get_observations</code> do), but only store it on disk.</p>
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="../reference/cbs4_download.html">cbs4_download</a></span>(<span class="st">"60006"</span>, <span class="kw">download_dir</span> <span class="kw">=</span> <span class="st">"./60006"</span>) <span class="co"># will download data and metadata in csv format.</span></pre></body></html></div>
+</div>
+<div id="other-catalogs" class="section level2">
+<h2 class="hasAnchor">
+<a href="#other-catalogs" class="anchor"></a>Other catalogs</h2>
+<p>CBS / Statistics Netherlands also offers collections of datasets that are not part of the main collections: so-called catalogs. These can be retrieved with <code><a href="../reference/cbs4_get_catalogs.html">cbs4_get_catalogs()</a></code>.</p>
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">catalogs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_catalogs.html">cbs4_get_catalogs</a></span>()
 <span class="no">catalogs</span>[,<span class="fl">1</span>:<span class="fl">2</span>]</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
@@ -988,6 +1028,18 @@
 </tbody>
 </table>
 </div>
+<p>Another options is to set the <code>catalog</code> argument in <code>cbs4_get_datasets</code> to <code>NULL</code></p>
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="no">ds</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_datasets.html">cbs4_get_datasets</a></span>()
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">ds</span>)
+<span class="co">#&gt; [1] 53</span>
+
+<span class="no">ds_all</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_datasets.html">cbs4_get_datasets</a></span>(<span class="kw">catalog</span> <span class="kw">=</span> <span class="kw">NULL</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">ds_all</span>)
+<span class="co">#&gt; [1] 56</span>
+
+<span class="no">ds_asd</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_datasets.html">cbs4_get_datasets</a></span>(<span class="kw">catalog</span> <span class="kw">=</span> <span class="st">"CBS-asd"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">ds_asd</span>)
+<span class="co">#&gt; [1] 3</span></pre></body></html></div>
 </div>
   </div>
 
