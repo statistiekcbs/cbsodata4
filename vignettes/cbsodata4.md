@@ -66,7 +66,8 @@ table.
 
 ``` r
 names(meta_petrol)
-#> [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes"  "Properties"
+#> [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes" 
+#> [5] "Properties"
 meta_petrol$MeasureCodes[, 1:3]
 ```
 
@@ -124,7 +125,6 @@ columns with value specific metadata.
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
-#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 head(obs)
 ```
 
@@ -148,7 +148,6 @@ format. It is a pivoted version of `cbs4_get_observations()`.
 ``` r
 # same 
 data <- cbs4_get_data("80416ned")
-#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 head(data)
 ```
 
@@ -173,7 +172,6 @@ automatically added using `cbs4_add_label_columns`.
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
-#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 obs <- cbs4_add_label_columns(obs)
 head(obs)
 ```
@@ -195,7 +193,6 @@ or
 
 ``` r
 data <- cbs4_get_data("80416ned")
-#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 data <- cbs4_add_label_columns(data)
 head(data)
 ```
@@ -222,7 +219,6 @@ will be converted and added to the data:
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
-#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 obs <- cbs4_add_date_column(obs)
 head(obs)
 ```
@@ -243,7 +239,6 @@ head(obs)
 ``` r
 
 data <- cbs4_get_data("80416ned")
-#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 data <- cbs4_add_date_column(data)
 head(data)
 ```
@@ -268,7 +263,6 @@ with `cbs4_add_unit_column()`
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
-#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 obs <- cbs4_add_unit_column(obs)
 head(obs)
 ```
@@ -347,7 +341,6 @@ obs <- cbs4_get_observations("60006"
                             , Measure = c("M003026","M003019")     # selection on Measures
                             , Perioden = c("2019KW04", "2020KW01") # selection on Perioden
                             )
-#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |=                                                                                               |   1%  |                                                                                                        |================================================================================================| 100%
 cbs4_add_label_columns(obs)
 ```
 
@@ -373,7 +366,6 @@ data <- cbs4_get_data("60006"
                      , Measure = c("M003026","M003019")     # selection on Measures
                      , Perioden = contains("2019") # retrieve all periods with 2019
                      )
-#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |=                                                                                               |   1%  |                                                                                                        |================================================================================================| 100%
 data
 ```
 
@@ -399,7 +391,6 @@ data <- cbs4_get_data("60006"
                      , Measure = c("M003026","M003019")         # selection on Measures
                      , Perioden = contains("2019") | "2020KW01" # retrieve all periods with 2019
                      )
-#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |==                                                                                              |   2%  |                                                                                                        |================================================================================================| 100%
 data
 ```
 
