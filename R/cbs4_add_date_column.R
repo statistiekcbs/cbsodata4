@@ -29,6 +29,7 @@ cbs4_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
   # retrieve period column (using timedimension)
   period_name <- meta$Dimensions$Identifier[meta$Dimensions$Kind == "TimeDimension"][1]
   #period_name <- names(unlist(sapply(x, attr, "is_time")))
+
   x <- data
   if (!length(period_name)){
     warning("No time dimension found!")
@@ -49,6 +50,7 @@ cbs4_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
   is_year <- type %in% c("JJ")
   is_quarter <- type %in% c("KW")
   is_month <- type %in% c("MM")
+  is_day <- grepl("\\d{2}", type)
 
 
   # date
@@ -59,6 +61,7 @@ cbs4_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
     period[is_year] <- ISOdate(year, 1, 1, tz="")[is_year]
     period[is_quarter] <- ISOdate(year, 1 + (number - 1) * 3, 1, tz="")[is_quarter]
     period[is_month] <- ISOdate(year, number, 1, tz="")[is_month]
+    period[is_day] <- ISOdate(year, type, number)[is_day]
     period <- as.Date(period)
   } else if (date_type == "numeric"){
     period <- numeric()
@@ -70,10 +73,11 @@ cbs4_add_date_column <- function(data, date_type = c("Date", "numeric"),...){
     }
   }
 
-  type1 <- factor(levels=c("Y","Q", "M"))
+  type1 <- factor(levels=c("Y", "Q", "M", "D"))
   type1[is_year] <- "Y"
   type1[is_quarter] <- "Q"
   type1[is_month] <- "M"
+  type1[is_day]  <- "D"
   type1 <- droplevels(type1)
 
   # put the column just behind the period column

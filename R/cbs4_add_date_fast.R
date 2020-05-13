@@ -39,5 +39,4 @@ add_date <- function(d){
   idx <- c(1:i, N-1, N, i + seq_len(N-2-i))
   d3 <- d2[, idx, with=FALSE]
   d3
-
 }

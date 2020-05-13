@@ -1,106 +1,98 @@
 
+[Statistics Netherlands (CBS)](https://www.cbs.nl) is the office that
+produces all official statistics of the Netherlands.
+
+For long SN has put its data on the web in its online database
+[StatLine](https://opendata.cbs.nl/statline#/CBS/en/). Since 2014 this
+data base has an open data web API based on the OData protocol and other
+The [cbsodataR](https://CRAN.R-project.org/package=cbsodataR) package
+allows for retrieving data right into R using this API.
+
+A new version of the web api has been developed which is based on the
+OData4 protocol. This OData4 API contains major changes in how the
+metadata and data is transported, hence this package `cbsodata4`. Since
+the old web api will be phased out in due time, `cbsodata4` is the
+successor of `cbsodataR`.
+
+This document describes how to use `cbsodata4` to download data (and
+meta data) from Statistics Netherlands. It offers very similar functions
+as `cbsodataR`, so should be familiar to users of `cbsodataR`, but there
+are differences so check carefully your code.
+
 ``` r
 library(cbsodata4)
 ```
 
-# Introduction
+## List of datasets (toc)
 
-``` r
-catalogs <- cbs4_get_catalogs() 
-catalogs[,1:2]
-```
-
-<div class="kable-table">
-
-| Identifier | Title                 |
-| :--------- | :-------------------- |
-| CBS        | CBS databank StatLine |
-| CBS-asd    | CBS aanvullend        |
-
-</div>
+A list of datasets that are available can be loaded with with
+`cbs4_get_datasets()` (`cbs4_get_toc()` is an alias)
 
 ``` r
 datasets <- cbs4_get_datasets()
-head(datasets[,c("Identifier", "Title")])
+head(datasets[,c("Identifier", "Title", "Modified")])
 ```
 
 <div class="kable-table">
 
-| Identifier | Title                                                                 |
-| :--------- | :-------------------------------------------------------------------- |
-| 37230ned   | Bevolkingsontwikkeling; regio per maand                               |
-| 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw  |
-| 70072ned   | Regionale kerncijfers Nederland                                       |
-| 7100oogs   | Akkerbouwgewassen; productie naar regio                               |
-| 7425zuiv   | Melkaanvoer en zuivelproductie door zuivelfabrieken                   |
-| 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte |
+| Identifier | Title                                                                 | Modified                  |
+| :--------- | :-------------------------------------------------------------------- | :------------------------ |
+| 37230ned   | Bevolkingsontwikkeling; regio per maand                               | 2020-04-29T02:00:00+02:00 |
+| 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw  | 2020-05-08T00:00:00+02:00 |
+| 70072ned   | Regionale kerncijfers Nederland                                       | 2020-03-20T02:00:00+01:00 |
+| 7100oogs   | Akkerbouwgewassen; productie naar regio                               | 2020-03-31T02:00:00+02:00 |
+| 7425zuiv   | Melkaanvoer en zuivelproductie door zuivelfabrieken                   | 2020-04-15T02:00:00+02:00 |
+| 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte | 2020-03-16T02:00:00+01:00 |
 
 </div>
 
+Using an “Identifier” from `cbs4_get_datasets` information on the table
+can be retrieved with `cbs4_get_metadata`
+
 ``` r
-meta <- cbs4_get_metadata("80416ned")
-ls.str(meta)
-#> Dimensions : 'data.frame':   1 obs. of  6 variables:
-#>  $ Identifier   : chr "Perioden"
-#>  $ Title        : chr "Perioden"
-#>  $ Description  : chr ""
-#>  $ Kind         : chr "TimeDimension"
-#>  $ MapYear      : logi NA
-#>  $ ReleasePolicy: chr "False"
-#> MeasureCodes : 'data.frame': 3 obs. of  10 variables:
-#>  $ Identifier      : chr  "E006512" "E006528" "E006498"
-#>  $ Index           : int  1 2 3
-#>  $ Title           : chr  "Benzine Euro95" "Diesel" "LPG"
-#>  $ Description     : chr  "Loodvrije motorbenzine met een octaangetal van 95. \r\nPompprijs inclusief accijns en btw." "Brandstof voor dieselmotoren in het wegverkeer, ook wel bekend als autodiesel, autogasolie of autodieselolie (A"| __truncated__ "LPG (Liquefied Petroleum Gas), wordt ook wel autogas genoemd en\r\nbestaat uit propaan en butaan.\r\nPompprijs "| __truncated__
-#>  $ MeasureGroupId  : logi  NA NA NA
-#>  $ DataType        : chr  "Double" "Double" "Double"
-#>  $ Unit            : chr  "euro/liter" "euro/liter" "euro/liter"
-#>  $ Format          : logi  NA NA NA
-#>  $ Decimals        : int  3 3 3
-#>  $ PresentationType: logi  NA NA NA
-#> PeriodenCodes : 'data.frame':    5238 obs. of  6 variables:
-#>  $ Identifier      : chr  "20060101" "20060102" "20060103" "20060104" ...
-#>  $ Index           : int  1 2 3 4 5 6 7 8 9 10 ...
-#>  $ Title           : chr  "2006 zondag 1 januari" "2006 maandag 2 januari" "2006 dinsdag 3 januari" "2006 woensdag 4 januari" ...
-#>  $ Description     : chr  "" "" "" "" ...
-#>  $ DimensionGroupId: chr  "0" "0" "0" "0" ...
-#>  $ Status          : logi  NA NA NA NA NA NA ...
-#> PeriodenGroups : 'data.frame':   1 obs. of  5 variables:
-#>  $ Id         : chr "0"
-#>  $ Index      : int 14
-#>  $ Title      : chr "Dagen"
-#>  $ Description: logi NA
-#>  $ ParentId   : logi NA
-#> Properties : List of 28
-#>  $ @odata.context      : chr "https://beta-odata4.cbs.nl/CBS/80416ned/$metadata#Properties"
-#>  $ Identifier          : chr "80416ned"
-#>  $ Title               : chr "Pompprijzen motorbrandstoffen; brandstofsoort, per dag"
-#>  $ Description         : chr "Deze tabel bevat pompprijzen van motorbrandstoffen. Er worden gewogen gemiddelde dagprijzen gepubliceerd van be"| __truncated__
-#>  $ Language            : chr "nl"
-#>  $ Authority           : chr "https://standaarden.overheid.nl/owms/terms/Centraal_Bureau_voor_de_Statistiek"
-#>  $ Modified            : chr "2020-05-07T00:00:00+02:00"
-#>  $ TemporalCoverage    : chr "1 januari 2006 - 4 mei 2020"
-#>  $ Catalog             : chr "CBS"
-#>  $ Publisher           : chr "https://standaarden.overheid.nl/owms/terms/Centraal_Bureau_voor_de_Statistiek"
-#>  $ ContactPoint        : chr "infoservice@cbs.nl"
-#>  $ Version             : chr "202005070000"
-#>  $ VersionNotes        : chr ""
-#>  $ VersionReason       : chr "Actualisering"
-#>  $ Frequency           : chr "Per week"
-#>  $ Status              : chr "Regulier"
-#>  $ ObservationCount    : int 15714
-#>  $ ObservationsModified: chr "2020-05-07T00:00:00+02:00"
-#>  $ DatasetType         : chr "Numeric"
-#>  $ DefaultPresentation : chr "graphtype=Table&r=Perioden&k=Topics"
-#>  $ GraphTypes          : chr "Table,Bar,Line"
-#>  $ SearchPriority      : chr "3"
-#>  $ License             : chr "https://creativecommons.org/licenses/by/4.0/"
-#>  $ Source              : chr "Travelcard Nederland BV, CBS"
-#>  $ Summary             : chr "Gemiddelde prijzen motorbrandstoffen: Benzine Euro95, Diesel en LPG\nPompprijzen per dag"
-#>  $ LongDescription     : chr "INHOUDSOPGAVE\r\n\r\n1. Toelichting\r\n2. Definities en verklaring van symbolen\r\n3. Koppelingen naar relevant"| __truncated__
-#>  $ Provenance          :'data.frame':    2 obs. of  2 variables:
-#>  $ RelatedSources      :'data.frame':    5 obs. of  2 variables:
+meta_petrol <- cbs4_get_metadata("80416ned")
+meta_petrol
+#> cbs odata: '80416ned':
+#> "Pompprijzen motorbrandstoffen; brandstofsoort, per dag"
+#> dimensions: Perioden
+#> For more info use x$.
 ```
+
+The meta object contains all metadata properties of cbsodata in the form
+of data.frames. Each data.frame describes properties of the SN table:
+“Dimensions”, “MeasureCodes” and one ore more “<Dimension>Codes”
+describing the meta data of the borders of a SN table.
+
+``` r
+names(meta_petrol)
+#> [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes" 
+#> [5] "Properties"
+head(meta_petrol$PeriodenCodes)
+```
+
+<div class="kable-table">
+
+| Identifier | Index | Title                    | Description | DimensionGroupId | Status |
+| :--------- | ----: | :----------------------- | :---------- | :--------------- | :----- |
+| 20060101   |     1 | 2006 zondag 1 januari    |             | 0                | NA     |
+| 20060102   |     2 | 2006 maandag 2 januari   |             | 0                | NA     |
+| 20060103   |     3 | 2006 dinsdag 3 januari   |             | 0                | NA     |
+| 20060104   |     4 | 2006 woensdag 4 januari  |             | 0                | NA     |
+| 20060105   |     5 | 2006 donderdag 5 januari |             | 0                | NA     |
+| 20060106   |     6 | 2006 vrijdag 6 januari   |             | 0                | NA     |
+
+</div>
+
+## Data download
+
+With `cbs4_get_observations` and `cbs4_get_data` data can be retrieved.
+By default this default will be downloaed in a temporary directory.
+
+`cbs4_get_observations` is the format in which the data is downloaded
+from SN. It is in so-called long format. It contains one `Measure`
+column, describing the topics/variable, one `Value` column describing
+the statistical value, one or more Dimension columns and some extra
+columns with value specific metadata.
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
@@ -119,6 +111,35 @@ head(obs)
 |  5 | E006498 | None           | 0.542 | 20060102 |
 
 </div>
+
+`cbs4_get_data` returns the data in so-called wide format in which each
+`Measure` has its own column. For many uses this is a more natural
+format. It is a pivoted version of `cbs4_get_observations()`.
+
+``` r
+# same 
+data <- cbs4_get_data("80416ned")
+head(data)
+```
+
+<div class="kable-table">
+
+| Perioden |   LPG | Benzine Euro95 | Diesel |
+| -------: | ----: | -------------: | -----: |
+| 20060101 | 0.543 |          1.325 |  1.003 |
+| 20060102 | 0.542 |          1.328 |  1.007 |
+| 20060103 | 0.540 |          1.332 |  1.007 |
+| 20060104 | 0.550 |          1.348 |  1.020 |
+| 20060105 | 0.550 |          1.347 |  1.021 |
+| 20060106 | 0.549 |          1.353 |  1.023 |
+
+</div>
+
+### adding category label columns
+
+The Dimension and Measure columns use codes/keys/identifiers to describe
+categories. These can be found in the metadata, but can also be
+automatically added using `cbs4_add_label_columns`.
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
@@ -139,6 +160,34 @@ head(obs)
 
 </div>
 
+or
+
+``` r
+data <- cbs4_get_data("80416ned")
+data <- cbs4_add_label_columns(data)
+head(data)
+```
+
+<div class="kable-table">
+
+| Perioden | PeriodenLabel            |   LPG | Benzine Euro95 | Diesel |
+| -------: | :----------------------- | ----: | -------------: | -----: |
+| 20060101 | 2006 zondag 1 januari    | 0.543 |          1.325 |  1.003 |
+| 20060102 | 2006 maandag 2 januari   | 0.542 |          1.328 |  1.007 |
+| 20060103 | 2006 dinsdag 3 januari   | 0.540 |          1.332 |  1.007 |
+| 20060104 | 2006 woensdag 4 januari  | 0.550 |          1.348 |  1.020 |
+| 20060105 | 2006 donderdag 5 januari | 0.550 |          1.347 |  1.021 |
+| 20060106 | 2006 vrijdag 6 januari   | 0.549 |          1.353 |  1.023 |
+
+</div>
+
+### Adding Date column
+
+The period/time columns of Statistics Netherlands (CBS) contain coded
+time periods: e.g. 2018JJ00 (i.e. 2018), 2018KW03 (i.e. 2018 Q3),
+2016MM04 (i.e. 2016 April). With `cbs4_add_date_column` the time periods
+will be converted and added to the data:
+
 ``` r
 obs <- cbs4_get_observations("80416ned")
 obs <- cbs4_add_date_column(obs)
@@ -149,36 +198,41 @@ head(obs)
 
 | Id | Measure | ValueAttribute | Value | Perioden | Perioden\_Date | Perioden\_freq |
 | -: | :------ | :------------- | ----: | -------: | :------------- | :------------- |
-|  0 | E006512 | None           | 1.325 | 20060101 | NA             | NA             |
-|  1 | E006528 | None           | 1.003 | 20060101 | NA             | NA             |
-|  2 | E006498 | None           | 0.543 | 20060101 | NA             | NA             |
-|  3 | E006512 | None           | 1.328 | 20060102 | NA             | NA             |
-|  4 | E006528 | None           | 1.007 | 20060102 | NA             | NA             |
-|  5 | E006498 | None           | 0.542 | 20060102 | NA             | NA             |
+|  0 | E006512 | None           | 1.325 | 20060101 | 2006-01-01     | D              |
+|  1 | E006528 | None           | 1.003 | 20060101 | 2006-01-01     | D              |
+|  2 | E006498 | None           | 0.543 | 20060101 | 2006-01-01     | D              |
+|  3 | E006512 | None           | 1.328 | 20060102 | 2006-01-02     | D              |
+|  4 | E006528 | None           | 1.007 | 20060102 | 2006-01-02     | D              |
+|  5 | E006498 | None           | 0.542 | 20060102 | 2006-01-02     | D              |
 
 </div>
 
 ``` r
 
 data <- cbs4_get_data("80416ned")
+data <- cbs4_add_date_column(data)
 head(data)
 ```
 
 <div class="kable-table">
 
-| Perioden |   LPG | Benzine Euro95 | Diesel |
-| -------: | ----: | -------------: | -----: |
-| 20060101 | 0.543 |          1.325 |  1.003 |
-| 20060102 | 0.542 |          1.328 |  1.007 |
-| 20060103 | 0.540 |          1.332 |  1.007 |
-| 20060104 | 0.550 |          1.348 |  1.020 |
-| 20060105 | 0.550 |          1.347 |  1.021 |
-| 20060106 | 0.549 |          1.353 |  1.023 |
+| Perioden | Perioden\_Date | Perioden\_freq |   LPG | Benzine Euro95 | Diesel |
+| -------: | :------------- | :------------- | ----: | -------------: | -----: |
+| 20060101 | 2006-01-01     | D              | 0.543 |          1.325 |  1.003 |
+| 20060102 | 2006-01-02     | D              | 0.542 |          1.328 |  1.007 |
+| 20060103 | 2006-01-03     | D              | 0.540 |          1.332 |  1.007 |
+| 20060104 | 2006-01-04     | D              | 0.550 |          1.348 |  1.020 |
+| 20060105 | 2006-01-05     | D              | 0.550 |          1.347 |  1.021 |
+| 20060106 | 2006-01-06     | D              | 0.549 |          1.353 |  1.023 |
 
 </div>
 
+### Adding a Unit column
+
+Each `Measure` has a measure unit, which can be added to observations
+with `cbs4_add_unit_column()`
+
 ``` r
-meta <- cbs4_get_metadata("80416ned")
 obs <- cbs4_get_observations("80416ned")
 obs <- cbs4_add_unit_column(obs)
 head(obs)
@@ -197,20 +251,125 @@ head(obs)
 
 </div>
 
+## Select and filter
+
+It is possible restrict the download using filter statements. This may
+shorten the download time considerably.
+
+### Filter
+
+Filter statements for the columns can be used to restrict the download.
+Note the following:
+
+  - To filter you will need to use the values found in the `Identifier`
+    column in the `cbs4_get_metadata` objects. e.g. for year 2020, the
+    code is “2020JJ00”.
+
+<!-- end list -->
+
 ``` r
-data <- cbs4_get_data("80416ned")
-head(data)
+meta <- cbs4_get_metadata("60006")
+tail(meta$PeriodenCodes)
 ```
 
 <div class="kable-table">
 
-| Perioden |   LPG | Benzine Euro95 | Diesel |
-| -------: | ----: | -------------: | -----: |
-| 20060101 | 0.543 |          1.325 |  1.003 |
-| 20060102 | 0.542 |          1.328 |  1.007 |
-| 20060103 | 0.540 |          1.332 |  1.007 |
-| 20060104 | 0.550 |          1.348 |  1.020 |
-| 20060105 | 0.550 |          1.347 |  1.021 |
-| 20060106 | 0.549 |          1.353 |  1.023 |
+|     | Identifier | Index | Title            | Description        | DimensionGroupId | Status     |
+| --- | :--------- | ----: | :--------------- | :----------------- | :--------------- | :--------- |
+| 146 | 2019KW01   |   146 | 2019 1e kwartaal |                    | 0                | Definitief |
+| 147 | 2019KW02   |   147 | 2019 2e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 148 | 2019KW03   |   148 | 2019 3e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 149 | 2019KW04   |   149 | 2019 4e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 150 | 2019JJ00   |   150 | 2019             | Voorlopige cijfers | 1                | Voorlopig  |
+| 151 | 2020KW01   |   151 | 2020 1e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+
+</div>
+
+obs \<- cbs4\_get\_observations(“60006”)
+
+  - To filter for values in a column add `<column_name> = values` to
+    `cbs4_get_observations` (or `cbs4_get_data`) e.g. `Perioden =
+    c("2020JJ00", "2020JJ0")`
+
+<!-- end list -->
+
+``` r
+obs <- cbs4_get_observations("60006", Perioden = c("2019JJ00", "2020JJ0"))
+cbs4_add_label_columns(obs)
+```
+
+<div class="kable-table">
+
+|  Id | Measure    | MeasureLabel                 | ValueAttribute | Value | Perioden | PeriodenLabel |
+| --: | :--------- | :--------------------------- | :------------- | ----: | :------- | :------------ |
+| 745 | M003026    | Theoretisch beschikbare uren | None           |  2090 | 2019JJ00 | 2019          |
+| 746 | M002994\_2 | Totaal niet-productieve uren | None           |   615 | 2019JJ00 | 2019          |
+| 747 | M003031    | Vorst- en neerslagverlet     | None           |    70 | 2019JJ00 | 2019          |
+| 748 | M003013    | Overig                       | None           |   545 | 2019JJ00 | 2019          |
+| 749 | M003019    | Productieve uren             | None           |  1475 | 2019JJ00 | 2019          |
+
+</div>
+
+  - To filter for values in a column that have a substring e.g. “JJ” you
+    can use `<column_name> = contains(<substring>)` to `cbs4_get_data`
+    e.g.  `Perioden = contains("JJ")`
+
+<!-- end list -->
+
+``` r
+data <- cbs4_get_data("60006", Perioden = contains("2019"))
+data
+```
+
+<div class="kable-table">
+
+| Perioden | Totaal niet-productieve uren | Overig | Productieve uren | Theoretisch beschikbare uren | Vorst- en neerslagverlet |
+| :------- | ---------------------------: | -----: | ---------------: | ---------------------------: | -----------------------: |
+| 2019JJ00 |                          615 |    545 |             1475 |                         2090 |                       70 |
+| 2019KW01 |                          140 |    110 |              375 |                          510 |                       30 |
+| 2019KW02 |                          105 |    100 |              415 |                          520 |                        5 |
+| 2019KW03 |                          205 |    195 |              320 |                          530 |                       10 |
+| 2019KW04 |                          155 |    135 |              370 |                          530 |                       20 |
+
+</div>
+
+  - To combine values and substring use the “|” operator: \`Periods =
+    contains(“2019”) | “2020KW01”
+
+<!-- end list -->
+
+``` r
+data <- cbs4_get_data("60006", Perioden = contains("2019") | "2020KW01")
+data
+```
+
+<div class="kable-table">
+
+| Perioden | Totaal niet-productieve uren | Overig | Productieve uren | Theoretisch beschikbare uren | Vorst- en neerslagverlet |
+| :------- | ---------------------------: | -----: | ---------------: | ---------------------------: | -----------------------: |
+| 2019JJ00 |                          615 |    545 |             1475 |                         2090 |                       70 |
+| 2019KW01 |                          140 |    110 |              375 |                          510 |                       30 |
+| 2019KW02 |                          105 |    100 |              415 |                          520 |                        5 |
+| 2019KW03 |                          205 |    195 |              320 |                          530 |                       10 |
+| 2019KW04 |                          155 |    135 |              370 |                          530 |                       20 |
+| 2020KW01 |                          120 |    100 |              405 |                          520 |                       20 |
+
+</div>
+
+# Download data
+
+Data can also be downloaded explicitly by using `cbs4_download_table`
+
+``` r
+catalogs <- cbs4_get_catalogs() 
+catalogs[,1:2]
+```
+
+<div class="kable-table">
+
+| Identifier | Title                 |
+| :--------- | :-------------------- |
+| CBS        | CBS databank StatLine |
+| CBS-asd    | CBS aanvullend        |
 
 </div>
