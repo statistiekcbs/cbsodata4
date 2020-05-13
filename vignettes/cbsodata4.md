@@ -146,9 +146,27 @@ head(obs)
 format. It is a pivoted version of `cbs4_get_observations()`.
 
 ``` r
-# same 
+# same data, but pivoted
+data <- cbs4_get_data("80416ned", name_measure_columns = FALSE)
+head(data, 2)
+```
+
+<div class="kable-table">
+
+| Perioden | E006498 | E006512 | E006528 |
+| -------: | ------: | ------: | ------: |
+| 20060101 |   0.543 |   1.325 |   1.003 |
+| 20060102 |   0.542 |   1.328 |   1.007 |
+
+</div>
+
+By default the names of the columns are more readable with
+`cbs4_get_data`
+
+``` r
+# same data, but pivoted
 data <- cbs4_get_data("80416ned")
-head(data)
+head(data, 2)
 ```
 
 <div class="kable-table">
@@ -157,14 +175,10 @@ head(data)
 | -------: | ----: | -------------: | -----: |
 | 20060101 | 0.543 |          1.325 |  1.003 |
 | 20060102 | 0.542 |          1.328 |  1.007 |
-| 20060103 | 0.540 |          1.332 |  1.007 |
-| 20060104 | 0.550 |          1.348 |  1.020 |
-| 20060105 | 0.550 |          1.347 |  1.021 |
-| 20060106 | 0.549 |          1.353 |  1.023 |
 
 </div>
 
-### adding category label columns
+### Adding category label columns
 
 The Dimension and Measure columns use codes/keys/identifiers to describe
 categories. These can be found in the metadata, but can also be
@@ -194,19 +208,15 @@ or
 ``` r
 data <- cbs4_get_data("80416ned")
 data <- cbs4_add_label_columns(data)
-head(data)
+head(data, 2)
 ```
 
 <div class="kable-table">
 
-| Perioden | PeriodenLabel            |   LPG | Benzine Euro95 | Diesel |
-| -------: | :----------------------- | ----: | -------------: | -----: |
-| 20060101 | 2006 zondag 1 januari    | 0.543 |          1.325 |  1.003 |
-| 20060102 | 2006 maandag 2 januari   | 0.542 |          1.328 |  1.007 |
-| 20060103 | 2006 dinsdag 3 januari   | 0.540 |          1.332 |  1.007 |
-| 20060104 | 2006 woensdag 4 januari  | 0.550 |          1.348 |  1.020 |
-| 20060105 | 2006 donderdag 5 januari | 0.550 |          1.347 |  1.021 |
-| 20060106 | 2006 vrijdag 6 januari   | 0.549 |          1.353 |  1.023 |
+| Perioden | PeriodenLabel          |   LPG | Benzine Euro95 | Diesel |
+| -------: | :--------------------- | ----: | -------------: | -----: |
+| 20060101 | 2006 zondag 1 januari  | 0.543 |          1.325 |  1.003 |
+| 20060102 | 2006 maandag 2 januari | 0.542 |          1.328 |  1.007 |
 
 </div>
 

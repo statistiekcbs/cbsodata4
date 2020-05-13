@@ -89,12 +89,20 @@ head(obs)
 uses this is a more natural format. It is a pivoted version of `cbs4_get_observations()`.
 
 ```{r}
-# same 
-data <- cbs4_get_data("80416ned")
-head(data)
+# same data, but pivoted
+data <- cbs4_get_data("80416ned", name_measure_columns = FALSE)
+head(data, 2)
 ```
 
-### adding category label columns
+By default the names of the columns are more readable with `cbs4_get_data`
+
+```{r}
+# same data, but pivoted
+data <- cbs4_get_data("80416ned")
+head(data, 2)
+```
+
+### Adding category label columns
 
 The Dimension and Measure columns use codes/keys/identifiers to describe categories. These can be found in the metadata, but can also be automatically added using `cbs4_add_label_columns`.
 
@@ -109,7 +117,7 @@ or
 ```{r}
 data <- cbs4_get_data("80416ned")
 data <- cbs4_add_label_columns(data)
-head(data)
+head(data, 2)
 ```
 
 ### Adding Date column
