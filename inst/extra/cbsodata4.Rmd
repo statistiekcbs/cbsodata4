@@ -57,19 +57,22 @@ meta_petrol
 ```
 
 The meta object contains all metadata properties of cbsodata
-in the form of data.frames. Each data.frame describes properties of the
-SN table: "Dimensions", "MeasureCodes" and one ore more "<Dimension>Codes" describing the meta data of the borders
-of a SN table.
+in the form of `data.frame`s. Each `data.frame` describes properties of the
+SN table: "Dimensions", "MeasureCodes" and one ore more "\<Dimension\>Codes" describing the meta data of the borders of a SN table.
 
 ```{r}
 names(meta_petrol)
+meta_petrol$MeasureCodes[, 1:3]
+meta_petrol$Dimensions
+# just 1 dimension with the following categories:
 head(meta_petrol$PeriodenCodes)
 ```
 
-## Data download
+## Data retrieval
 
 With `cbs4_get_observations` and `cbs4_get_data` data can be retrieved. By 
-default this default will be downloaed in a temporary directory.
+default this will be downloaded in a temporary directory, but this 
+can be set explicitly with the argument `output_dir`.
 
 `cbs4_get_observations` is the format in which the data is downloaded from SN. 
 It is in so-called long format. It contains
@@ -153,16 +156,18 @@ the `cbs4_get_metadata` objects. e.g. for year 2020, the code is "2020JJ00".
 ```{r}
 meta <- cbs4_get_metadata("60006")
 tail(meta$PeriodenCodes)
+meta$MeasureCodes[,c("Identifier","Title")]
 ```
 
-obs <- cbs4_get_observations("60006")
-
 - To filter for values in a column add `<column_name> = values` to 
-`cbs4_get_observations` (or `cbs4_get_data`)  e.g. `Perioden = c("2020JJ00", "2020JJ0")`
+`cbs4_get_observations` (or `cbs4_get_data`)  e.g. `Perioden = c("2019KW04", "2020KW01")`
 
 
 ```{r, get_data3, message=FALSE}
-obs <- cbs4_get_observations("60006", Perioden = c("2019JJ00", "2020JJ0"))
+obs <- cbs4_get_observations("60006"
+                            , Measure = c("M003026","M003019")     # selection on Measures
+                            , Perioden = c("2019KW04", "2020KW01") # selection on Perioden
+                            )
 cbs4_add_label_columns(obs)
 ```
 
@@ -171,25 +176,52 @@ use `<column_name> = contains(<substring>)` to `cbs4_get_data` e.g.
 `Perioden = contains("JJ")`
 
 ```{r}
-data <- cbs4_get_data("60006", Perioden = contains("2019"))
+data <- cbs4_get_data("60006"
+                     , Measure = c("M003026","M003019")     # selection on Measures
+                     , Perioden = contains("2019") # retrieve all periods with 2019
+                     )
 data
 ```
 
-- To combine values and substring use the "|" operator: `Periods = contains("2019") | "2020KW01"
+- To combine values and substring use the "|" operator: `Periods = contains("2019") | "2020KW01"`
 
 ```{r}
-data <- cbs4_get_data("60006", Perioden = contains("2019") | "2020KW01")
+data <- cbs4_get_data("60006"
+                     , Measure = c("M003026","M003019")         # selection on Measures
+                     , Perioden = contains("2019") | "2020KW01" # retrieve all periods with 2019
+                     )
 data
+
 ```
 
-# Download data
+## Download data
 
-Data can also be downloaded explicitly by using `cbs4_download_table`
+Data and metadata of a table can also be downloaded explicitly by using `cbs4_download`. This can be 
+an option if you don't want to load the data into memory (which both `cbs4_get_data` and `cbs4_get_observations` do), but only store it on disk.
 
+```{r, eval=FALSE}
+cbs4_download("60006", download_dir = "./60006") # will download data and metadata in csv format.
+```
 
+## Other catalogs
+
+CBS / Statistics Netherlands also offers collections of datasets that are not part of the main 
+collections: so-called catalogs. These can be retrieved with `cbs4_get_catalogs()`.
 
 ```{r}
 catalogs <- cbs4_get_catalogs() 
 catalogs[,1:2]
 ```
 
+Another options is to set the `catalog` argument in `cbs4_get_datasets` to `NULL`
+
+```{r}
+ds <- cbs4_get_datasets()
+nrow(ds)
+
+ds_all <- cbs4_get_datasets(catalog = NULL)
+nrow(ds_all)
+
+ds_asd <- cbs4_get_datasets(catalog = "CBS-asd")
+nrow(ds_asd)
+```

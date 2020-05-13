@@ -59,14 +59,41 @@ meta_petrol
 ```
 
 The meta object contains all metadata properties of cbsodata in the form
-of data.frames. Each data.frame describes properties of the SN table:
-“Dimensions”, “MeasureCodes” and one ore more “<Dimension>Codes”
-describing the meta data of the borders of a SN table.
+of `data.frame`s. Each `data.frame` describes properties of the SN
+table: “Dimensions”, “MeasureCodes” and one ore more
+“\<Dimension\>Codes” describing the meta data of the borders of a SN
+table.
 
 ``` r
 names(meta_petrol)
-#> [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes" 
-#> [5] "Properties"
+#> [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes"  "Properties"
+meta_petrol$MeasureCodes[, 1:3]
+```
+
+<div class="kable-table">
+
+| Identifier | Index | Title          |
+| :--------- | ----: | :------------- |
+| E006512    |     1 | Benzine Euro95 |
+| E006528    |     2 | Diesel         |
+| E006498    |     3 | LPG            |
+
+</div>
+
+``` r
+meta_petrol$Dimensions
+```
+
+<div class="kable-table">
+
+| Identifier | Title    | Description | Kind          | MapYear | ReleasePolicy |
+| :--------- | :------- | :---------- | :------------ | :------ | :------------ |
+| Perioden   | Perioden |             | TimeDimension | NA      | False         |
+
+</div>
+
+``` r
+# just 1 dimension with the following categories:
 head(meta_petrol$PeriodenCodes)
 ```
 
@@ -83,10 +110,11 @@ head(meta_petrol$PeriodenCodes)
 
 </div>
 
-## Data download
+## Data retrieval
 
 With `cbs4_get_observations` and `cbs4_get_data` data can be retrieved.
-By default this default will be downloaed in a temporary directory.
+By default this will be downloaded in a temporary directory, but this
+can be set explicitly with the argument `output_dir`.
 
 `cbs4_get_observations` is the format in which the data is downloaded
 from SN. It is in so-called long format. It contains one `Measure`
@@ -96,6 +124,7 @@ columns with value specific metadata.
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 head(obs)
 ```
 
@@ -119,6 +148,7 @@ format. It is a pivoted version of `cbs4_get_observations()`.
 ``` r
 # same 
 data <- cbs4_get_data("80416ned")
+#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 head(data)
 ```
 
@@ -143,6 +173,7 @@ automatically added using `cbs4_add_label_columns`.
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 obs <- cbs4_add_label_columns(obs)
 head(obs)
 ```
@@ -164,6 +195,7 @@ or
 
 ``` r
 data <- cbs4_get_data("80416ned")
+#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 data <- cbs4_add_label_columns(data)
 head(data)
 ```
@@ -190,6 +222,7 @@ will be converted and added to the data:
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 obs <- cbs4_add_date_column(obs)
 head(obs)
 ```
@@ -210,6 +243,7 @@ head(obs)
 ``` r
 
 data <- cbs4_get_data("80416ned")
+#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 data <- cbs4_add_date_column(data)
 head(data)
 ```
@@ -234,6 +268,7 @@ with `cbs4_add_unit_column()`
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |================================================================================================| 100%
 obs <- cbs4_add_unit_column(obs)
 head(obs)
 ```
@@ -285,28 +320,45 @@ tail(meta$PeriodenCodes)
 
 </div>
 
-obs \<- cbs4\_get\_observations(“60006”)
+``` r
+meta$MeasureCodes[,c("Identifier","Title")]
+```
+
+<div class="kable-table">
+
+| Identifier | Title                        |
+| :--------- | :--------------------------- |
+| M003026    | Theoretisch beschikbare uren |
+| M002994\_2 | Totaal niet-productieve uren |
+| M003031    | Vorst- en neerslagverlet     |
+| M003013    | Overig                       |
+| M003019    | Productieve uren             |
+
+</div>
 
   - To filter for values in a column add `<column_name> = values` to
     `cbs4_get_observations` (or `cbs4_get_data`) e.g. `Perioden =
-    c("2020JJ00", "2020JJ0")`
+    c("2019KW04", "2020KW01")`
 
 <!-- end list -->
 
 ``` r
-obs <- cbs4_get_observations("60006", Perioden = c("2019JJ00", "2020JJ0"))
+obs <- cbs4_get_observations("60006"
+                            , Measure = c("M003026","M003019")     # selection on Measures
+                            , Perioden = c("2019KW04", "2020KW01") # selection on Perioden
+                            )
+#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |=                                                                                               |   1%  |                                                                                                        |================================================================================================| 100%
 cbs4_add_label_columns(obs)
 ```
 
 <div class="kable-table">
 
-|  Id | Measure    | MeasureLabel                 | ValueAttribute | Value | Perioden | PeriodenLabel |
-| --: | :--------- | :--------------------------- | :------------- | ----: | :------- | :------------ |
-| 745 | M003026    | Theoretisch beschikbare uren | None           |  2090 | 2019JJ00 | 2019          |
-| 746 | M002994\_2 | Totaal niet-productieve uren | None           |   615 | 2019JJ00 | 2019          |
-| 747 | M003031    | Vorst- en neerslagverlet     | None           |    70 | 2019JJ00 | 2019          |
-| 748 | M003013    | Overig                       | None           |   545 | 2019JJ00 | 2019          |
-| 749 | M003019    | Productieve uren             | None           |  1475 | 2019JJ00 | 2019          |
+|  Id | Measure | MeasureLabel                 | ValueAttribute | Value | Perioden | PeriodenLabel    |
+| --: | :------ | :--------------------------- | :------------- | ----: | :------- | :--------------- |
+| 740 | M003026 | Theoretisch beschikbare uren | None           |   530 | 2019KW04 | 2019 4e kwartaal |
+| 744 | M003019 | Productieve uren             | None           |   370 | 2019KW04 | 2019 4e kwartaal |
+| 750 | M003026 | Theoretisch beschikbare uren | None           |   520 | 2020KW01 | 2020 1e kwartaal |
+| 754 | M003019 | Productieve uren             | None           |   405 | 2020KW01 | 2020 1e kwartaal |
 
 </div>
 
@@ -317,48 +369,69 @@ cbs4_add_label_columns(obs)
 <!-- end list -->
 
 ``` r
-data <- cbs4_get_data("60006", Perioden = contains("2019"))
+data <- cbs4_get_data("60006"
+                     , Measure = c("M003026","M003019")     # selection on Measures
+                     , Perioden = contains("2019") # retrieve all periods with 2019
+                     )
+#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |=                                                                                               |   1%  |                                                                                                        |================================================================================================| 100%
 data
 ```
 
 <div class="kable-table">
 
-| Perioden | Totaal niet-productieve uren | Overig | Productieve uren | Theoretisch beschikbare uren | Vorst- en neerslagverlet |
-| :------- | ---------------------------: | -----: | ---------------: | ---------------------------: | -----------------------: |
-| 2019JJ00 |                          615 |    545 |             1475 |                         2090 |                       70 |
-| 2019KW01 |                          140 |    110 |              375 |                          510 |                       30 |
-| 2019KW02 |                          105 |    100 |              415 |                          520 |                        5 |
-| 2019KW03 |                          205 |    195 |              320 |                          530 |                       10 |
-| 2019KW04 |                          155 |    135 |              370 |                          530 |                       20 |
+| Perioden | Productieve uren | Theoretisch beschikbare uren |
+| :------- | ---------------: | ---------------------------: |
+| 2019JJ00 |             1475 |                         2090 |
+| 2019KW01 |              375 |                          510 |
+| 2019KW02 |              415 |                          520 |
+| 2019KW03 |              320 |                          530 |
+| 2019KW04 |              370 |                          530 |
 
 </div>
 
-  - To combine values and substring use the “|” operator: \`Periods =
-    contains(“2019”) | “2020KW01”
+  - To combine values and substring use the “|” operator: `Periods =
+    contains("2019") | "2020KW01"`
 
 <!-- end list -->
 
 ``` r
-data <- cbs4_get_data("60006", Perioden = contains("2019") | "2020KW01")
+data <- cbs4_get_data("60006"
+                     , Measure = c("M003026","M003019")         # selection on Measures
+                     , Perioden = contains("2019") | "2020KW01" # retrieve all periods with 2019
+                     )
+#>   |                                                                                                        |                                                                                                |   0%  |                                                                                                        |==                                                                                              |   2%  |                                                                                                        |================================================================================================| 100%
 data
 ```
 
 <div class="kable-table">
 
-| Perioden | Totaal niet-productieve uren | Overig | Productieve uren | Theoretisch beschikbare uren | Vorst- en neerslagverlet |
-| :------- | ---------------------------: | -----: | ---------------: | ---------------------------: | -----------------------: |
-| 2019JJ00 |                          615 |    545 |             1475 |                         2090 |                       70 |
-| 2019KW01 |                          140 |    110 |              375 |                          510 |                       30 |
-| 2019KW02 |                          105 |    100 |              415 |                          520 |                        5 |
-| 2019KW03 |                          205 |    195 |              320 |                          530 |                       10 |
-| 2019KW04 |                          155 |    135 |              370 |                          530 |                       20 |
-| 2020KW01 |                          120 |    100 |              405 |                          520 |                       20 |
+| Perioden | Productieve uren | Theoretisch beschikbare uren |
+| :------- | ---------------: | ---------------------------: |
+| 2019JJ00 |             1475 |                         2090 |
+| 2019KW01 |              375 |                          510 |
+| 2019KW02 |              415 |                          520 |
+| 2019KW03 |              320 |                          530 |
+| 2019KW04 |              370 |                          530 |
+| 2020KW01 |              405 |                          520 |
 
 </div>
 
-# Download data
+## Download data
 
-Data can also be downloaded explicitly by using `cbs4_download_table`
+Data and metadata of a table can also be downloaded explicitly by using
+`cbs4_download`. This can be an option if you don’t want to load the
+data into memory (which both `cbs4_get_data` and `cbs4_get_observations`
+do), but only store it on disk.
+
+``` r
+cbs4_download("60006", download_dir = "./60006") # will download data and metadata in csv format.
+```
+
+## Other catalogs
+
+CBS / Statistics Netherlands also offers collections of datasets that
+are not part of the main collections: so-called catalogs. These can be
+retrieved with `cbs4_get_catalogs()`.
 
 ``` r
 catalogs <- cbs4_get_catalogs() 
@@ -373,3 +446,20 @@ catalogs[,1:2]
 | CBS-asd    | CBS aanvullend        |
 
 </div>
+
+Another options is to set the `catalog` argument in `cbs4_get_datasets`
+to `NULL`
+
+``` r
+ds <- cbs4_get_datasets()
+nrow(ds)
+#> [1] 53
+
+ds_all <- cbs4_get_datasets(catalog = NULL)
+nrow(ds_all)
+#> [1] 56
+
+ds_asd <- cbs4_get_datasets(catalog = "CBS-asd")
+nrow(ds_asd)
+#> [1] 3
+```
