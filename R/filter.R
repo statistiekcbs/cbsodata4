@@ -25,10 +25,13 @@ get_filter <- function(..., filter_list=list(...), select = NULL, .meta = NULL){
                            # check if values are allowed
                            , allowed = .meta[[columnCodes]][["Identifier"]]
                            )
-    paste0("(", as.character(filter, column = column), ")")
+    as.character(filter, column = column)
   })
 
-  paste0(query, collapse=" and ")
+  if (length(query) > 1){
+    query <- paste0("(", query, ")", collapse=" and ")
+  }
+  unname(query)
 }
 
 get_select <- function(select){
