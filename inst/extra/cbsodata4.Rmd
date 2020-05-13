@@ -72,7 +72,7 @@ head(meta_petrol$PeriodenCodes)
 
 With `cbs4_get_observations` and `cbs4_get_data` data can be retrieved. By 
 default this will be downloaded in a temporary directory, but this 
-can be set explicitly with the argument `output_dir`.
+can be set explicitly with the argument `download_dir`.
 
 `cbs4_get_observations` is the format in which the data is downloaded from SN. 
 It is in so-called long format. It contains
