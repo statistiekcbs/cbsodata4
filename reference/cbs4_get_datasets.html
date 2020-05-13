@@ -122,12 +122,14 @@
 
     <pre class="usage"><span class='fu'>cbs4_get_datasets</span>(
   <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
+  <span class='kw'>convert_dates</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>base_url</span> <span class='kw'>=</span> <span class='no'>BASEURL4</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.verbose"</span>, <span class='fl'>FALSE</span>)
 )
 
 <span class='fu'>cbs4_get_toc</span>(
   <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
+  <span class='kw'>convert_dates</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>base_url</span> <span class='kw'>=</span> <span class='no'>BASEURL4</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.verbose"</span>, <span class='fl'>FALSE</span>)
 )</pre>
@@ -139,6 +141,10 @@
       <th>catalog</th>
       <td><p>only show the datasets from that catalog. If <code>NULL</code>
 all datasets of all catalogs will be returned.</p></td>
+    </tr>
+    <tr>
+      <th>convert_dates</th>
+      <td><p>Converts date columns in Date-Time type (in stead of <code>character</code>)</p></td>
     </tr>
     <tr>
       <th>base_url</th>
