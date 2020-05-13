@@ -35,14 +35,14 @@ head(datasets[,c("Identifier", "Title", "Modified")])
 
 <div class="kable-table">
 
-| Identifier | Title                                                                 | Modified                  |
-| :--------- | :-------------------------------------------------------------------- | :------------------------ |
-| 37230ned   | Bevolkingsontwikkeling; regio per maand                               | 2020-04-29T02:00:00+02:00 |
-| 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw  | 2020-05-08T00:00:00+02:00 |
-| 70072ned   | Regionale kerncijfers Nederland                                       | 2020-03-20T02:00:00+01:00 |
-| 7100oogs   | Akkerbouwgewassen; productie naar regio                               | 2020-03-31T02:00:00+02:00 |
-| 7425zuiv   | Melkaanvoer en zuivelproductie door zuivelfabrieken                   | 2020-04-15T02:00:00+02:00 |
-| 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte | 2020-03-16T02:00:00+01:00 |
+| Identifier | Title                                                                 | Modified   |
+| :--------- | :-------------------------------------------------------------------- | :--------- |
+| 37230ned   | Bevolkingsontwikkeling; regio per maand                               | 2020-04-29 |
+| 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw  | 2020-05-08 |
+| 70072ned   | Regionale kerncijfers Nederland                                       | 2020-03-20 |
+| 7100oogs   | Akkerbouwgewassen; productie naar regio                               | 2020-03-31 |
+| 7425zuiv   | Melkaanvoer en zuivelproductie door zuivelfabrieken                   | 2020-04-15 |
+| 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte | 2020-03-16 |
 
 </div>
 

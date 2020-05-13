@@ -7,11 +7,14 @@
 #' `cbs4_get_datasets` will use the results of the first call.
 #' @param catalog only show the datasets from that catalog. If `NULL`
 #' all datasets of all catalogs will be returned.
+#' @param convert_dates Converts date columns in Date-Time type (in stead of `character`)
 #' @param base_url base url of the CBS OData 4 API
 #' @param verbose Should the url request be printed?
 #' @family datasets
 #' @export
-cbs4_get_datasets <- function( catalog = "CBS", base_url = BASEURL4
+cbs4_get_datasets <- function( catalog = "CBS"
+                             , convert_dates = TRUE
+                             , base_url = BASEURL4
                              , verbose = getOption("cbsodata4.verbose", FALSE)
                              ){
   path_cache <- file.path(tempdir(), "datasets.rds")
@@ -28,6 +31,11 @@ cbs4_get_datasets <- function( catalog = "CBS", base_url = BASEURL4
 
   if (!is.null(catalog)){
     ds <- ds[ds$Catalog %in% catalog,]
+  }
+
+  if (isTRUE(convert_dates)){
+    dates <- c("Modified","ObservationsModified")
+    ds[, dates] <- lapply(ds[, dates], as.POSIXct)
   }
 
   ds

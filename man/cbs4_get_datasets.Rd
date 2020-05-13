@@ -7,12 +7,14 @@
 \usage{
 cbs4_get_datasets(
   catalog = "CBS",
+  convert_dates = TRUE,
   base_url = BASEURL4,
   verbose = getOption("cbsodata4.verbose", FALSE)
 )
 
 cbs4_get_toc(
   catalog = "CBS",
+  convert_dates = TRUE,
   base_url = BASEURL4,
   verbose = getOption("cbsodata4.verbose", FALSE)
 )
@@ -20,6 +22,8 @@ cbs4_get_toc(
 \arguments{
 \item{catalog}{only show the datasets from that catalog. If \code{NULL}
 all datasets of all catalogs will be returned.}
+
+\item{convert_dates}{Converts date columns in Date-Time type (in stead of \code{character})}
 
 \item{base_url}{base url of the CBS OData 4 API}
 
