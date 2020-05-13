@@ -81,132 +81,143 @@
 
     
     
+<p><a href="https://www.cbs.nl">Statistics Netherlands (CBS)</a> is the office that produces all official statistics of the Netherlands.</p>
+<p>For long SN has put its data on the web in its online database <a href="https://opendata.cbs.nl/statline#/CBS/en/">StatLine</a>. Since 2014 this data base has an open data web API based on the OData protocol and other The <a href="https://CRAN.R-project.org/package=cbsodataR">cbsodataR</a> package allows for retrieving data right into R using this API.</p>
+<p>A new version of the web api has been developed which is based on the OData4 protocol. This OData4 API contains major changes in how the metadata and data is transported, hence this package <code>cbsodata4</code>. Since the old web api will be phased out in due time, <code>cbsodata4</code> is the successor of <code>cbsodataR</code>.</p>
+<p>This document describes how to use <code>cbsodata4</code> to download data (and meta data) from Statistics Netherlands. It offers very similar functions as <code>cbsodataR</code>, so should be familiar to users of <code>cbsodataR</code>, but there are differences so check carefully your code.</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cbsodata4</span>)</pre></body></html></div>
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">catalogs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_catalogs.html">cbs4_get_catalogs</a></span>()
-<span class="no">catalogs</span>[,<span class="fl">1</span>:<span class="fl">2</span>]</pre></body></html></div>
-<div class="kable-table">
-<table class="table">
-<thead><tr class="header">
-<th align="left">Identifier</th>
-<th align="left">Title</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">CBS</td>
-<td align="left">CBS databank StatLine</td>
-</tr>
-<tr class="even">
-<td align="left">CBS-asd</td>
-<td align="left">CBS aanvullend</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">datasets</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_datasets.html">cbs4_get_datasets</a></span>()
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">datasets</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Identifier"</span>, <span class="st">"Title"</span>)])</pre></body></html></div>
+<div id="list-of-datasets-toc" class="section level2">
+<h2 class="hasAnchor">
+<a href="#list-of-datasets-toc" class="anchor"></a>List of datasets (toc)</h2>
+<p>A list of datasets that are available can be loaded with with <code><a href="../reference/cbs4_get_datasets.html">cbs4_get_datasets()</a></code> (<code><a href="../reference/cbs4_get_datasets.html">cbs4_get_toc()</a></code> is an alias)</p>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">datasets</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_datasets.html">cbs4_get_datasets</a></span>()
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">datasets</span>[,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Identifier"</span>, <span class="st">"Title"</span>, <span class="st">"Modified"</span>)])</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
 <colgroup>
-<col width="12%">
-<col width="87%">
+<col width="9%">
+<col width="66%">
+<col width="24%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">Identifier</th>
 <th align="left">Title</th>
+<th align="left">Modified</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">37230ned</td>
 <td align="left">Bevolkingsontwikkeling; regio per maand</td>
+<td align="left">2020-04-29T02:00:00+02:00</td>
 </tr>
 <tr class="even">
 <td align="left">60006</td>
 <td align="left">Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw</td>
+<td align="left">2020-05-08T00:00:00+02:00</td>
 </tr>
 <tr class="odd">
 <td align="left">70072ned</td>
 <td align="left">Regionale kerncijfers Nederland</td>
+<td align="left">2020-03-20T02:00:00+01:00</td>
 </tr>
 <tr class="even">
 <td align="left">7100oogs</td>
 <td align="left">Akkerbouwgewassen; productie naar regio</td>
+<td align="left">2020-03-31T02:00:00+02:00</td>
 </tr>
 <tr class="odd">
 <td align="left">7425zuiv</td>
 <td align="left">Melkaanvoer en zuivelproductie door zuivelfabrieken</td>
+<td align="left">2020-04-15T02:00:00+02:00</td>
 </tr>
 <tr class="even">
 <td align="left">80072ned</td>
 <td align="left">Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte</td>
+<td align="left">2020-03-16T02:00:00+01:00</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="st">"80416ned"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/ls_str.html">ls.str</a></span>(<span class="no">meta</span>)
-<span class="co">#&gt; Dimensions : 'data.frame':   1 obs. of  6 variables:</span>
-<span class="co">#&gt;  $ Identifier   : chr "Perioden"</span>
-<span class="co">#&gt;  $ Title        : chr "Perioden"</span>
-<span class="co">#&gt;  $ Description  : chr ""</span>
-<span class="co">#&gt;  $ Kind         : chr "TimeDimension"</span>
-<span class="co">#&gt;  $ MapYear      : logi NA</span>
-<span class="co">#&gt;  $ ReleasePolicy: chr "False"</span>
-<span class="co">#&gt; MeasureCodes : 'data.frame': 3 obs. of  10 variables:</span>
-<span class="co">#&gt;  $ Identifier      : chr  "E006512" "E006528" "E006498"</span>
-<span class="co">#&gt;  $ Index           : int  1 2 3</span>
-<span class="co">#&gt;  $ Title           : chr  "Benzine Euro95" "Diesel" "LPG"</span>
-<span class="co">#&gt;  $ Description     : chr  "Loodvrije motorbenzine met een octaangetal van 95. \r\nPompprijs inclusief accijns en btw." "Brandstof voor dieselmotoren in het wegverkeer, ook wel bekend als autodiesel, autogasolie of autodieselolie (A"| __truncated__ "LPG (Liquefied Petroleum Gas), wordt ook wel autogas genoemd en\r\nbestaat uit propaan en butaan.\r\nPompprijs "| __truncated__</span>
-<span class="co">#&gt;  $ MeasureGroupId  : logi  NA NA NA</span>
-<span class="co">#&gt;  $ DataType        : chr  "Double" "Double" "Double"</span>
-<span class="co">#&gt;  $ Unit            : chr  "euro/liter" "euro/liter" "euro/liter"</span>
-<span class="co">#&gt;  $ Format          : logi  NA NA NA</span>
-<span class="co">#&gt;  $ Decimals        : int  3 3 3</span>
-<span class="co">#&gt;  $ PresentationType: logi  NA NA NA</span>
-<span class="co">#&gt; PeriodenCodes : 'data.frame':    5238 obs. of  6 variables:</span>
-<span class="co">#&gt;  $ Identifier      : chr  "20060101" "20060102" "20060103" "20060104" ...</span>
-<span class="co">#&gt;  $ Index           : int  1 2 3 4 5 6 7 8 9 10 ...</span>
-<span class="co">#&gt;  $ Title           : chr  "2006 zondag 1 januari" "2006 maandag 2 januari" "2006 dinsdag 3 januari" "2006 woensdag 4 januari" ...</span>
-<span class="co">#&gt;  $ Description     : chr  "" "" "" "" ...</span>
-<span class="co">#&gt;  $ DimensionGroupId: chr  "0" "0" "0" "0" ...</span>
-<span class="co">#&gt;  $ Status          : logi  NA NA NA NA NA NA ...</span>
-<span class="co">#&gt; PeriodenGroups : 'data.frame':   1 obs. of  5 variables:</span>
-<span class="co">#&gt;  $ Id         : chr "0"</span>
-<span class="co">#&gt;  $ Index      : int 14</span>
-<span class="co">#&gt;  $ Title      : chr "Dagen"</span>
-<span class="co">#&gt;  $ Description: logi NA</span>
-<span class="co">#&gt;  $ ParentId   : logi NA</span>
-<span class="co">#&gt; Properties : List of 28</span>
-<span class="co">#&gt;  $ @odata.context      : chr "https://beta-odata4.cbs.nl/CBS/80416ned/$metadata#Properties"</span>
-<span class="co">#&gt;  $ Identifier          : chr "80416ned"</span>
-<span class="co">#&gt;  $ Title               : chr "Pompprijzen motorbrandstoffen; brandstofsoort, per dag"</span>
-<span class="co">#&gt;  $ Description         : chr "Deze tabel bevat pompprijzen van motorbrandstoffen. Er worden gewogen gemiddelde dagprijzen gepubliceerd van be"| __truncated__</span>
-<span class="co">#&gt;  $ Language            : chr "nl"</span>
-<span class="co">#&gt;  $ Authority           : chr "https://standaarden.overheid.nl/owms/terms/Centraal_Bureau_voor_de_Statistiek"</span>
-<span class="co">#&gt;  $ Modified            : chr "2020-05-07T00:00:00+02:00"</span>
-<span class="co">#&gt;  $ TemporalCoverage    : chr "1 januari 2006 - 4 mei 2020"</span>
-<span class="co">#&gt;  $ Catalog             : chr "CBS"</span>
-<span class="co">#&gt;  $ Publisher           : chr "https://standaarden.overheid.nl/owms/terms/Centraal_Bureau_voor_de_Statistiek"</span>
-<span class="co">#&gt;  $ ContactPoint        : chr "infoservice@cbs.nl"</span>
-<span class="co">#&gt;  $ Version             : chr "202005070000"</span>
-<span class="co">#&gt;  $ VersionNotes        : chr ""</span>
-<span class="co">#&gt;  $ VersionReason       : chr "Actualisering"</span>
-<span class="co">#&gt;  $ Frequency           : chr "Per week"</span>
-<span class="co">#&gt;  $ Status              : chr "Regulier"</span>
-<span class="co">#&gt;  $ ObservationCount    : int 15714</span>
-<span class="co">#&gt;  $ ObservationsModified: chr "2020-05-07T00:00:00+02:00"</span>
-<span class="co">#&gt;  $ DatasetType         : chr "Numeric"</span>
-<span class="co">#&gt;  $ DefaultPresentation : chr "graphtype=Table&amp;r=Perioden&amp;k=Topics"</span>
-<span class="co">#&gt;  $ GraphTypes          : chr "Table,Bar,Line"</span>
-<span class="co">#&gt;  $ SearchPriority      : chr "3"</span>
-<span class="co">#&gt;  $ License             : chr "https://creativecommons.org/licenses/by/4.0/"</span>
-<span class="co">#&gt;  $ Source              : chr "Travelcard Nederland BV, CBS"</span>
-<span class="co">#&gt;  $ Summary             : chr "Gemiddelde prijzen motorbrandstoffen: Benzine Euro95, Diesel en LPG\nPompprijzen per dag"</span>
-<span class="co">#&gt;  $ LongDescription     : chr "INHOUDSOPGAVE\r\n\r\n1. Toelichting\r\n2. Definities en verklaring van symbolen\r\n3. Koppelingen naar relevant"| __truncated__</span>
-<span class="co">#&gt;  $ Provenance          :'data.frame':    2 obs. of  2 variables:</span>
-<span class="co">#&gt;  $ RelatedSources      :'data.frame':    5 obs. of  2 variables:</span></pre></body></html></div>
+<p>Using an “Identifier” from <code>cbs4_get_datasets</code> information on the table can be retrieved with <code>cbs4_get_metadata</code></p>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">meta_petrol</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="st">"80416ned"</span>)
+<span class="no">meta_petrol</span>
+<span class="co">#&gt; cbs odata: '80416ned':</span>
+<span class="co">#&gt; "Pompprijzen motorbrandstoffen; brandstofsoort, per dag"</span>
+<span class="co">#&gt; dimensions: Perioden</span>
+<span class="co">#&gt; For more info use x$.</span></pre></body></html></div>
+<p>The meta object contains all metadata properties of cbsodata in the form of data.frames. Each data.frame describes properties of the SN table: “Dimensions”, “MeasureCodes” and one ore more “<dimension>Codes” describing the meta data of the borders of a SN table.</dimension></p>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">meta_petrol</span>)
+<span class="co">#&gt; [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes" </span>
+<span class="co">#&gt; [5] "Properties"</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">meta_petrol</span>$<span class="no">PeriodenCodes</span>)</pre></body></html></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">Identifier</th>
+<th align="right">Index</th>
+<th align="left">Title</th>
+<th align="left">Description</th>
+<th align="left">DimensionGroupId</th>
+<th align="left">Status</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">20060101</td>
+<td align="right">1</td>
+<td align="left">2006 zondag 1 januari</td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">20060102</td>
+<td align="right">2</td>
+<td align="left">2006 maandag 2 januari</td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">20060103</td>
+<td align="right">3</td>
+<td align="left">2006 dinsdag 3 januari</td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">20060104</td>
+<td align="right">4</td>
+<td align="left">2006 woensdag 4 januari</td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">20060105</td>
+<td align="right">5</td>
+<td align="left">2006 donderdag 5 januari</td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">20060106</td>
+<td align="right">6</td>
+<td align="left">2006 vrijdag 6 januari</td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="data-download" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-download" class="anchor"></a>Data download</h2>
+<p>With <code>cbs4_get_observations</code> and <code>cbs4_get_data</code> data can be retrieved. By default this default will be downloaed in a temporary directory.</p>
+<p><code>cbs4_get_observations</code> is the format in which the data is downloaded from SN. It is in so-called long format. It contains one <code>Measure</code> column, describing the topics/variable, one <code>Value</code> column describing the statistical value, one or more Dimension columns and some extra columns with value specific metadata.</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)</pre></body></html></div>
 <div class="kable-table">
@@ -264,7 +275,63 @@
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
+<p><code>cbs4_get_data</code> returns the data in so-called wide format in which each <code>Measure</code> has its own column. For many uses this is a more natural format. It is a pivoted version of <code><a href="../reference/cbs4_get_observations.html">cbs4_get_observations()</a></code>.</p>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># same </span>
+<span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"80416ned"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>)</pre></body></html></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="right">Perioden</th>
+<th align="right">LPG</th>
+<th align="right">Benzine Euro95</th>
+<th align="right">Diesel</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">20060101</td>
+<td align="right">0.543</td>
+<td align="right">1.325</td>
+<td align="right">1.003</td>
+</tr>
+<tr class="even">
+<td align="right">20060102</td>
+<td align="right">0.542</td>
+<td align="right">1.328</td>
+<td align="right">1.007</td>
+</tr>
+<tr class="odd">
+<td align="right">20060103</td>
+<td align="right">0.540</td>
+<td align="right">1.332</td>
+<td align="right">1.007</td>
+</tr>
+<tr class="even">
+<td align="right">20060104</td>
+<td align="right">0.550</td>
+<td align="right">1.348</td>
+<td align="right">1.020</td>
+</tr>
+<tr class="odd">
+<td align="right">20060105</td>
+<td align="right">0.550</td>
+<td align="right">1.347</td>
+<td align="right">1.021</td>
+</tr>
+<tr class="even">
+<td align="right">20060106</td>
+<td align="right">0.549</td>
+<td align="right">1.353</td>
+<td align="right">1.023</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="adding-category-label-columns" class="section level3">
+<h3 class="hasAnchor">
+<a href="#adding-category-label-columns" class="anchor"></a>adding category label columns</h3>
+<p>The Dimension and Measure columns use codes/keys/identifiers to describe categories. These can be found in the metadata, but can also be automatically added using <code>cbs4_add_label_columns</code>.</p>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_label_columns.html">cbs4_add_label_columns</a></span>(<span class="no">obs</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)</pre></body></html></div>
 <div class="kable-table">
@@ -336,7 +403,71 @@
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
+<p>or</p>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"80416ned"</span>)
+<span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_label_columns.html">cbs4_add_label_columns</a></span>(<span class="no">data</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>)</pre></body></html></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="right">Perioden</th>
+<th align="left">PeriodenLabel</th>
+<th align="right">LPG</th>
+<th align="right">Benzine Euro95</th>
+<th align="right">Diesel</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">20060101</td>
+<td align="left">2006 zondag 1 januari</td>
+<td align="right">0.543</td>
+<td align="right">1.325</td>
+<td align="right">1.003</td>
+</tr>
+<tr class="even">
+<td align="right">20060102</td>
+<td align="left">2006 maandag 2 januari</td>
+<td align="right">0.542</td>
+<td align="right">1.328</td>
+<td align="right">1.007</td>
+</tr>
+<tr class="odd">
+<td align="right">20060103</td>
+<td align="left">2006 dinsdag 3 januari</td>
+<td align="right">0.540</td>
+<td align="right">1.332</td>
+<td align="right">1.007</td>
+</tr>
+<tr class="even">
+<td align="right">20060104</td>
+<td align="left">2006 woensdag 4 januari</td>
+<td align="right">0.550</td>
+<td align="right">1.348</td>
+<td align="right">1.020</td>
+</tr>
+<tr class="odd">
+<td align="right">20060105</td>
+<td align="left">2006 donderdag 5 januari</td>
+<td align="right">0.550</td>
+<td align="right">1.347</td>
+<td align="right">1.021</td>
+</tr>
+<tr class="even">
+<td align="right">20060106</td>
+<td align="left">2006 vrijdag 6 januari</td>
+<td align="right">0.549</td>
+<td align="right">1.353</td>
+<td align="right">1.023</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="adding-date-column" class="section level3">
+<h3 class="hasAnchor">
+<a href="#adding-date-column" class="anchor"></a>Adding Date column</h3>
+<p>The period/time columns of Statistics Netherlands (CBS) contain coded time periods: e.g. 2018JJ00 (i.e. 2018), 2018KW03 (i.e. 2018 Q3), 2016MM04 (i.e. 2016 April). With <code>cbs4_add_date_column</code> the time periods will be converted and added to the data:</p>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_date_column.html">cbs4_add_date_column</a></span>(<span class="no">obs</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)</pre></body></html></div>
 <div class="kable-table">
@@ -357,8 +488,8 @@
 <td align="left">None</td>
 <td align="right">1.325</td>
 <td align="right">20060101</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td align="left">2006-01-01</td>
+<td align="left">D</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -366,8 +497,8 @@
 <td align="left">None</td>
 <td align="right">1.003</td>
 <td align="right">20060101</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td align="left">2006-01-01</td>
+<td align="left">D</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
@@ -375,8 +506,8 @@
 <td align="left">None</td>
 <td align="right">0.543</td>
 <td align="right">20060101</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td align="left">2006-01-01</td>
+<td align="left">D</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
@@ -384,8 +515,8 @@
 <td align="left">None</td>
 <td align="right">1.328</td>
 <td align="right">20060102</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td align="left">2006-01-02</td>
+<td align="left">D</td>
 </tr>
 <tr class="odd">
 <td align="right">4</td>
@@ -393,8 +524,8 @@
 <td align="left">None</td>
 <td align="right">1.007</td>
 <td align="right">20060102</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td align="left">2006-01-02</td>
+<td align="left">D</td>
 </tr>
 <tr class="even">
 <td align="right">5</td>
@@ -402,19 +533,22 @@
 <td align="left">None</td>
 <td align="right">0.542</td>
 <td align="right">20060102</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td align="left">2006-01-02</td>
+<td align="left">D</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb8"><html><body><pre class="r">
+<div class="sourceCode" id="cb10"><html><body><pre class="r">
 <span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"80416ned"</span>)
+<span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_date_column.html">cbs4_add_date_column</a></span>(<span class="no">data</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
 <th align="right">Perioden</th>
+<th align="left">Perioden_Date</th>
+<th align="left">Perioden_freq</th>
 <th align="right">LPG</th>
 <th align="right">Benzine Euro95</th>
 <th align="right">Diesel</th>
@@ -422,36 +556,48 @@
 <tbody>
 <tr class="odd">
 <td align="right">20060101</td>
+<td align="left">2006-01-01</td>
+<td align="left">D</td>
 <td align="right">0.543</td>
 <td align="right">1.325</td>
 <td align="right">1.003</td>
 </tr>
 <tr class="even">
 <td align="right">20060102</td>
+<td align="left">2006-01-02</td>
+<td align="left">D</td>
 <td align="right">0.542</td>
 <td align="right">1.328</td>
 <td align="right">1.007</td>
 </tr>
 <tr class="odd">
 <td align="right">20060103</td>
+<td align="left">2006-01-03</td>
+<td align="left">D</td>
 <td align="right">0.540</td>
 <td align="right">1.332</td>
 <td align="right">1.007</td>
 </tr>
 <tr class="even">
 <td align="right">20060104</td>
+<td align="left">2006-01-04</td>
+<td align="left">D</td>
 <td align="right">0.550</td>
 <td align="right">1.348</td>
 <td align="right">1.020</td>
 </tr>
 <tr class="odd">
 <td align="right">20060105</td>
+<td align="left">2006-01-05</td>
+<td align="left">D</td>
 <td align="right">0.550</td>
 <td align="right">1.347</td>
 <td align="right">1.021</td>
 </tr>
 <tr class="even">
 <td align="right">20060106</td>
+<td align="left">2006-01-06</td>
+<td align="left">D</td>
 <td align="right">0.549</td>
 <td align="right">1.353</td>
 <td align="right">1.023</td>
@@ -459,8 +605,12 @@
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="st">"80416ned"</span>)
-<span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
+</div>
+<div id="adding-a-unit-column" class="section level3">
+<h3 class="hasAnchor">
+<a href="#adding-a-unit-column" class="anchor"></a>Adding a Unit column</h3>
+<p>Each <code>Measure</code> has a measure unit, which can be added to observations with <code><a href="../reference/cbs4_add_unit_column.html">cbs4_add_unit_column()</a></code></p>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
 <span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_add_unit_column.html">cbs4_add_unit_column</a></span>(<span class="no">obs</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)</pre></body></html></div>
 <div class="kable-table">
@@ -518,52 +668,322 @@
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"80416ned"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>)</pre></body></html></div>
+</div>
+</div>
+<div id="select-and-filter" class="section level2">
+<h2 class="hasAnchor">
+<a href="#select-and-filter" class="anchor"></a>Select and filter</h2>
+<p>It is possible restrict the download using filter statements. This may shorten the download time considerably.</p>
+<div id="filter" class="section level3">
+<h3 class="hasAnchor">
+<a href="#filter" class="anchor"></a>Filter</h3>
+<p>Filter statements for the columns can be used to restrict the download. Note the following:</p>
+<ul>
+<li>To filter you will need to use the values found in the <code>Identifier</code> column in the <code>cbs4_get_metadata</code> objects. e.g. for year 2020, the code is “2020JJ00”.</li>
+</ul>
+<!-- end list --><div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="st">"60006"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="no">meta</span>$<span class="no">PeriodenCodes</span>)</pre></body></html></div>
 <div class="kable-table">
 <table class="table">
 <thead><tr class="header">
-<th align="right">Perioden</th>
-<th align="right">LPG</th>
-<th align="right">Benzine Euro95</th>
-<th align="right">Diesel</th>
+<th></th>
+<th align="left">Identifier</th>
+<th align="right">Index</th>
+<th align="left">Title</th>
+<th align="left">Description</th>
+<th align="left">DimensionGroupId</th>
+<th align="left">Status</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">20060101</td>
-<td align="right">0.543</td>
-<td align="right">1.325</td>
-<td align="right">1.003</td>
+<td>146</td>
+<td align="left">2019KW01</td>
+<td align="right">146</td>
+<td align="left">2019 1e kwartaal</td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">Definitief</td>
 </tr>
 <tr class="even">
-<td align="right">20060102</td>
-<td align="right">0.542</td>
-<td align="right">1.328</td>
-<td align="right">1.007</td>
+<td>147</td>
+<td align="left">2019KW02</td>
+<td align="right">147</td>
+<td align="left">2019 2e kwartaal</td>
+<td align="left">Voorlopige cijfers</td>
+<td align="left">0</td>
+<td align="left">Voorlopig</td>
 </tr>
 <tr class="odd">
-<td align="right">20060103</td>
-<td align="right">0.540</td>
-<td align="right">1.332</td>
-<td align="right">1.007</td>
+<td>148</td>
+<td align="left">2019KW03</td>
+<td align="right">148</td>
+<td align="left">2019 3e kwartaal</td>
+<td align="left">Voorlopige cijfers</td>
+<td align="left">0</td>
+<td align="left">Voorlopig</td>
 </tr>
 <tr class="even">
-<td align="right">20060104</td>
-<td align="right">0.550</td>
-<td align="right">1.348</td>
-<td align="right">1.020</td>
+<td>149</td>
+<td align="left">2019KW04</td>
+<td align="right">149</td>
+<td align="left">2019 4e kwartaal</td>
+<td align="left">Voorlopige cijfers</td>
+<td align="left">0</td>
+<td align="left">Voorlopig</td>
 </tr>
 <tr class="odd">
-<td align="right">20060105</td>
-<td align="right">0.550</td>
-<td align="right">1.347</td>
-<td align="right">1.021</td>
+<td>150</td>
+<td align="left">2019JJ00</td>
+<td align="right">150</td>
+<td align="left">2019</td>
+<td align="left">Voorlopige cijfers</td>
+<td align="left">1</td>
+<td align="left">Voorlopig</td>
 </tr>
 <tr class="even">
-<td align="right">20060106</td>
-<td align="right">0.549</td>
-<td align="right">1.353</td>
-<td align="right">1.023</td>
+<td>151</td>
+<td align="left">2020KW01</td>
+<td align="right">151</td>
+<td align="left">2020 1e kwartaal</td>
+<td align="left">Voorlopige cijfers</td>
+<td align="left">0</td>
+<td align="left">Voorlopig</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>obs &lt;- cbs4_get_observations(“60006”)</p>
+<ul>
+<li>To filter for values in a column add <code>&lt;column_name&gt; = values</code> to <code>cbs4_get_observations</code> (or <code>cbs4_get_data</code>) e.g. <code>Perioden = c("2020JJ00", "2020JJ0")</code>
+</li>
+</ul>
+<!-- end list --><div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"60006"</span>, <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"2019JJ00"</span>, <span class="st">"2020JJ0"</span>))
+<span class="fu"><a href="../reference/cbs4_add_label_columns.html">cbs4_add_label_columns</a></span>(<span class="no">obs</span>)</pre></body></html></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="right">Id</th>
+<th align="left">Measure</th>
+<th align="left">MeasureLabel</th>
+<th align="left">ValueAttribute</th>
+<th align="right">Value</th>
+<th align="left">Perioden</th>
+<th align="left">PeriodenLabel</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">745</td>
+<td align="left">M003026</td>
+<td align="left">Theoretisch beschikbare uren</td>
+<td align="left">None</td>
+<td align="right">2090</td>
+<td align="left">2019JJ00</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="right">746</td>
+<td align="left">M002994_2</td>
+<td align="left">Totaal niet-productieve uren</td>
+<td align="left">None</td>
+<td align="right">615</td>
+<td align="left">2019JJ00</td>
+<td align="left">2019</td>
+</tr>
+<tr class="odd">
+<td align="right">747</td>
+<td align="left">M003031</td>
+<td align="left">Vorst- en neerslagverlet</td>
+<td align="left">None</td>
+<td align="right">70</td>
+<td align="left">2019JJ00</td>
+<td align="left">2019</td>
+</tr>
+<tr class="even">
+<td align="right">748</td>
+<td align="left">M003013</td>
+<td align="left">Overig</td>
+<td align="left">None</td>
+<td align="right">545</td>
+<td align="left">2019JJ00</td>
+<td align="left">2019</td>
+</tr>
+<tr class="odd">
+<td align="right">749</td>
+<td align="left">M003019</td>
+<td align="left">Productieve uren</td>
+<td align="left">None</td>
+<td align="right">1475</td>
+<td align="left">2019JJ00</td>
+<td align="left">2019</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>To filter for values in a column that have a substring e.g. “JJ” you can use <code>&lt;column_name&gt; = contains(&lt;substring&gt;)</code> to <code>cbs4_get_data</code> e.g.  <code>Perioden = contains("JJ")</code>
+</li>
+</ul>
+<!-- end list --><div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"60006"</span>, <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="../reference/contains.html">contains</a></span>(<span class="st">"2019"</span>))
+<span class="no">data</span></pre></body></html></div>
+<div class="kable-table">
+<table class="table">
+<colgroup>
+<col width="7%">
+<col width="25%">
+<col width="5%">
+<col width="14%">
+<col width="25%">
+<col width="21%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Perioden</th>
+<th align="right">Totaal niet-productieve uren</th>
+<th align="right">Overig</th>
+<th align="right">Productieve uren</th>
+<th align="right">Theoretisch beschikbare uren</th>
+<th align="right">Vorst- en neerslagverlet</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2019JJ00</td>
+<td align="right">615</td>
+<td align="right">545</td>
+<td align="right">1475</td>
+<td align="right">2090</td>
+<td align="right">70</td>
+</tr>
+<tr class="even">
+<td align="left">2019KW01</td>
+<td align="right">140</td>
+<td align="right">110</td>
+<td align="right">375</td>
+<td align="right">510</td>
+<td align="right">30</td>
+</tr>
+<tr class="odd">
+<td align="left">2019KW02</td>
+<td align="right">105</td>
+<td align="right">100</td>
+<td align="right">415</td>
+<td align="right">520</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">2019KW03</td>
+<td align="right">205</td>
+<td align="right">195</td>
+<td align="right">320</td>
+<td align="right">530</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">2019KW04</td>
+<td align="right">155</td>
+<td align="right">135</td>
+<td align="right">370</td>
+<td align="right">530</td>
+<td align="right">20</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>To combine values and substring use the “|” operator: `Periods = contains(“2019”) | “2020KW01”</li>
+</ul>
+<!-- end list --><div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_data.html">cbs4_get_data</a></span>(<span class="st">"60006"</span>, <span class="kw">Perioden</span> <span class="kw">=</span> <span class="fu"><a href="../reference/contains.html">contains</a></span>(<span class="st">"2019"</span>) <span class="kw">|</span> <span class="st">"2020KW01"</span>)
+<span class="no">data</span></pre></body></html></div>
+<div class="kable-table">
+<table class="table">
+<colgroup>
+<col width="7%">
+<col width="25%">
+<col width="5%">
+<col width="14%">
+<col width="25%">
+<col width="21%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Perioden</th>
+<th align="right">Totaal niet-productieve uren</th>
+<th align="right">Overig</th>
+<th align="right">Productieve uren</th>
+<th align="right">Theoretisch beschikbare uren</th>
+<th align="right">Vorst- en neerslagverlet</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2019JJ00</td>
+<td align="right">615</td>
+<td align="right">545</td>
+<td align="right">1475</td>
+<td align="right">2090</td>
+<td align="right">70</td>
+</tr>
+<tr class="even">
+<td align="left">2019KW01</td>
+<td align="right">140</td>
+<td align="right">110</td>
+<td align="right">375</td>
+<td align="right">510</td>
+<td align="right">30</td>
+</tr>
+<tr class="odd">
+<td align="left">2019KW02</td>
+<td align="right">105</td>
+<td align="right">100</td>
+<td align="right">415</td>
+<td align="right">520</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">2019KW03</td>
+<td align="right">205</td>
+<td align="right">195</td>
+<td align="right">320</td>
+<td align="right">530</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">2019KW04</td>
+<td align="right">155</td>
+<td align="right">135</td>
+<td align="right">370</td>
+<td align="right">530</td>
+<td align="right">20</td>
+</tr>
+<tr class="even">
+<td align="left">2020KW01</td>
+<td align="right">120</td>
+<td align="right">100</td>
+<td align="right">405</td>
+<td align="right">520</td>
+<td align="right">20</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="download-data" class="section level1">
+<h1 class="hasAnchor">
+<a href="#download-data" class="anchor"></a>Download data</h1>
+<p>Data can also be downloaded explicitly by using <code>cbs4_download_table</code></p>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">catalogs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_catalogs.html">cbs4_get_catalogs</a></span>()
+<span class="no">catalogs</span>[,<span class="fl">1</span>:<span class="fl">2</span>]</pre></body></html></div>
+<div class="kable-table">
+<table class="table">
+<thead><tr class="header">
+<th align="left">Identifier</th>
+<th align="left">Title</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">CBS</td>
+<td align="left">CBS databank StatLine</td>
+</tr>
+<tr class="even">
+<td align="left">CBS-asd</td>
+<td align="left">CBS aanvullend</td>
 </tr>
 </tbody>
 </table>
