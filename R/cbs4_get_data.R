@@ -3,7 +3,7 @@
 #' Get data from table `id`. The data of a CBS opendata table is in so-called wide
 #' format. Each `Measure` has its own column.  For a long format see [cbs4_get_observations()]
 #' which has one `Measure` column and a `Value` column.
-##' @example ./example/query.R
+#' @example ./example/query.R
 #' @export
 #' @importFrom stats setNames
 #' @inheritParams cbs4_get_observations
