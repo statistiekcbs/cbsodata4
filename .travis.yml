@@ -9,6 +9,11 @@ cache: packages
 warnings_are_errors: true
 #r_binary_packages: [data.table,jsonlite,rmarkdown]
 
+# test url service!
+env:
+  - TT_AT_HOME=TRUE
+
+
 before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 deploy:
  provider: script
