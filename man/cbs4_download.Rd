@@ -11,7 +11,8 @@ cbs4_download(
   catalog = "CBS",
   show_progress = interactive() && !verbose,
   sep = ",",
-  verbose = getOption("cbsodata4.verbose", FALSE)
+  verbose = getOption("cbsodata4.verbose", FALSE),
+  base_url = getOption("cbsodata4.base_url", BASEURL4)
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ together with \code{verbose=TRUE}}
 \item{sep}{seperator to be used in writing the data}
 
 \item{verbose}{Should messages be printed...}
+
+\item{base_url}{Possible other website which implements same protocol.}
 }
 \description{
 Download observations and metadata to a directory. This function is the working

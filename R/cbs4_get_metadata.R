@@ -15,7 +15,7 @@
 cbs4_get_metadata <- function( id
                              , catalog  = "CBS"
                              , ...
-                             , base_url = BASEURL4
+                             , base_url = getOption("cbsodata4.base_url", BASEURL4)
                              , verbose  = getOption("cbsodata4.verbose", FALSE)
                              ){
   meta <- attr(id, "meta")
@@ -63,7 +63,7 @@ cbs4_get_metadata <- function( id
 print.cbs4_meta <- function(x, ...){
   e <- deparse(substitute(x))
   with(x$Properties,{
-    cat("cbs odata: '", Identifier ,"':\n"
+    cat("cbs odatav4: '", Identifier ,"':\n"
        , '"', Title, '"\n'
        , "dimensions: ", paste0(x$Dimensions$Identifier, collapse = ", "), "\n"
        , "For more info use ", e, "$.\n"

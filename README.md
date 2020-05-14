@@ -82,6 +82,11 @@ Get metadata of table `<Identifier>` (e.g. 60006) with
 
 ``` r
 meta <- cbs4_get_metadata(id="60006")
+print(meta)
+#> cbs odata: '60006':
+#> "Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw"
+#> dimensions: Perioden
+#> For more info use meta$.
 meta$Properties$Title
 #> [1] "Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw"
 # topics / measures

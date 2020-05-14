@@ -13,7 +13,8 @@ cbs4_get_data(
   download_dir = file.path(tempdir(), id),
   verbose = getOption("cbsodata4.verbose", FALSE),
   sep = ",",
-  as.data.table = FALSE
+  as.data.table = FALSE,
+  base_url = getOption("cbsodata4.base_url", BASEURL4)
 )
 }
 \arguments{
@@ -26,7 +27,7 @@ cbs4_get_data(
 \item{name_measure_columns}{\code{logical} if \code{TRUE} the \code{Title} of the measure will be set as
 name column.}
 
-\item{show_progress}{if \code{TRUE} shows progress of data donwload, can't be used together
+\item{show_progress}{if \code{TRUE} shows progress of data download, can't be used together
 with verbose.}
 
 \item{download_dir}{directory in which the data and metadata is downloaded. By default this is
@@ -37,6 +38,8 @@ temporary directory, but can be set manually}
 \item{sep}{separator to be used to download the data.}
 
 \item{as.data.table}{\code{logical}, should the result be of type data.table?}
+
+\item{base_url}{Possible other url which implements same protocol.}
 }
 \description{
 Get data from table \code{id}. The data of a CBS opendata table is in so-called wide

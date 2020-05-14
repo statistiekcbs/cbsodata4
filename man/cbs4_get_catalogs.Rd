@@ -5,12 +5,12 @@
 \title{Retrieve all (alternative) catalogs of Statistics Netherlands}
 \usage{
 cbs4_get_catalogs(
-  base_url = BASEURL4,
+  base_url = getOption("cbsodata4.base_url", BASEURL4),
   verbose = getOption("cbsodata4.verbose", FALSE)
 )
 }
 \arguments{
-\item{base_url}{Default}
+\item{base_url}{possible other url that implements same interface}
 
 \item{verbose}{if \code{TRUE} the communication to the server is shown.}
 }

@@ -20,6 +20,7 @@ cbs4_get_data <- function( id
                          , verbose = getOption("cbsodata4.verbose", FALSE)
                          , sep = ","
                          , as.data.table = FALSE
+                         , base_url = getOption("cbsodata4.base_url", BASEURL4)
                          ){
 
   obs <- cbs4_get_observations(id = id
@@ -29,6 +30,7 @@ cbs4_get_data <- function( id
                               , verbose = verbose
                               , sep = sep
                               , as.data.table = TRUE # we use data.table to pivot
+                              , base_url = base_url
                               )
   m <- attr(obs, "meta")
   lhs <- paste(m$Dimensions$Identifier, collapse = " + ")

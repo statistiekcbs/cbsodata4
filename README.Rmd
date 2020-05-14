@@ -81,6 +81,7 @@ Get metadata of table `<Identifier>` (e.g. 60006) with `cbs4_get_metadata`:
 
 ```{r}
 meta <- cbs4_get_metadata(id="60006")
+print(meta)
 meta$Properties$Title
 # topics / measures
 meta$MeasureCodes[,c("Identifier", "Title")]

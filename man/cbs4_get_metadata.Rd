@@ -8,7 +8,7 @@ cbs4_get_metadata(
   id,
   catalog = "CBS",
   ...,
-  base_url = BASEURL4,
+  base_url = getOption("cbsodata4.base_url", BASEURL4),
   verbose = getOption("cbsodata4.verbose", FALSE)
 )
 }

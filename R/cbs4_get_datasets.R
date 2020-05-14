@@ -15,8 +15,8 @@
 #' @export
 cbs4_get_datasets <- function( catalog = "CBS"
                              , convert_dates = TRUE
-                             , base_url = BASEURL4
                              , verbose = getOption("cbsodata4.verbose", FALSE)
+                             , base_url = getOption("cbsodata4.base_url", BASEURL4)
                              ){
   path_cache <- file.path(tempdir(), "datasets.rds")
 

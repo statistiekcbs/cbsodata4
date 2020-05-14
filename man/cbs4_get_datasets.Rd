@@ -8,15 +8,15 @@
 cbs4_get_datasets(
   catalog = "CBS",
   convert_dates = TRUE,
-  base_url = BASEURL4,
-  verbose = getOption("cbsodata4.verbose", FALSE)
+  verbose = getOption("cbsodata4.verbose", FALSE),
+  base_url = getOption("cbsodata4.base_url", BASEURL4)
 )
 
 cbs4_get_toc(
   catalog = "CBS",
   convert_dates = TRUE,
-  base_url = BASEURL4,
-  verbose = getOption("cbsodata4.verbose", FALSE)
+  verbose = getOption("cbsodata4.verbose", FALSE),
+  base_url = getOption("cbsodata4.base_url", BASEURL4)
 )
 }
 \arguments{
@@ -25,9 +25,9 @@ all datasets of all catalogs will be returned.}
 
 \item{convert_dates}{Converts date columns in Date-Time type (in stead of \code{character})}
 
-\item{base_url}{base url of the CBS OData 4 API}
-
 \item{verbose}{Should the url request be printed?}
+
+\item{base_url}{base url of the CBS OData 4 API}
 }
 \description{
 Get the available datasets from open data portal statline.

@@ -13,16 +13,18 @@
 #' @param show_progress `logical` if `TRUE` downloading shows a progress bar. Cannot be used
 #' together with `verbose=TRUE`
 #' @param verbose Should messages be printed...
+#' @param base_url Possible other website which implements same protocol.
 #' @export
 #' @family data-download
 cbs4_download <- function( id
-                              , download_dir = id
-                              , ...
-                              , catalog = "CBS"
-                              , show_progress = interactive() && !verbose
-                              , sep = ","
-                              , verbose = getOption("cbsodata4.verbose", FALSE)
-                              ){
+                         , download_dir = id
+                         , ...
+                         , catalog = "CBS"
+                         , show_progress = interactive() && !verbose
+                         , sep = ","
+                         , verbose = getOption("cbsodata4.verbose", FALSE)
+                         , base_url = getOption("cbsodata4.base_url", BASEURL4)
+                         ){
   if (show_progress && verbose){
     warning("verbose and show_progress can't be used together, show_progess was set to FALSE.", call. = FALSE)
     show_progress <- FALSE
@@ -42,7 +44,7 @@ cbs4_download <- function( id
     }
   }
 
-  path <- file.path(BASEURL4, catalog, id, "Observations")
+  path <- file.path(base_url, catalog, id, "Observations")
   path <- paste0(path, get_query(..., .meta = meta))
   path <- utils::URLencode(path)
 

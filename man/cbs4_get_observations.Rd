@@ -13,7 +13,8 @@ cbs4_get_observations(
   verbose = getOption("cbsodata4.verbose", FALSE),
   sep = ",",
   includeId = TRUE,
-  as.data.table = FALSE
+  as.data.table = FALSE,
+  base_url = getOption("cbsodata4.base_url", BASEURL4)
 )
 }
 \arguments{
@@ -26,7 +27,7 @@ cbs4_get_observations(
 \item{download_dir}{directory in which the data and metadata is downloaded. By default this is
 temporary directory, but can be set manually}
 
-\item{show_progress}{if \code{TRUE} shows progress of data donwload, can't be used together
+\item{show_progress}{if \code{TRUE} shows progress of data download, can't be used together
 with verbose.}
 
 \item{verbose}{if \code{TRUE} prints the steps taken to retrieve the data.}
@@ -36,6 +37,8 @@ with verbose.}
 \item{includeId}{\code{logical}, should the Id column be downloaded?}
 
 \item{as.data.table}{\code{logical}, should the result be of type data.table?}
+
+\item{base_url}{Possible other url which implements same protocol.}
 }
 \description{
 Get observations from table \code{id}. Observations are data of a CBS opendata table in so-called long
