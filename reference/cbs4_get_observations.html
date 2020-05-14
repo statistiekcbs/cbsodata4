@@ -137,7 +137,8 @@ each variable/topic/Measure has its own column.</p>
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.verbose"</span>, <span class='fl'>FALSE</span>),
   <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>,
   <span class='kw'>includeId</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>as.data.table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>as.data.table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>base_url</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.base_url"</span>, <span class='no'>BASEURL4</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -162,7 +163,7 @@ temporary directory, but can be set manually</p></td>
     </tr>
     <tr>
       <th>show_progress</th>
-      <td><p>if <code>TRUE</code> shows progress of data donwload, can't be used together
+      <td><p>if <code>TRUE</code> shows progress of data download, can't be used together
 with verbose.</p></td>
     </tr>
     <tr>
@@ -180,6 +181,10 @@ with verbose.</p></td>
     <tr>
       <th>as.data.table</th>
       <td><p><code>logical</code>, should the result be of type data.table?</p></td>
+    </tr>
+    <tr>
+      <th>base_url</th>
+      <td><p>Possible other url which implements same protocol.</p></td>
     </tr>
     </table>
 

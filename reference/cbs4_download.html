@@ -133,7 +133,8 @@ into memory, but just download the data and metadata in csv format.</p>
   <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
   <span class='kw'>show_progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>() <span class='kw'>&amp;&amp;</span> !<span class='no'>verbose</span>,
   <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.verbose"</span>, <span class='fl'>FALSE</span>)
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.verbose"</span>, <span class='fl'>FALSE</span>),
+  <span class='kw'>base_url</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.base_url"</span>, <span class='no'>BASEURL4</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -167,6 +168,10 @@ together with <code>verbose=TRUE</code></p></td>
     <tr>
       <th>verbose</th>
       <td><p>Should messages be printed...</p></td>
+    </tr>
+    <tr>
+      <th>base_url</th>
+      <td><p>Possible other website which implements same protocol.</p></td>
     </tr>
     </table>
 

@@ -143,6 +143,11 @@ install.packages("cbsodata4")
 </div>
 <p>Get metadata of table <code>&lt;Identifier&gt;</code> (e.g. 60006) with <code>cbs4_get_metadata</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="kw">id</span><span class="kw">=</span><span class="st">"60006"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">meta</span>)
+<span class="co">#&gt; cbs odata: '60006':</span>
+<span class="co">#&gt; "Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw"</span>
+<span class="co">#&gt; dimensions: Perioden</span>
+<span class="co">#&gt; For more info use meta$.</span>
 <span class="no">meta</span>$<span class="no">Properties</span>$<span class="no">Title</span>
 <span class="co">#&gt; [1] "Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw"</span>
 <span class="co"># topics / measures</span>
