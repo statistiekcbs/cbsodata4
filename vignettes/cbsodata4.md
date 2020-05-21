@@ -2,7 +2,7 @@
 [Statistics Netherlands (CBS)](https://www.cbs.nl) is the office that
 produces all official statistics of the Netherlands.
 
-For long SN has put its data on the web in its online database
+For long CBS has put its data on the web in its online database
 [StatLine](https://opendata.cbs.nl/statline#/CBS/en/). Since 2014 this
 data base has an open data web API based on the OData protocol and other
 The [cbsodataR](https://CRAN.R-project.org/package=cbsodataR) package
@@ -41,7 +41,7 @@ head(datasets[,c("Identifier", "Title", "Modified")])
 | 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw  | 2020-05-08 |
 | 70072ned   | Regionale kerncijfers Nederland                                       | 2020-03-20 |
 | 7100oogs   | Akkerbouwgewassen; productie naar regio                               | 2020-03-31 |
-| 7425zuiv   | Melkaanvoer en zuivelproductie door zuivelfabrieken                   | 2020-04-15 |
+| 7425zuiv   | Melkaanvoer en zuivelproductie door zuivelfabrieken                   | 2020-05-14 |
 | 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte | 2020-03-16 |
 
 </div>
@@ -59,7 +59,7 @@ meta_petrol
 ```
 
 The meta object contains all metadata properties of cbsodata in the form
-of `data.frame`s. Each `data.frame` describes properties of the SN
+of `data.frame`s. Each `data.frame` describes properties of the CBS
 table: “Dimensions”, “MeasureCodes” and one ore more
 “\<Dimension\>Codes” describing the meta data of the borders of a SN
 table.
@@ -118,10 +118,10 @@ By default this will be downloaded in a temporary directory, but this
 can be set explicitly with the argument `download_dir`.
 
 `cbs4_get_observations` is the format in which the data is downloaded
-from SN. It is in so-called long format. It contains one `Measure`
-column, describing the topics/variable, one `Value` column describing
-the statistical value, one or more Dimension columns and some extra
-columns with value specific metadata.
+from Statistic Netherlands (CBS). It is in so-called long format. It
+contains one `Measure` column, describing the topics/variable, one
+`Value` column describing the statistical value, one or more Dimension
+columns and some extra columns with value specific metadata.
 
 ``` r
 obs <- cbs4_get_observations("80416ned")

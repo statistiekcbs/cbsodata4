@@ -17,7 +17,7 @@ cbs4_get_catalogs(
 \description{
 Retrieve catalogs of Statistics Netherlands. Beside the main "CBS" catalog
 other catalogs contain extra datasets that are not part of the main production
-of SN.
+of CBS / Statistics Netherlands.
 }
 \seealso{
 Other datasets: 

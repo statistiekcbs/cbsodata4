@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 [Statistics Netherlands (CBS)](https://www.cbs.nl) is the office that
 produces all official statistics of the Netherlands.
 
-For long SN has put its data on the web in its online database
+For long CBS has put its data on the web in its online database
 [StatLine](https://opendata.cbs.nl/statline#/CBS/en/). Since 2014 this
 data base has an open data web API based on the OData protocol and other
 The [cbsodataR](https://CRAN.R-project.org/package=cbsodataR ) package allows 
@@ -58,7 +58,7 @@ meta_petrol
 
 The meta object contains all metadata properties of cbsodata
 in the form of `data.frame`s. Each `data.frame` describes properties of the
-SN table: "Dimensions", "MeasureCodes" and one ore more "\<Dimension\>Codes" describing the meta data of the borders of a SN table.
+CBS table: "Dimensions", "MeasureCodes" and one ore more "\<Dimension\>Codes" describing the meta data of the borders of a SN table.
 
 ```{r}
 names(meta_petrol)
@@ -74,7 +74,8 @@ With `cbs4_get_observations` and `cbs4_get_data` data can be retrieved. By
 default this will be downloaded in a temporary directory, but this 
 can be set explicitly with the argument `download_dir`.
 
-`cbs4_get_observations` is the format in which the data is downloaded from SN. 
+`cbs4_get_observations` is the format in which the data is downloaded from Statistic
+Netherlands (CBS). 
 It is in so-called long format. It contains
 one `Measure` column, describing the topics/variable, one `Value` column 
 describing the statistical value, one or more Dimension columns and some extra

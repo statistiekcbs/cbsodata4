@@ -2,7 +2,7 @@
 #'
 #' Retrieve catalogs of Statistics Netherlands. Beside the main "CBS" catalog
 #' other catalogs contain extra datasets that are not part of the main production
-#' of SN.
+#' of CBS / Statistics Netherlands.
 #' @export
 #' @param base_url possible other url that implements same interface
 #' @param verbose if `TRUE` the communication to the server is shown.

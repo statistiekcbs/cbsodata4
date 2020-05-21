@@ -26,8 +26,9 @@ cbs4_get_metadata(
 \description{
 Retrieve the metadata of a publication.
 The meta object contains all metadata properties of cbsodata in the form
-of data.frames. Each \code{data.frame} describes properties of the SN
+of data.frames. Each \code{data.frame} describes properties of the CBS / Statistics
+Netherlands
 table: “Dimensions”, “MeasureCodes” and one ore more
-“\<Dimension\>Codes” describing the meta data of the borders of a SN
+“\<Dimension\>Codes” describing the meta data of the borders of a CBS
 table.
 }

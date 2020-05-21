@@ -21,6 +21,9 @@ cbs4_get_datasets <- function( catalog = "CBS"
   path_cache <- file.path(tempdir(), "datasets.rds")
 
   if (file.exists(path_cache)){
+    if (verbose) {
+      message("Reading datasets from cache: ", path_cache)
+    }
     ds <- readRDS(path_cache)
   } else {
     ds <- get_value( file.path(base_url, "Datasets")
