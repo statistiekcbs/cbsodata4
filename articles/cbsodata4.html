@@ -82,7 +82,7 @@
     
     
 <p><a href="https://www.cbs.nl">Statistics Netherlands (CBS)</a> is the office that produces all official statistics of the Netherlands.</p>
-<p>For long SN has put its data on the web in its online database <a href="https://opendata.cbs.nl/statline#/CBS/en/">StatLine</a>. Since 2014 this data base has an open data web API based on the OData protocol and other The <a href="https://CRAN.R-project.org/package=cbsodataR">cbsodataR</a> package allows for retrieving data right into R using this API.</p>
+<p>For long CBS has put its data on the web in its online database <a href="https://opendata.cbs.nl/statline#/CBS/en/">StatLine</a>. Since 2014 this data base has an open data web API based on the OData protocol and other The <a href="https://CRAN.R-project.org/package=cbsodataR">cbsodataR</a> package allows for retrieving data right into R using this API.</p>
 <p>A new version of the web api has been developed which is based on the OData4 protocol. This OData4 API contains major changes in how the metadata and data is transported, hence this package <code>cbsodata4</code>. Since the old web api will be phased out in due time, <code>cbsodata4</code> is the successor of <code>cbsodataR</code>.</p>
 <p>This document describes how to use <code>cbsodata4</code> to download data (and meta data) from Statistics Netherlands. It offers very similar functions as <code>cbsodataR</code>, so should be familiar to users of <code>cbsodataR</code>, but there are differences so check carefully your code.</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cbsodata4</span>)</pre></body></html></div>
@@ -128,7 +128,7 @@
 <tr class="odd">
 <td align="left">7425zuiv</td>
 <td align="left">Melkaanvoer en zuivelproductie door zuivelfabrieken</td>
-<td align="left">2020-04-15</td>
+<td align="left">2020-05-14</td>
 </tr>
 <tr class="even">
 <td align="left">80072ned</td>
@@ -145,7 +145,7 @@
 <span class="co">#&gt; "Pompprijzen motorbrandstoffen; brandstofsoort, per dag"</span>
 <span class="co">#&gt; dimensions: Perioden</span>
 <span class="co">#&gt; For more info use x$.</span></pre></body></html></div>
-<p>The meta object contains all metadata properties of cbsodata in the form of <code>data.frame</code>s. Each <code>data.frame</code> describes properties of the SN table: “Dimensions”, “MeasureCodes” and one ore more “&lt;Dimension&gt;Codes” describing the meta data of the borders of a SN table.</p>
+<p>The meta object contains all metadata properties of cbsodata in the form of <code>data.frame</code>s. Each <code>data.frame</code> describes properties of the CBS table: “Dimensions”, “MeasureCodes” and one ore more “&lt;Dimension&gt;Codes” describing the meta data of the borders of a SN table.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">meta_petrol</span>)
 <span class="co">#&gt; [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes" </span>
 <span class="co">#&gt; [5] "Properties"</span>
@@ -266,7 +266,7 @@
 <h2 class="hasAnchor">
 <a href="#data-retrieval" class="anchor"></a>Data retrieval</h2>
 <p>With <code>cbs4_get_observations</code> and <code>cbs4_get_data</code> data can be retrieved. By default this will be downloaded in a temporary directory, but this can be set explicitly with the argument <code>download_dir</code>.</p>
-<p><code>cbs4_get_observations</code> is the format in which the data is downloaded from SN. It is in so-called long format. It contains one <code>Measure</code> column, describing the topics/variable, one <code>Value</code> column describing the statistical value, one or more Dimension columns and some extra columns with value specific metadata.</p>
+<p><code>cbs4_get_observations</code> is the format in which the data is downloaded from Statistic Netherlands (CBS). It is in so-called long format. It contains one <code>Measure</code> column, describing the topics/variable, one <code>Value</code> column describing the statistical value, one or more Dimension columns and some extra columns with value specific metadata.</p>
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">obs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_observations.html">cbs4_get_observations</a></span>(<span class="st">"80416ned"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">obs</span>)</pre></body></html></div>
 <div class="kable-table">
