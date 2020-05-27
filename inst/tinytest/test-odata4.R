@@ -50,4 +50,15 @@ if (at_home()){
                          , Measure   = "M003371_2"
   )
   expect_equal(nrow(d), 12)
+
+  d <- cbs4_get_data("84287NED", odata4_query = "$filter=Perioden eq '2019MM12'")
+  expect_equal(nrow(d), 4)
+  expect_warning({
+    d <- cbs4_get_data("84287NED"
+                  , Perioden = "2018MM12"
+                  , odata4_query = "$filter=Perioden eq '2019MM12'"
+                  , verbose = TRUE)
+  })
+  expect_true(all(d$Perioden == "2019MM12"))
+
 }

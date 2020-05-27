@@ -47,7 +47,10 @@ cbs4_download <- function( id
   }
 
   path <- file.path(base_url, catalog, id, "Observations")
-  path <- paste0(path, get_query(..., .meta = meta))
+  path <- paste0(path, get_query( ...
+                                , odata4_query = odata4_query
+                                , .meta = meta
+                                ))
   path <- utils::URLencode(path)
 
   path_obs <- file.path(download_dir, "Observations.csv")

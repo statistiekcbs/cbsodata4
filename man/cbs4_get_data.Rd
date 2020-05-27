@@ -97,6 +97,16 @@ if (interactive()){
                        , Measure   = "M003371_2"
                        )
 
+  # supply your own odata 4 query
+  cbs4_get_data("84287NED", odata4_query = "$filter=Perioden eq '2019MM12'")
+
+  # an odata 4 query will overrule other filter statements
+  cbs4_get_data("84287NED"
+               , Perioden = "2018MM12"
+               , odata4_query = "$filter=Perioden eq '2019MM12'"
+               , verbose = TRUE
+               )
+
 }
 }
 \seealso{
