@@ -42,7 +42,8 @@ get_select <- function(select){
   query
 }
 
-get_query <- function(..., select=NULL, .meta = NULL){
+get_query <- function(..., odata4_query = NULL
+                      , select=NULL, .meta = NULL){
   query <- ""
   filter <- get_filter(..., .meta = .meta)
   if (!is.null(filter)){
@@ -52,6 +53,12 @@ get_query <- function(..., select=NULL, .meta = NULL){
   select <- get_select(select)
   if (!is.null(select)){
     query = paste0(query, "&$select=", select)
+  }
+  if (!is.null(odata4_query)){
+    if (nchar(query)){
+      warning("Taking odata4_query, ignoring '", query, "'", call. = FALSE)
+    }
+    query <- paste0("?", odata4_query)
   }
   query
 }

@@ -8,6 +8,7 @@ cbs4_download(
   id,
   download_dir = id,
   ...,
+  odata4_query = NULL,
   catalog = "CBS",
   show_progress = interactive() && !verbose,
   sep = ",",
@@ -21,6 +22,8 @@ cbs4_download(
 \item{download_dir}{directory where files are to be stored}
 
 \item{...}{optional selection statement to retrieve a subset of the data.}
+
+\item{odata4_query}{optional filter statement in odata4 syntax. Will overrule ...}
 
 \item{catalog}{Catalog to download from}
 

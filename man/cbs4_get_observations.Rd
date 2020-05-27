@@ -7,6 +7,7 @@
 cbs4_get_observations(
   id,
   ...,
+  odata4_query = NULL,
   catalog = "CBS",
   download_dir = file.path(tempdir(), id),
   show_progress = interactive() && !verbose,
@@ -21,6 +22,8 @@ cbs4_get_observations(
 \item{id}{Identifier of the Opendata table. Can be retrieved with \code{\link[=cbs4_get_datasets]{cbs4_get_datasets()}}}
 
 \item{...}{optional selections on data, passed through to cbs4_download. See examples}
+
+\item{odata4_query}{optional filter advanced statement in odata4 syntax. Will overrule ...}
 
 \item{catalog}{Catalog in which the dataset is to be found.}
 

@@ -8,6 +8,7 @@ cbs4_get_data(
   id,
   catalog = "CBS",
   ...,
+  odata4_query = NULL,
   name_measure_columns = TRUE,
   show_progress = interactive() && !verbose,
   download_dir = file.path(tempdir(), id),
@@ -23,6 +24,8 @@ cbs4_get_data(
 \item{catalog}{Catalog in which the dataset is to be found.}
 
 \item{...}{optional selections on data, passed through to cbs4_download. See examples}
+
+\item{odata4_query}{optional filter advanced statement in odata4 syntax. Will overrule ...}
 
 \item{name_measure_columns}{\code{logical} if \code{TRUE} the \code{Title} of the measure will be set as
 name column.}

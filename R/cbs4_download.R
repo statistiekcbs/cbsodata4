@@ -8,6 +8,7 @@
 #' @param id Identifier of publication
 #' @param download_dir directory where files are to be stored
 #' @param ... optional selection statement to retrieve a subset of the data.
+#' @param odata4_query optional filter statement in odata4 syntax. Will overrule ...
 #' @param catalog Catalog to download from
 #' @param sep seperator to be used in writing the data
 #' @param show_progress `logical` if `TRUE` downloading shows a progress bar. Cannot be used
@@ -19,6 +20,7 @@
 cbs4_download <- function( id
                          , download_dir = id
                          , ...
+                         , odata4_query = NULL
                          , catalog = "CBS"
                          , show_progress = interactive() && !verbose
                          , sep = ","
