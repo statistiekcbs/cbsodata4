@@ -130,6 +130,7 @@ into memory, but just download the data and metadata in csv format.</p>
   <span class='no'>id</span>,
   <span class='kw'>download_dir</span> <span class='kw'>=</span> <span class='no'>id</span>,
   <span class='no'>...</span>,
+  <span class='kw'>odata4_query</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
   <span class='kw'>show_progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>() <span class='kw'>&amp;&amp;</span> !<span class='no'>verbose</span>,
   <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>,
@@ -151,6 +152,10 @@ into memory, but just download the data and metadata in csv format.</p>
     <tr>
       <th>...</th>
       <td><p>optional selection statement to retrieve a subset of the data.</p></td>
+    </tr>
+    <tr>
+      <th>odata4_query</th>
+      <td><p>optional filter statement in odata4 syntax. Will overrule ...</p></td>
     </tr>
     <tr>
       <th>catalog</th>

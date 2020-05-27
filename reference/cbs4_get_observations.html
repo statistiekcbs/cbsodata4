@@ -131,6 +131,7 @@ each variable/topic/Measure has its own column.</p>
     <pre class="usage"><span class='fu'>cbs4_get_observations</span>(
   <span class='no'>id</span>,
   <span class='no'>...</span>,
+  <span class='kw'>odata4_query</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
   <span class='kw'>download_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>id</span>),
   <span class='kw'>show_progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>() <span class='kw'>&amp;&amp;</span> !<span class='no'>verbose</span>,
@@ -151,6 +152,10 @@ each variable/topic/Measure has its own column.</p>
     <tr>
       <th>...</th>
       <td><p>optional selections on data, passed through to cbs4_download. See examples</p></td>
+    </tr>
+    <tr>
+      <th>odata4_query</th>
+      <td><p>optional filter advanced statement in odata4 syntax. Will overrule ...</p></td>
     </tr>
     <tr>
       <th>catalog</th>
