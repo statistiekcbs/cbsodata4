@@ -7,7 +7,7 @@
 cbs4_get_observations(
   id,
   ...,
-  odata4_query = NULL,
+  query = NULL,
   catalog = "CBS",
   download_dir = file.path(tempdir(), id),
   show_progress = interactive() && !verbose,
@@ -23,7 +23,7 @@ cbs4_get_observations(
 
 \item{...}{optional selections on data, passed through to cbs4_download. See examples}
 
-\item{odata4_query}{optional filter advanced statement in odata4 syntax. Will overrule ...}
+\item{query}{optional query in odata4 syntax (overwrites any specification in \code{...})}
 
 \item{catalog}{Catalog in which the dataset is to be found.}
 
@@ -99,14 +99,23 @@ if (interactive()){
                        )
 
   # supply your own odata 4 query
-  cbs4_get_data("84287NED", odata4_query = "$filter=Perioden eq '2019MM12'")
+  cbs4_get_data("84287NED", query = "$filter=Perioden eq '2019MM12'")
 
   # an odata 4 query will overrule other filter statements
   cbs4_get_data("84287NED"
                , Perioden = "2018MM12"
-               , odata4_query = "$filter=Perioden eq '2019MM12'"
+               , query = "$filter=Perioden eq '2019MM12'"
                , verbose = TRUE
                )
+  # With query argument an odata4 expression with other (filter) functions can be used
+  cbs4_get_observations(
+    id     = "80784ned"    # table id
+    ,query = paste0(       # odata4 query
+       "$skip=4",          # skip the first 4 rows of the filtered result
+       "&$top=20",         # then slice the first 20 rows of the filtered result
+       "&$select=Measure,Geslacht,Perioden,RegioS,Value", # omit the Id and ValueAttribute fields
+       "&$filter=endswith(Measure,'_1')") # filter only Measure ending on '_1'
+    )
 
 }
 }

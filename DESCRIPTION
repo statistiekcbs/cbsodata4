@@ -3,7 +3,7 @@ Type: Package
 Title: Statistics Netherlands (CBS) Open Data API Client v4
 Version: 0.3.0.9000
 Authors@R: c( person("Edwin", "de Jonge", role=c("aut", "cre"), email="e.dejonge@cbs.nl"
-  , comment=c(ORCID="0000-0002-6580-4718")))
+  , comment=c(ORCID="0000-0002-6580-4718")), person("Han", "Oostdijk", role="ctb"))
 Description: The data and meta data from Statistics Netherlands (<https://www.cbs.nl>) can 
   be browsed and downloaded. The client uses the OData v4 API of Statistics Netherlands.
 License: GPL-3

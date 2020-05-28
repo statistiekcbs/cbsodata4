@@ -8,7 +8,7 @@ cbs4_download(
   id,
   download_dir = id,
   ...,
-  odata4_query = NULL,
+  query = NULL,
   catalog = "CBS",
   show_progress = interactive() && !verbose,
   sep = ",",
@@ -23,7 +23,7 @@ cbs4_download(
 
 \item{...}{optional selection statement to retrieve a subset of the data.}
 
-\item{odata4_query}{optional filter statement in odata4 syntax. Will overrule ...}
+\item{query}{optional odata4 query in odata syntax (overwrites any specification in \code{...})}
 
 \item{catalog}{Catalog to download from}
 

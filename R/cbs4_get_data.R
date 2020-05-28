@@ -14,7 +14,7 @@
 cbs4_get_data <- function( id
                          , catalog = "CBS"
                          , ...
-                         , odata4_query = NULL
+                         , query = NULL
                          , name_measure_columns = TRUE
                          , show_progress = interactive() && !verbose
                          , download_dir = file.path(tempdir(), id)
@@ -27,7 +27,7 @@ cbs4_get_data <- function( id
   obs <- cbs4_get_observations(id = id
                               , catalog = catalog
                               , ...
-                              , odata4_query = odata4_query
+                              , query = query
                               , download_dir = download_dir
                               , verbose = verbose
                               , sep = sep

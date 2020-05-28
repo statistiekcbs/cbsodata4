@@ -8,7 +8,7 @@
 #' @param id Identifier of publication
 #' @param download_dir directory where files are to be stored
 #' @param ... optional selection statement to retrieve a subset of the data.
-#' @param odata4_query optional filter statement in odata4 syntax. Will overrule ...
+#' @param query optional odata4 query in odata syntax (overwrites any specification in `...`)
 #' @param catalog Catalog to download from
 #' @param sep seperator to be used in writing the data
 #' @param show_progress `logical` if `TRUE` downloading shows a progress bar. Cannot be used
@@ -20,7 +20,7 @@
 cbs4_download <- function( id
                          , download_dir = id
                          , ...
-                         , odata4_query = NULL
+                         , query = NULL
                          , catalog = "CBS"
                          , show_progress = interactive() && !verbose
                          , sep = ","
@@ -47,11 +47,17 @@ cbs4_download <- function( id
   }
 
   path <- file.path(base_url, catalog, id, "Observations")
-  path <- paste0(path, get_query( ...
-                                , odata4_query = odata4_query
-                                , .meta = meta
-                                ))
-  path <- utils::URLencode(path)
+  if (is.null(query)) {
+    path <- paste0(path, get_query(..., .meta = meta))
+  } else {
+    qry <- get_query(..., .meta = meta)
+    if (nchar(qry)){
+      warning("query argument is used, so ignoring '", qry,"'.")
+    }
+    path <- paste0(path, '?', query)
+  }
+  path <- utils::URLencode(path
+  )
 
   path_obs <- file.path(download_dir, "Observations.csv")
 
@@ -104,5 +110,8 @@ get_empty_data.frame <- function(meta){
 
 # id <- "84120NED"
 # m <- cbs4_download("84120NED", verbose = T)
+# m <- cbs4_download("84120NED",
+#   query="$skip=5&$top=20&$select=Measure,Value,Perioden,BelastingenEnWettelijkePremies",
+#   verbose = T)
 # cbs4_download("83765NED", verbose = T)
 # cbs4_download("81575NED", verbose = T)

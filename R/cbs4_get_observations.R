@@ -11,7 +11,7 @@
 #' @param id Identifier of the Opendata table. Can be retrieved with [cbs4_get_datasets()]
 #' @param catalog Catalog in which the dataset is to be found.
 #' @param ... optional selections on data, passed through to cbs4_download. See examples
-#' @param odata4_query optional filter advanced statement in odata4 syntax. Will overrule ...
+#' @param query optional query in odata4 syntax (overwrites any specification in `...`)
 #' @param download_dir directory in which the data and metadata is downloaded. By default this is
 #' temporary directory, but can be set manually
 #' @param verbose if `TRUE` prints the steps taken to retrieve the data.
@@ -25,7 +25,7 @@
 #' @seealso [cbs4_get_metadata()]
 cbs4_get_observations <- function( id
                                  , ...
-                                 , odata4_query = NULL
+                                 , query = NULL
                                  , catalog = "CBS"
                                  , download_dir = file.path(tempdir(), id)
                                  , show_progress = interactive() && !verbose
@@ -43,7 +43,7 @@ cbs4_get_observations <- function( id
   meta <- cbs4_download( id
                        , catalog = catalog
                        , ...
-                       , odata4_query = odata4_query
+                       , query = query
                        , download_dir = download_dir
                        , verbose = verbose
                        , show_progress = show_progress
