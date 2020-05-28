@@ -19,7 +19,7 @@ status](https://ci.appveyor.com/api/projects/status/github/statistiekcbs/cbsodat
 The goal of cbsodata4 is allowing access to the Open Data API v4 of
 Statistics Netherlands, which is in beta testing.
 
-It will be the successor of R package
+It is the successor of R package
 [cbsodataR](https://CRAN.R-project.org/package=cbsodataR).
 
   - It uses the new / more efficient OData4 API
@@ -28,8 +28,8 @@ It will be the successor of R package
 
   - The download storage is faster (using `data.table`)
 
-  - It offers a familiar wide data formate for users (`cbs4_get_data`)
-    as well as the default long format (`cbs4_get_observations`).
+  - It offers a familiar wide data format for users (`cbs4_get_data`) as
+    well as the default long format (`cbs4_get_observations`).
 
 ## Installation
 
@@ -83,10 +83,10 @@ Get metadata of table `<Identifier>` (e.g. 60006) with
 ``` r
 meta <- cbs4_get_metadata(id="60006")
 print(meta)
-#> cbs odata: '60006':
+#> cbs odatav4: '60006':
 #> "Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw"
 #> dimensions: Perioden
-#> For more info use meta$.
+#> For more info use 'str(meta)' or 'names(meta)' to find out its properties.
 meta$Properties$Title
 #> [1] "Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw"
 # topics / measures
