@@ -7,6 +7,7 @@
 cbs4_get_data(
   id,
   catalog = "CBS",
+  query = NULL,
   ...,
   name_measure_columns = TRUE,
   show_progress = interactive() && !verbose,
@@ -21,6 +22,8 @@ cbs4_get_data(
 \item{id}{Identifier of the Opendata table. Can be retrieved with \code{\link[=cbs4_get_datasets]{cbs4_get_datasets()}}}
 
 \item{catalog}{Catalog in which the dataset is to be found.}
+
+\item{query}{odata4 query (overwrites any specification in \code{...})}
 
 \item{...}{optional selections on data, passed through to cbs4_download. See examples}
 
@@ -93,6 +96,16 @@ if (interactive()){
                        , RegioS    = contains("PV")
                        , Measure   = "M003371_2"
                        )
+
+  # With query argument an odata4 expression with other (filter) functions can be used
+  cbs4_get_observations(
+    id     = "80784ned"    # table id
+    ,query = paste0(       # odata4 query
+       "$skip=4",          # skip the first 4 rows of the filtered result
+       "&$top=20",         # then slice the first 20 rows of the filtered result
+       "&$select=Measure,Geslacht,Perioden,RegioS,Value", # omit the Id and ValueAttribute fields
+       "&$filter=endswith(Measure,'_1')") # filter only Measure ending on '_1'
+    )
 
 }
 }

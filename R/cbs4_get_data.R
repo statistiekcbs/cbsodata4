@@ -13,6 +13,7 @@
 #' @seealso [cbs4_get_metadata()]
 cbs4_get_data <- function( id
                          , catalog = "CBS"
+                         , query = NULL
                          , ...
                          , name_measure_columns = TRUE
                          , show_progress = interactive() && !verbose
@@ -25,6 +26,7 @@ cbs4_get_data <- function( id
 
   obs <- cbs4_get_observations(id = id
                               , catalog = catalog
+                              , query = query
                               , ...
                               , download_dir = download_dir
                               , verbose = verbose
