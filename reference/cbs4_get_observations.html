@@ -131,7 +131,7 @@ each variable/topic/Measure has its own column.</p>
     <pre class="usage"><span class='fu'>cbs4_get_observations</span>(
   <span class='no'>id</span>,
   <span class='no'>...</span>,
-  <span class='kw'>odata4_query</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>query</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>catalog</span> <span class='kw'>=</span> <span class='st'>"CBS"</span>,
   <span class='kw'>download_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='no'>id</span>),
   <span class='kw'>show_progress</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>() <span class='kw'>&amp;&amp;</span> !<span class='no'>verbose</span>,
@@ -154,8 +154,8 @@ each variable/topic/Measure has its own column.</p>
       <td><p>optional selections on data, passed through to cbs4_download. See examples</p></td>
     </tr>
     <tr>
-      <th>odata4_query</th>
-      <td><p>optional filter advanced statement in odata4 syntax. Will overrule ...</p></td>
+      <th>query</th>
+      <td><p>optional query in odata4 syntax (overwrites any specification in <code>...</code>)</p></td>
     </tr>
     <tr>
       <th>catalog</th>
@@ -249,14 +249,23 @@ with verbose.</p></td>
                        )
 
   <span class='co'># supply your own odata 4 query</span>
-  <span class='fu'><a href='cbs4_get_data.html'>cbs4_get_data</a></span>(<span class='st'>"84287NED"</span>, <span class='kw'>odata4_query</span> <span class='kw'>=</span> <span class='st'>"$filter=Perioden eq '2019MM12'"</span>)
+  <span class='fu'><a href='cbs4_get_data.html'>cbs4_get_data</a></span>(<span class='st'>"84287NED"</span>, <span class='kw'>query</span> <span class='kw'>=</span> <span class='st'>"$filter=Perioden eq '2019MM12'"</span>)
 
   <span class='co'># an odata 4 query will overrule other filter statements</span>
   <span class='fu'><a href='cbs4_get_data.html'>cbs4_get_data</a></span>(<span class='st'>"84287NED"</span>
                , <span class='kw'>Perioden</span> <span class='kw'>=</span> <span class='st'>"2018MM12"</span>
-               , <span class='kw'>odata4_query</span> <span class='kw'>=</span> <span class='st'>"$filter=Perioden eq '2019MM12'"</span>
+               , <span class='kw'>query</span> <span class='kw'>=</span> <span class='st'>"$filter=Perioden eq '2019MM12'"</span>
                , <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
                )
+  <span class='co'># With query argument an odata4 expression with other (filter) functions can be used</span>
+  <span class='fu'>cbs4_get_observations</span>(
+    <span class='kw'>id</span>     <span class='kw'>=</span> <span class='st'>"80784ned"</span>    <span class='co'># table id</span>
+    ,<span class='kw'>query</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(       <span class='co'># odata4 query</span>
+       <span class='st'>"$skip=4"</span>,          <span class='co'># skip the first 4 rows of the filtered result</span>
+       <span class='st'>"&amp;$top=20"</span>,         <span class='co'># then slice the first 20 rows of the filtered result</span>
+       <span class='st'>"&amp;$select=Measure,Geslacht,Perioden,RegioS,Value"</span>, <span class='co'># omit the Id and ValueAttribute fields</span>
+       <span class='st'>"&amp;$filter=endswith(Measure,'_1')"</span>) <span class='co'># filter only Measure ending on '_1'</span>
+    )
 
 }</div></pre>
   </div>
