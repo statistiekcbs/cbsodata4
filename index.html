@@ -77,12 +77,12 @@
 
 <!-- badges: end -->
 <p>The goal of cbsodata4 is allowing access to the Open Data API v4 of Statistics Netherlands, which is in beta testing.</p>
-<p>It will be the successor of R package <a href="https://CRAN.R-project.org/package=cbsodataR">cbsodataR</a>.</p>
+<p>It is the successor of R package <a href="https://CRAN.R-project.org/package=cbsodataR">cbsodataR</a>.</p>
 <ul>
 <li><p>It uses the new / more efficient OData4 API</p></li>
 <li><p>The function names for <code>cbs4_add_*</code> are more consistent.</p></li>
 <li><p>The download storage is faster (using <code>data.table</code>)</p></li>
-<li><p>It offers a familiar wide data formate for users (<code>cbs4_get_data</code>) as well as the default long format (<code>cbs4_get_observations</code>).</p></li>
+<li><p>It offers a familiar wide data format for users (<code>cbs4_get_data</code>) as well as the default long format (<code>cbs4_get_observations</code>).</p></li>
 </ul>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -144,10 +144,10 @@ install.packages("cbsodata4")
 <p>Get metadata of table <code>&lt;Identifier&gt;</code> (e.g. 60006) with <code>cbs4_get_metadata</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="kw">id</span><span class="kw">=</span><span class="st">"60006"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">meta</span>)
-<span class="co">#&gt; cbs odata: '60006':</span>
+<span class="co">#&gt; cbs odatav4: '60006':</span>
 <span class="co">#&gt; "Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw"</span>
 <span class="co">#&gt; dimensions: Perioden</span>
-<span class="co">#&gt; For more info use meta$.</span>
+<span class="co">#&gt; For more info use 'str(meta)' or 'names(meta)' to find out its properties.</span>
 <span class="no">meta</span>$<span class="no">Properties</span>$<span class="no">Title</span>
 <span class="co">#&gt; [1] "Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw"</span>
 <span class="co"># topics / measures</span>
