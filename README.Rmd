@@ -34,7 +34,7 @@ status](https://ci.appveyor.com/api/projects/status/github/statistiekcbs/cbsodat
 The goal of cbsodata4 is allowing access to the Open Data API v4 of Statistics Netherlands, which is 
 in beta testing.
 
-It will be the successor of R package [cbsodataR](https://CRAN.R-project.org/package=cbsodataR).
+It is the successor of R package [cbsodataR](https://CRAN.R-project.org/package=cbsodataR).
 
 - It uses the new / more efficient OData4 API
 
@@ -42,7 +42,7 @@ It will be the successor of R package [cbsodataR](https://CRAN.R-project.org/pac
 
 - The download storage is faster (using `data.table`)
 
-- It offers a familiar wide data formate for users (`cbs4_get_data`) as well as the default long format (`cbs4_get_observations`).
+- It offers a familiar wide data format for users (`cbs4_get_data`) as well as the default long format (`cbs4_get_observations`).
 
 ## Installation
 
