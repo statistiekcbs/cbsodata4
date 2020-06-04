@@ -31,7 +31,7 @@ download_value <- function( path
   data.table::fwrite( res$value, output_file
                     , row.names = FALSE
                     , na = ""
-                    , quote = FALSE
+#                    , quote = FALSE
                     , sep = sep
                     )
 
@@ -47,7 +47,7 @@ download_value <- function( path
                , output_file
                , row.names = FALSE
                , na        = ""
-               , quote     = FALSE
+#               , quote     = FALSE
                , sep       = sep
                , col.names = FALSE
                , append    = TRUE

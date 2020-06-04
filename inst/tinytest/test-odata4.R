@@ -23,24 +23,24 @@ if (at_home()){
 
   # filter on Perioden with contains
   d <- cbs4_get_data("84287NED"
-                , Perioden = contains("2020")
+                , Perioden = contains("2019")
                 , BedrijfstakkenBranchesSBI2008 = "T001081"
   )
-  expect_equal(nrow(d), 3)
+  expect_equal(nrow(d), 12)
 
   # filter on Perioden with multiple contains
   d <- cbs4_get_data("84287NED"
-                , Perioden = contains(c("2019MM1", "2020"))
+                , Perioden = contains(c("2019MM1", "2018"))
                 , BedrijfstakkenBranchesSBI2008 = "T001081"
   )
-  expect_equal(nrow(d), 6)
+  expect_equal(nrow(d), 15)
 
   # filter on Perioden with contains or = "2019MM12
   d <- cbs4_get_data("84287NED"
-               , Perioden = contains("2020") | "2019MM12"
+               , Perioden = contains("2018") | "2019MM12"
                , BedrijfstakkenBranchesSBI2008 = "T001081"
   )
-  expect_equal(nrow(d), 4)
+  expect_equal(nrow(d), 13)
 
   # This all works on observations too
   d <- cbs4_get_observations( id        = "80784ned"    # table id
@@ -57,7 +57,7 @@ if (at_home()){
     d <- cbs4_get_data("84287NED"
                   , Perioden = "2018MM12"
                   , query = "$filter=Perioden eq '2019MM12'"
-                  , verbose = TRUE)
+                  )
   })
   expect_true(all(d$Perioden == "2019MM12"))
 
