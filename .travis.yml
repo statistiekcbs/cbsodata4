@@ -10,8 +10,8 @@ warnings_are_errors: true
 #r_binary_packages: [data.table,jsonlite,rmarkdown]
 
 # test url service!
-# env:
-#   - TT_AT_HOME=TRUE
+env:
+  - TT_AT_HOME=TRUE
 
 after_success:
   - Rscript -e 'covr::codecov()'

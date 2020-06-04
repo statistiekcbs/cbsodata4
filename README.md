@@ -13,6 +13,8 @@ status](https://www.r-pkg.org/badges/version/cbsodata4)](https://cran.r-project.
 status](https://travis-ci.org/statistiekcbs/cbsodata4.svg?branch=master)](https://travis-ci.org/statistiekcbs/cbsodata4)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/statistiekcbs/cbsodata4?branch=master&svg=true)](https://ci.appveyor.com/project/edwindj/cbsodata4)
+[![Codecov test
+coverage](https://codecov.io/gh/statistiekcbs/cbsodata4/branch/master/graph/badge.svg)](https://codecov.io/gh/statistiekcbs/cbsodata4?branch=master)
 
 <!-- badges: end -->
 
@@ -67,13 +69,13 @@ datasets[1:5, c("Identifier", "Title")]
 
 <div class="kable-table">
 
-| Identifier | Title                                                                |
-| :--------- | :------------------------------------------------------------------- |
-| 37230ned   | Bevolkingsontwikkeling; regio per maand                              |
-| 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw |
-| 70072ned   | Regionale kerncijfers Nederland                                      |
-| 7100oogs   | Akkerbouwgewassen; productie naar regio                              |
-| 7425zuiv   | Melkaanvoer en zuivelproductie door zuivelfabrieken                  |
+|   | Identifier | Title                                                                |
+| - | :--------- | :------------------------------------------------------------------- |
+| 4 | 83131NED   | Consumentenprijzen; prijsindex 2015=100                              |
+| 5 | 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw |
+| 6 | 37230ned   | Bevolkingsontwikkeling; regio per maand                              |
+| 7 | 70072ned   | Regionale kerncijfers Nederland                                      |
+| 8 | 7100oogs   | Akkerbouwgewassen; productie naar regio                              |
 
 </div>
 
