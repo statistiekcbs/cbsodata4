@@ -16,7 +16,8 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    tinytest
+    tinytest,
+    covr
 URL: https://github.com/statistiekcbs/cbsodata4
 BugReports: https://github.com/statistiekcbs/cbsodata4/issues
 RoxygenNote: 7.1.0

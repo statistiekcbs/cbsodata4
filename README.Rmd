@@ -28,6 +28,7 @@ status](https://www.r-pkg.org/badges/version/cbsodata4)](https://cran.r-project.
 status](https://travis-ci.org/statistiekcbs/cbsodata4.svg?branch=master)](https://travis-ci.org/statistiekcbs/cbsodata4)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/statistiekcbs/cbsodata4?branch=master&svg=true)](https://ci.appveyor.com/project/edwindj/cbsodata4)
+[![Codecov test coverage](https://codecov.io/gh/statistiekcbs/cbsodata4/branch/master/graph/badge.svg)](https://codecov.io/gh/statistiekcbs/cbsodata4?branch=master)
 
 <!-- badges: end -->
 
