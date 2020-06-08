@@ -73,3 +73,15 @@ expect_warning({
 })
 expect_true(all(d$Perioden == "2019MM12"))
 
+### catalogs
+
+catlog <- cbs4_get_catalogs()
+expect_true(nrow(catlog) > 1)
+
+### datasets
+
+# test that tables from all catalogs
+ds_cbs <- cbs4_get_datasets()
+ds_all <- cbs4_get_datasets(catalog = NULL)
+
+expect_true(nrow(ds_all) > nrow(ds_cbs))
