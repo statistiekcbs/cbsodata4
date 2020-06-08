@@ -46,13 +46,17 @@ d <- cbs4_get_data("84287NED"
 expect_equal(nrow(d), 13)
 
 # This all works on observations too
-d <- cbs4_get_observations( id        = "80784ned"    # table id
+obs <- cbs4_get_observations( id        = "80784ned"    # table id
                        , Perioden  = "2019JJ00"    # Year 2019
                        , Geslacht  = "1100"        # code for total gender
                        , RegioS    = contains("PV")
                        , Measure   = "M003371_2"
 )
-expect_equal(nrow(d), 12)
+expect_equal(nrow(obs), 12)
+
+# test if units are added
+obs_unit <- cbs4_add_unit_column(obs)
+expect_true("Unit" %in% names(obs_unit))
 
 d <- cbs4_get_data("84287NED", query = "$filter=Perioden eq '2019MM12'")
 expect_equal(nrow(d), 4)
@@ -72,6 +76,11 @@ expect_warning({
                 )
 })
 expect_true(all(d$Perioden == "2019MM12"))
+
+### metadata
+
+meta <- cbs4_get_metadata("80784ned")
+print(meta)
 
 ### catalogs
 
