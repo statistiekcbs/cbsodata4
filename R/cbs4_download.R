@@ -41,8 +41,8 @@ cbs4_download <- function( id
       path_n <- file.path(download_dir, paste0(n, ".csv"))
       data.table::fwrite(m, path_n, sep = sep, na = "", row.names = FALSE)
     } else if (is.list(m)){
-      path_n <- file.path(download_dir, paste0(n, ".yml"))
-      yaml::write_yaml(m, path_n)
+      path_n <- file.path(download_dir, paste0(n, ".json"))
+      jsonlite::write_json(m, path_n, pretty = TRUE, auto_unbox = TRUE)
     }
   }
 

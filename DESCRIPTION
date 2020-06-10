@@ -11,8 +11,7 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     jsonlite,
-    data.table,
-    yaml
+    data.table
 Suggests: 
     knitr,
     rmarkdown,
