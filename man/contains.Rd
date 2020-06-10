@@ -59,11 +59,11 @@ if (interactive()){
   )
 
   # This all works on observations too
-  cbs4_get_observations( id        = "80784ned"    # table id
-                       , Perioden  = "2019JJ00"    # Year 2019
-                       , Geslacht  = "1100"        # code for total gender
-                       , RegioS    = contains("PV")
-                       , Measure   = "M003371_2"
+  cbs4_get_observations( id        = "80784ned"     # table id
+                       , Perioden  = "2019JJ00"     # Year 2019
+                       , Geslacht  = "1100"         # code for total gender
+                       , RegioS    = contains("PV") # provinces
+                       , Measure   = "M003371_2"    # topic selection
                        )
 
   # supply your own odata 4 query
@@ -73,8 +73,8 @@ if (interactive()){
   cbs4_get_data("84287NED"
                , Perioden = "2018MM12"
                , query = "$filter=Perioden eq '2019MM12'"
-               , verbose = TRUE
                )
+
   # With query argument an odata4 expression with other (filter) functions can be used
   cbs4_get_observations(
     id     = "80784ned"    # table id

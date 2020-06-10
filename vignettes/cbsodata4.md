@@ -35,14 +35,14 @@ head(datasets[,c("Identifier", "Title", "Modified")])
 
 <div class="kable-table">
 
-| Identifier | Title                                                                 | Modified   |
-| :--------- | :-------------------------------------------------------------------- | :--------- |
-| 37230ned   | Bevolkingsontwikkeling; regio per maand                               | 2020-04-29 |
-| 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw  | 2020-05-08 |
-| 70072ned   | Regionale kerncijfers Nederland                                       | 2020-03-20 |
-| 7100oogs   | Akkerbouwgewassen; productie naar regio                               | 2020-03-31 |
-| 7425zuiv   | Melkaanvoer en zuivelproductie door zuivelfabrieken                   | 2020-05-14 |
-| 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte | 2020-03-16 |
+|   | Identifier | Title                                                                 | Modified   |
+| - | :--------- | :-------------------------------------------------------------------- | :--------- |
+| 4 | 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw  | 2020-05-08 |
+| 5 | 37230ned   | Bevolkingsontwikkeling; regio per maand                               | 2020-05-29 |
+| 6 | 70072ned   | Regionale kerncijfers Nederland                                       | 2020-03-20 |
+| 7 | 7100oogs   | Akkerbouwgewassen; productie naar regio                               | 2020-03-31 |
+| 8 | 7425zuiv   | Melkaanvoer en zuivelproductie door zuivelfabrieken                   | 2020-05-14 |
+| 9 | 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte | 2020-03-16 |
 
 </div>
 
@@ -52,10 +52,10 @@ can be retrieved with `cbs4_get_metadata`
 ``` r
 meta_petrol <- cbs4_get_metadata("80416ned")
 meta_petrol
-#> cbs odata: '80416ned':
+#> cbs odatav4: '80416ned':
 #> "Pompprijzen motorbrandstoffen; brandstofsoort, per dag"
 #> dimensions: Perioden
-#> For more info use x$.
+#> For more info use 'str(x)' or 'names(x)' to find out its properties.
 ```
 
 The meta object contains all metadata properties of cbsodata in the form
