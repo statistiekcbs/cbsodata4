@@ -95,42 +95,50 @@
 <div class="kable-table">
 <table class="table">
 <colgroup>
+<col width="1%">
 <col width="11%">
-<col width="77%">
+<col width="76%">
 <col width="11%">
 </colgroup>
 <thead><tr class="header">
+<th></th>
 <th align="left">Identifier</th>
 <th align="left">Title</th>
 <th align="left">Modified</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">37230ned</td>
-<td align="left">Bevolkingsontwikkeling; regio per maand</td>
-<td align="left">2020-04-29</td>
-</tr>
-<tr class="even">
+<td>4</td>
 <td align="left">60006</td>
 <td align="left">Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw</td>
 <td align="left">2020-05-08</td>
 </tr>
+<tr class="even">
+<td>5</td>
+<td align="left">37230ned</td>
+<td align="left">Bevolkingsontwikkeling; regio per maand</td>
+<td align="left">2020-05-29</td>
+</tr>
 <tr class="odd">
+<td>6</td>
 <td align="left">70072ned</td>
 <td align="left">Regionale kerncijfers Nederland</td>
 <td align="left">2020-03-20</td>
 </tr>
 <tr class="even">
+<td>7</td>
 <td align="left">7100oogs</td>
 <td align="left">Akkerbouwgewassen; productie naar regio</td>
 <td align="left">2020-03-31</td>
 </tr>
 <tr class="odd">
+<td>8</td>
 <td align="left">7425zuiv</td>
 <td align="left">Melkaanvoer en zuivelproductie door zuivelfabrieken</td>
 <td align="left">2020-05-14</td>
 </tr>
 <tr class="even">
+<td>9</td>
 <td align="left">80072ned</td>
 <td align="left">Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte</td>
 <td align="left">2020-03-16</td>
@@ -141,10 +149,10 @@
 <p>Using an “Identifier” from <code>cbs4_get_datasets</code> information on the table can be retrieved with <code>cbs4_get_metadata</code></p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">meta_petrol</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/cbs4_get_metadata.html">cbs4_get_metadata</a></span>(<span class="st">"80416ned"</span>)
 <span class="no">meta_petrol</span>
-<span class="co">#&gt; cbs odata: '80416ned':</span>
+<span class="co">#&gt; cbs odatav4: '80416ned':</span>
 <span class="co">#&gt; "Pompprijzen motorbrandstoffen; brandstofsoort, per dag"</span>
 <span class="co">#&gt; dimensions: Perioden</span>
-<span class="co">#&gt; For more info use x$.</span></pre></body></html></div>
+<span class="co">#&gt; For more info use 'str(x)' or 'names(x)' to find out its properties.</span></pre></body></html></div>
 <p>The meta object contains all metadata properties of cbsodata in the form of <code>data.frame</code>s. Each <code>data.frame</code> describes properties of the CBS table: “Dimensions”, “MeasureCodes” and one ore more “&lt;Dimension&gt;Codes” describing the meta data of the borders of a SN table.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">meta_petrol</span>)
 <span class="co">#&gt; [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes" </span>
