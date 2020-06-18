@@ -77,6 +77,47 @@ expect_warning({
 })
 expect_true(all(d$Perioden == "2019MM12"))
 
+
+### verbose selection
+
+expect_message({
+  d <- cbs4_get_data( "84287NED"
+                    , verbose = TRUE
+                    )
+})
+
+### empty selection
+
+expect_warning({
+  d <- cbs4_get_observations( "84287NED"
+                              , Perioden = "rubbish"
+  )
+})
+
+expect_equal(nrow(d), 0)
+
+expect_warning({
+  d <- cbs4_get_data( "84287NED"
+                              , Perioden = "rubbish"
+  )
+})
+
+expect_equal(nrow(d), 0)
+
+expect_warning({
+  d <- cbs4_get_observations( "84287NED"
+                            , Perioden = contains("rubbish")
+                            )
+}, "contains: 'rubbish' does not match any keys")
+
+expect_equal(nrow(d), 0)
+
+### bigger selection (two retrievals)
+
+obs <- cbs4_get_observations( id = "80784ned")    # table id
+expect_true(nrow(obs) > 1e5)
+
+
 ### metadata
 
 meta <- cbs4_get_metadata("80784ned")

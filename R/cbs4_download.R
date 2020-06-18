@@ -104,7 +104,7 @@ get_empty_data.frame <- function(meta){
               , ValueAttribute = character()
               , Value = numeric()
               )
-  d[meta$Dimensions$Identifier] <- character()
+  d[meta$Dimensions$Identifier] <- list(character())
   d
 }
 

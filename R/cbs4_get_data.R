@@ -34,6 +34,8 @@ cbs4_get_data <- function( id
                               , as.data.table = TRUE # we use data.table to pivot
                               , base_url = base_url
                               )
+  is_empty <- nrow(obs) == 0
+
   m <- attr(obs, "meta")
   lhs <- paste(m$Dimensions$Identifier, collapse = " + ")
   f <- stats::as.formula(paste(lhs, "~ Measure"))
@@ -42,7 +44,16 @@ cbs4_get_data <- function( id
     message("casting observations as data with: ", format(f))
   }
 
+  # otherwise casting won't work.
+  if (is_empty){
+    obs[1,] <- NA
+  }
+
   d <- data.table::dcast(obs, f, value.var = "Value")
+
+  if (is_empty){
+    d <- d[0,]
+  }
 
   labels <- c( setNames(m$MeasureCodes$Title, m$MeasureCodes$Identifier)
              , setNames(m$Dimensions$Title, m$Dimensions$Identifier)
