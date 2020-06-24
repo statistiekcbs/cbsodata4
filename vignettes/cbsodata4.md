@@ -35,14 +35,14 @@ head(datasets[,c("Identifier", "Title", "Modified")])
 
 <div class="kable-table">
 
-|   | Identifier | Title                                                                 | Modified   |
-| - | :--------- | :-------------------------------------------------------------------- | :--------- |
-| 4 | 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw  | 2020-05-08 |
-| 5 | 37230ned   | Bevolkingsontwikkeling; regio per maand                               | 2020-05-29 |
-| 6 | 70072ned   | Regionale kerncijfers Nederland                                       | 2020-03-20 |
-| 7 | 7100oogs   | Akkerbouwgewassen; productie naar regio                               | 2020-03-31 |
-| 8 | 7425zuiv   | Melkaanvoer en zuivelproductie door zuivelfabrieken                   | 2020-05-14 |
-| 9 | 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte | 2020-03-16 |
+|   | Identifier | Title                                                                       | Modified   |
+| :- | :--------- | :-------------------------------------------------------------------------- | :--------- |
+| 3 | 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw        | 2020-05-08 |
+| 4 | 37230ned   | Bevolkingsontwikkeling; regio per maand                                     | 2020-05-29 |
+| 5 | 7100oogs   | Akkerbouwgewassen; productie naar regio                                     | 2020-03-31 |
+| 6 | 80784ned   | Landbouw; arbeidskrachten naar regio                                        | 2020-03-03 |
+| 7 | 80857ned   | Vacatures (openstaande, ontstane en vervulde); overheid en onderwijs        | 2020-05-15 |
+| 8 | 81075ned   | Werkloze beroepsbevolking; werkloosheidsduur en persoonskenmerken 2003-2018 | 2020-01-23 |
 
 </div>
 
@@ -290,7 +290,7 @@ head(obs)
 
 </div>
 
-## Select and filter
+## Filter data before download
 
 It is possible restrict the download using filter statements. This may
 shorten the download time considerably.
@@ -314,7 +314,7 @@ tail(meta$PeriodenCodes)
 <div class="kable-table">
 
 |     | Identifier | Index | Title            | Description        | DimensionGroupId | Status     |
-| --- | :--------- | ----: | :--------------- | :----------------- | :--------------- | :--------- |
+| :-- | :--------- | ----: | :--------------- | :----------------- | :--------------- | :--------- |
 | 146 | 2019KW01   |   146 | 2019 1e kwartaal |                    | 0                | Definitief |
 | 147 | 2019KW02   |   147 | 2019 2e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
 | 148 | 2019KW03   |   148 | 2019 3e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
@@ -414,6 +414,27 @@ data
 | 2019KW03 |              320 |                          530 |
 | 2019KW04 |              370 |                          530 |
 | 2020KW01 |              405 |                          520 |
+
+</div>
+
+### query with odata v4 syntax
+
+For the adventurous, it is possible to specify a [odata v4
+query](https://www.odata.org/documentation/) themselves.
+
+``` r
+  # supply your own odata 4 query
+  cbs4_get_data("84287NED", query = "$filter=Perioden eq '2019MM12'")
+```
+
+<div class="kable-table">
+
+| BedrijfstakkenBranchesSBI2008 | Perioden | Vacature-indicator |
+| :---------------------------- | :------- | -----------------: |
+| 300007                        | 2019MM12 |               0.23 |
+| 307500                        | 2019MM12 |               0.07 |
+| 350000                        | 2019MM12 |               0.15 |
+| T001081                       | 2019MM12 |               0.21 |
 
 </div>
 

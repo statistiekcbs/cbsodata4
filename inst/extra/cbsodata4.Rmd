@@ -150,7 +150,7 @@ obs <- cbs4_add_unit_column(obs)
 head(obs)
 ```
 
-## Select and filter
+## Filter data before download
 
 It is possible restrict the download using filter statements. This may shorten the download time considerably.
 
@@ -202,6 +202,17 @@ data <- cbs4_get_data("60006"
 data
 
 ```
+
+### query with odata v4 syntax
+
+For the adventurous, it is possible to specify a
+[odata v4 query](https://www.odata.org/documentation/) themselves.
+
+```{r}
+  # supply your own odata 4 query
+  cbs4_get_data("84287NED", query = "$filter=Perioden eq '2019MM12'")
+```
+
 
 ## Download data
 
