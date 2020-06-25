@@ -2,7 +2,7 @@
 % Please edit documentation in R/cbs4_add_label_columns.R
 \name{cbs4_add_label_columns}
 \alias{cbs4_add_label_columns}
-\title{Add human readable labels to a table}
+\title{Add understandable labels to a table}
 \usage{
 cbs4_add_label_columns(data, ...)
 }
@@ -11,15 +11,17 @@ cbs4_add_label_columns(data, ...)
 
 \item{...}{not used}
 }
+\value{
+original dataset with extra label columns. See details.
+}
 \description{
-\code{cbs4_get_observations()} downloads a data table in which the \code{Measure} and
-dimension columns contain \code{Codes} from the \code{Identifier} columns of \code{MeasureCodes} and
-\verb{<Dimension>Codes}
-\code{data.frame}s that can be found in the metadata downloaded with \code{cbs4_get_metadata()}.
+Add columns with labels to the dataset.
 }
 \details{
-\code{cbs4_get_observations()} adds for the \code{Measure} and each \verb{<Dimension>} column an extra column
-\code{MeasureLabel} ( \verb{<Dimension>Label}) that contains the \code{Title} of each code.
+\code{\link[=cbs4_add_label_columns]{cbs4_add_label_columns()}} adds for the \code{Measure} and each \verb{<Dimension>}
+column an extra column \code{MeasureLabel} ( \verb{<Dimension>Label}) that contains
+the \code{Title} of each code, making the table more digestible. \code{Title} and
+other metadata can also be found using \code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}.
 }
 \examples{
 if (interactive()){

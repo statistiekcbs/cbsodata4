@@ -1,9 +1,20 @@
 #' Convert the time variable into either a date or numeric.
 #'
+#' Add extra date columns to data set, for the creation of time series or graphics.
+#'
 #' Time periods in data of CBS are coded: yyyyXXww (e.g. 2018JJ00, 2018MM10, 2018KW02),
 #' which contains year (yyyy), type (XX) and index (ww). `cbs4_add_date_column` converts
 #' these codes into a [Date()] or `numeric`. In addition it adds
 #' a frequency column denoting the type of the column.
+#'
+#' The `<period_freq>` column indicates the period type / frequency:
+#'
+#' - `Y`: year
+#' - `Q`: quarter
+#' - `M`: month
+#' - `W`: week
+#' - `D`: day
+#'
 #' @param data `data.frame` retrieved using [cbs4_get_data()]
 #' @param date_type Type of date column: "Date", "numeric. Numeric creates a fractional
 #' number which signs the "middle" of the period. e.g. 2018JJ00 -> 2018.5 and
@@ -12,7 +23,7 @@
 #' If all codes in the dataset have frequency "Y" the numeric output will be `integer`.
 #' @param ... future use.
 #' @return original dataset with two added columns: `<period>_date` and
-#' `<period>_freq`. This last column is a factor with levels: `Y`, `Q` and `M`
+#' `<period>_freq`. See details.
 #' @example ./example/cbs_add_date_column.R
 #' @export
 #' @family add metadata columns

@@ -14,6 +14,9 @@ cbs4_get_catalogs(
 
 \item{verbose}{if \code{TRUE} the communication to the server is shown.}
 }
+\value{
+\code{\link[=data.frame]{data.frame()}} with the different catalogs available.
+}
 \description{
 Retrieve catalogs of Statistics Netherlands. Beside the main "CBS" catalog
 other catalogs contain extra datasets that are not part of the main production

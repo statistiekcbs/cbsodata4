@@ -44,9 +44,24 @@ temporary directory, but can be set manually}
 
 \item{base_url}{Possible other url which implements same protocol.}
 }
+\value{
+a \code{\link[=data.frame]{data.frame()}} or \code{\link[=data.table]{data.table()}} object. See details.
+}
 \description{
 Get data from table \code{id}. The data of a CBS opendata table is in so-called wide
-format. Each \code{Measure} has its own column.  For a long format see \code{\link[=cbs4_get_observations]{cbs4_get_observations()}}
+format. Each \code{Measure} has its own column.
+}
+\details{
+The returned \code{\link[=data.frame]{data.frame()}} has the following columns:
+\itemize{
+\item For each dimension a separate column with category identifiers. Category
+labels can be added with \code{\link[=cbs4_add_label_columns]{cbs4_add_label_columns()}} or found in \code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}.
+Date columns can be added with \code{\link[=cbs4_add_date_column]{cbs4_add_date_column()}}.
+\item For each Measure / Topic a separate column with values. Units can be found in
+\code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}} (\code{MeasureCodes}).
+}
+
+For a long format instead of wide format see \code{\link[=cbs4_get_observations]{cbs4_get_observations()}}
 which has one \code{Measure} column and a \code{Value} column.
 }
 \examples{

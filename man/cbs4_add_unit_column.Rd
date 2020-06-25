@@ -2,7 +2,7 @@
 % Please edit documentation in R/cbs4_add_unit_column.R
 \name{cbs4_add_unit_column}
 \alias{cbs4_add_unit_column}
-\title{Add unit column to data}
+\title{Add unit column to observations}
 \usage{
 cbs4_add_unit_column(data, ...)
 }
@@ -11,8 +11,16 @@ cbs4_add_unit_column(data, ...)
 
 \item{...}{not used}
 }
+\value{
+original observations \code{\link[=data.frame]{data.frame()}} with extra \code{Unit} column.
+}
 \description{
-Add labels to codes
+Add a unit column  the unit of each measure.
+}
+\details{
+\code{\link[=cbs4_add_unit_column]{cbs4_add_unit_column()}} retrieves the \code{Unit}s for each Measure from
+\code{MeasureCodes} in the metadata (\code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}) and adds this to the
+observations data set.
 }
 \examples{
 if (interactive()){

@@ -11,6 +11,7 @@
 #' @param convert_dates Converts date columns in Date-Time type (in stead of `character`)
 #' @param base_url base url of the CBS OData 4 API
 #' @param verbose Should the url request be printed?
+#' @returns [data.frame()] with publication metadata of tables.
 #' @family datasets
 #' @export
 cbs4_get_datasets <- function( catalog = "CBS"

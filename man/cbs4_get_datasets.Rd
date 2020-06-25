@@ -29,6 +29,9 @@ all datasets of all catalogs will be returned.}
 
 \item{base_url}{base url of the CBS OData 4 API}
 }
+\value{
+\code{\link[=data.frame]{data.frame()}} with publication metadata of tables.
+}
 \description{
 Get the available datasets from open data portal statline.
 }

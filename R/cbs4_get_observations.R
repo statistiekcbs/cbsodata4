@@ -1,9 +1,24 @@
 #' Get observations from a table.
 #'
 #' Get observations from table `id`. Observations are data of a CBS opendata table in so-called long
-#' format. There is one `Measure` column denoting the different variables/topics, and there is a column
-#' for each of the dimensions, which can be queried using [cbs4_get_metadata()]. Furtheremore it
-#' contains one `Value` columns contains the data. [cbs4_get_data()] offers an alternative in which
+#' format.
+#'
+#' The returned [data.frame()] has the following columns:
+#'
+#' - A `Measure` column with identifiers/codes of measures/topics. Detailed information
+#' on Measures can be found with in `MeasureCodes` using [cbs4_get_metadata()].
+#' Measure labels can be added with  [cbs4_add_label_columns()].
+#'
+#' - A `Value` column with the (numerical) value, Units can be added
+#' with [cbs4_add_unit_column()].
+#'
+#' - An optional `ValueAttribute` column with data point specific metadata.
+#'
+#' - For each dimension a separate column with category identifiers. Category
+#' labels can be added with [cbs4_add_label_columns()] or found in [cbs4_get_metadata()].
+#' Date columns can be added with [cbs4_add_date_column()].
+#'
+#' [cbs4_get_data()] offers an alternative in which
 #' each variable/topic/Measure has its own column.
 #'
 #' @example ./example/query.R
@@ -21,6 +36,7 @@
 #' @param includeId `logical`, should the Id column be downloaded?
 #' @param as.data.table `logical`, should the result be of type data.table?
 #' @param base_url Possible other url which implements same protocol.
+#' @return [data.frame()] or [data.table()] object, see details.
 #' @family data-download
 #' @seealso [cbs4_get_metadata()]
 cbs4_get_observations <- function( id

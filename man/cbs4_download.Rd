@@ -36,6 +36,9 @@ together with \code{verbose=TRUE}}
 
 \item{base_url}{Possible other website which implements same protocol.}
 }
+\value{
+metadata of table (\code{\link[=invisible]{invisible()}}).
+}
 \description{
 Download observations and metadata to a directory. This function is the working
 horse for \code{\link[=cbs4_get_data]{cbs4_get_data()}} and \code{\link[=cbs4_get_observations]{cbs4_get_observations()}} and has many of the same

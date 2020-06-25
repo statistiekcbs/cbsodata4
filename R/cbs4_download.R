@@ -15,6 +15,7 @@
 #' together with `verbose=TRUE`
 #' @param verbose Should messages be printed...
 #' @param base_url Possible other website which implements same protocol.
+#' @returns metadata of table ([invisible()]).
 #' @export
 #' @family data-download
 cbs4_download <- function( id

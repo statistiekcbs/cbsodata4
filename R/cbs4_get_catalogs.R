@@ -6,6 +6,7 @@
 #' @export
 #' @param base_url possible other url that implements same interface
 #' @param verbose if `TRUE` the communication to the server is shown.
+#' @returns [data.frame()] with the different catalogs available.
 #' @family datasets
 cbs4_get_catalogs <- function( base_url = getOption("cbsodata4.base_url", BASEURL4)
                              , verbose = getOption("cbsodata4.verbose", FALSE)

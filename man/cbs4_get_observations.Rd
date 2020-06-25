@@ -43,11 +43,28 @@ with verbose.}
 
 \item{base_url}{Possible other url which implements same protocol.}
 }
+\value{
+\code{\link[=data.frame]{data.frame()}} or \code{\link[=data.table]{data.table()}} object, see details.
+}
 \description{
 Get observations from table \code{id}. Observations are data of a CBS opendata table in so-called long
-format. There is one \code{Measure} column denoting the different variables/topics, and there is a column
-for each of the dimensions, which can be queried using \code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}. Furtheremore it
-contains one \code{Value} columns contains the data. \code{\link[=cbs4_get_data]{cbs4_get_data()}} offers an alternative in which
+format.
+}
+\details{
+The returned \code{\link[=data.frame]{data.frame()}} has the following columns:
+\itemize{
+\item A \code{Measure} column with identifiers/codes of measures/topics. Detailed information
+on Measures can be found with in \code{MeasureCodes} using \code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}.
+Measure labels can be added with  \code{\link[=cbs4_add_label_columns]{cbs4_add_label_columns()}}.
+\item A \code{Value} column with the (numerical) value, Units can be added
+with \code{\link[=cbs4_add_unit_column]{cbs4_add_unit_column()}}.
+\item An optional \code{ValueAttribute} column with data point specific metadata.
+\item For each dimension a separate column with category identifiers. Category
+labels can be added with \code{\link[=cbs4_add_label_columns]{cbs4_add_label_columns()}} or found in \code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}.
+Date columns can be added with \code{\link[=cbs4_add_date_column]{cbs4_add_date_column()}}.
+}
+
+\code{\link[=cbs4_get_data]{cbs4_get_data()}} offers an alternative in which
 each variable/topic/Measure has its own column.
 }
 \examples{

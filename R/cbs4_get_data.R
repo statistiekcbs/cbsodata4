@@ -1,14 +1,28 @@
 #' Get data from CBS
 #'
 #' Get data from table `id`. The data of a CBS opendata table is in so-called wide
-#' format. Each `Measure` has its own column.  For a long format see [cbs4_get_observations()]
+#' format. Each `Measure` has its own column.
+#'
+#' The returned [data.frame()] has the following columns:
+#'
+#' - For each dimension a separate column with category identifiers. Category
+#' labels can be added with [cbs4_add_label_columns()] or found in [cbs4_get_metadata()].
+#' Date columns can be added with [cbs4_add_date_column()].
+#'
+#' - For each Measure / Topic a separate column with values. Units can be found in
+#' [cbs4_get_metadata()] (`MeasureCodes`).
+#'
+#'
+#' For a long format instead of wide format see [cbs4_get_observations()]
 #' which has one `Measure` column and a `Value` column.
+#'
 #' @example ./example/query.R
 #' @export
 #' @importFrom stats setNames
 #' @inheritParams cbs4_get_observations
 #' @param name_measure_columns `logical` if `TRUE` the `Title` of the measure will be set as
 #' name column.
+#' @return a [data.frame()] or [data.table()] object. See details.
 #' @family data-download
 #' @seealso [cbs4_get_metadata()]
 cbs4_get_data <- function( id

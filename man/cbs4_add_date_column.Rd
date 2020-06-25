@@ -19,13 +19,25 @@ If all codes in the dataset have frequency "Y" the numeric output will be \code{
 }
 \value{
 original dataset with two added columns: \verb{<period>_date} and
-\verb{<period>_freq}. This last column is a factor with levels: \code{Y}, \code{Q} and \code{M}
+\verb{<period>_freq}. See details.
 }
 \description{
+Add extra date columns to data set, for the creation of time series or graphics.
+}
+\details{
 Time periods in data of CBS are coded: yyyyXXww (e.g. 2018JJ00, 2018MM10, 2018KW02),
 which contains year (yyyy), type (XX) and index (ww). \code{cbs4_add_date_column} converts
 these codes into a \code{\link[=Date]{Date()}} or \code{numeric}. In addition it adds
 a frequency column denoting the type of the column.
+
+The \verb{<period_freq>} column indicates the period type / frequency:
+\itemize{
+\item \code{Y}: year
+\item \code{Q}: quarter
+\item \code{M}: month
+\item \code{W}: week
+\item \code{D}: day
+}
 }
 \examples{
 if (interactive()){
