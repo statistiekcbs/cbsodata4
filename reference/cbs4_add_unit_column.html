@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add unit column to data — cbs4_add_unit_column • cbsodata4</title>
+<title>Add unit column to observations — cbs4_add_unit_column • cbsodata4</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Add unit column to data — cbs4_add_unit_column" />
-<meta property="og:description" content="Add labels to codes" />
+<meta property="og:title" content="Add unit column to observations — cbs4_add_unit_column" />
+<meta property="og:description" content="Add a unit column  the unit of each measure." />
 
 
 
@@ -111,13 +111,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add unit column to data</h1>
+    <h1>Add unit column to observations</h1>
     <small class="dont-index">Source: <a href='https://github.com/statistiekcbs/cbsodata4/blob/master/R/cbs4_add_unit_column.R'><code>R/cbs4_add_unit_column.R</code></a></small>
     <div class="hidden name"><code>cbs4_add_unit_column.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add labels to codes</p>
+    <p>Add a unit column  the unit of each measure.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cbs4_add_unit_column</span>(<span class='no'>data</span>, <span class='no'>...</span>)</pre>
@@ -135,6 +135,14 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>original observations <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame()</a></code> with extra <code>Unit</code> column.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>cbs4_add_unit_column()</code> retrieves the <code>Unit</code>s for each Measure from
+<code>MeasureCodes</code> in the metadata (<code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code>) and adds this to the
+observations data set.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code></p>

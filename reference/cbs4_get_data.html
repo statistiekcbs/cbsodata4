@@ -41,8 +41,7 @@
 
 <meta property="og:title" content="Get data from CBS — cbs4_get_data" />
 <meta property="og:description" content="Get data from table id. The data of a CBS opendata table is in so-called wide
-format. Each Measure has its own column.  For a long format see cbs4_get_observations()
-which has one Measure column and a Value column." />
+format. Each Measure has its own column." />
 
 
 
@@ -120,8 +119,7 @@ which has one Measure column and a Value column." />
 
     <div class="ref-description">
     <p>Get data from table <code>id</code>. The data of a CBS opendata table is in so-called wide
-format. Each <code>Measure</code> has its own column.  For a long format see <code><a href='cbs4_get_observations.html'>cbs4_get_observations()</a></code>
-which has one <code>Measure</code> column and a <code>Value</code> column.</p>
+format. Each <code>Measure</code> has its own column.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cbs4_get_data</span>(
@@ -190,6 +188,21 @@ temporary directory, but can be set manually</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame()</a></code> or <code>data.table()</code> object. See details.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The returned <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame()</a></code> has the following columns:</p><ul>
+<li><p>For each dimension a separate column with category identifiers. Category
+labels can be added with <code><a href='cbs4_add_label_columns.html'>cbs4_add_label_columns()</a></code> or found in <code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code>.
+Date columns can be added with <code><a href='cbs4_add_date_column.html'>cbs4_add_date_column()</a></code>.</p></li>
+<li><p>For each Measure / Topic a separate column with values. Units can be found in
+<code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code> (<code>MeasureCodes</code>).</p></li>
+</ul>
+
+<p>For a long format instead of wide format see <code><a href='cbs4_get_observations.html'>cbs4_get_observations()</a></code>
+which has one <code>Measure</code> column and a <code>Value</code> column.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code></p>

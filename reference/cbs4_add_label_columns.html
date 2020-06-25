@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add human readable labels to a table — cbs4_add_label_columns • cbsodata4</title>
+<title>Add understandable labels to a table — cbs4_add_label_columns • cbsodata4</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,8 @@
 
 
 
-<meta property="og:title" content="Add human readable labels to a table — cbs4_add_label_columns" />
-<meta property="og:description" content="cbs4_get_observations() downloads a data table in which the Measure and
-dimension columns contain Codes from the Identifier columns of MeasureCodes and
-&amp;lt;Dimension&amp;gt;Codes
-data.frames that can be found in the metadata downloaded with cbs4_get_metadata()." />
+<meta property="og:title" content="Add understandable labels to a table — cbs4_add_label_columns" />
+<meta property="og:description" content="Add columns with labels to the dataset." />
 
 
 
@@ -114,16 +111,13 @@ data.frames that can be found in the metadata downloaded with cbs4_get_metadata(
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add human readable labels to a table</h1>
+    <h1>Add understandable labels to a table</h1>
     <small class="dont-index">Source: <a href='https://github.com/statistiekcbs/cbsodata4/blob/master/R/cbs4_add_label_columns.R'><code>R/cbs4_add_label_columns.R</code></a></small>
     <div class="hidden name"><code>cbs4_add_label_columns.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code><a href='cbs4_get_observations.html'>cbs4_get_observations()</a></code> downloads a data table in which the <code>Measure</code> and
-dimension columns contain <code>Codes</code> from the <code>Identifier</code> columns of <code>MeasureCodes</code> and
-<code>&lt;Dimension&gt;Codes</code>
-<code>data.frame</code>s that can be found in the metadata downloaded with <code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code>.</p>
+    <p>Add columns with labels to the dataset.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cbs4_add_label_columns</span>(<span class='no'>data</span>, <span class='no'>...</span>)</pre>
@@ -141,10 +135,15 @@ dimension columns contain <code>Codes</code> from the <code>Identifier</code> co
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>original dataset with extra label columns. See details.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code><a href='cbs4_get_observations.html'>cbs4_get_observations()</a></code> adds for the <code>Measure</code> and each <code>&lt;Dimension&gt;</code> column an extra column
-<code>MeasureLabel</code> ( <code>&lt;Dimension&gt;Label</code>) that contains the <code>Title</code> of each code.</p>
+    <p><code>cbs4_add_label_columns()</code> adds for the <code>Measure</code> and each <code>&lt;Dimension&gt;</code>
+column an extra column <code>MeasureLabel</code> ( <code>&lt;Dimension&gt;Label</code>) that contains
+the <code>Title</code> of each code, making the table more digestible. <code>Title</code> and
+other metadata can also be found using <code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code></p>

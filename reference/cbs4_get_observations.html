@@ -41,10 +41,7 @@
 
 <meta property="og:title" content="Get observations from a table. — cbs4_get_observations" />
 <meta property="og:description" content="Get observations from table id. Observations are data of a CBS opendata table in so-called long
-format. There is one Measure column denoting the different variables/topics, and there is a column
-for each of the dimensions, which can be queried using cbs4_get_metadata(). Furtheremore it
-contains one Value columns contains the data. cbs4_get_data() offers an alternative in which
-each variable/topic/Measure has its own column." />
+format." />
 
 
 
@@ -122,10 +119,7 @@ each variable/topic/Measure has its own column." />
 
     <div class="ref-description">
     <p>Get observations from table <code>id</code>. Observations are data of a CBS opendata table in so-called long
-format. There is one <code>Measure</code> column denoting the different variables/topics, and there is a column
-for each of the dimensions, which can be queried using <code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code>. Furtheremore it
-contains one <code>Value</code> columns contains the data. <code><a href='cbs4_get_data.html'>cbs4_get_data()</a></code> offers an alternative in which
-each variable/topic/Measure has its own column.</p>
+format.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cbs4_get_observations</span>(
@@ -193,6 +187,25 @@ with verbose.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame()</a></code> or <code>data.table()</code> object, see details.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The returned <code><a href='https://rdrr.io/r/base/data.frame.html'>data.frame()</a></code> has the following columns:</p><ul>
+<li><p>A <code>Measure</code> column with identifiers/codes of measures/topics. Detailed information
+on Measures can be found with in <code>MeasureCodes</code> using <code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code>.
+Measure labels can be added with  <code><a href='cbs4_add_label_columns.html'>cbs4_add_label_columns()</a></code>.</p></li>
+<li><p>A <code>Value</code> column with the (numerical) value, Units can be added
+with <code><a href='cbs4_add_unit_column.html'>cbs4_add_unit_column()</a></code>.</p></li>
+<li><p>An optional <code>ValueAttribute</code> column with data point specific metadata.</p></li>
+<li><p>For each dimension a separate column with category identifiers. Category
+labels can be added with <code><a href='cbs4_add_label_columns.html'>cbs4_add_label_columns()</a></code> or found in <code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code>.
+Date columns can be added with <code><a href='cbs4_add_date_column.html'>cbs4_add_date_column()</a></code>.</p></li>
+</ul>
+
+<p><code><a href='cbs4_get_data.html'>cbs4_get_data()</a></code> offers an alternative in which
+each variable/topic/Measure has its own column.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code></p>

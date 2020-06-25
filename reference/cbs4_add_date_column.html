@@ -40,10 +40,7 @@
 
 
 <meta property="og:title" content="Convert the time variable into either a date or numeric. — cbs4_add_date_column" />
-<meta property="og:description" content="Time periods in data of CBS are coded: yyyyXXww (e.g. 2018JJ00, 2018MM10, 2018KW02),
-which contains year (yyyy), type (XX) and index (ww). cbs4_add_date_column converts
-these codes into a Date() or numeric. In addition it adds
-a frequency column denoting the type of the column." />
+<meta property="og:description" content="Add extra date columns to data set, for the creation of time series or graphics." />
 
 
 
@@ -120,10 +117,7 @@ a frequency column denoting the type of the column." />
     </div>
 
     <div class="ref-description">
-    <p>Time periods in data of CBS are coded: yyyyXXww (e.g. 2018JJ00, 2018MM10, 2018KW02),
-which contains year (yyyy), type (XX) and index (ww). <code>cbs4_add_date_column</code> converts
-these codes into a <code><a href='https://rdrr.io/r/base/Dates.html'>Date()</a></code> or <code>numeric</code>. In addition it adds
-a frequency column denoting the type of the column.</p>
+    <p>Add extra date columns to data set, for the creation of time series or graphics.</p>
     </div>
 
     <pre class="usage"><span class='fu'>cbs4_add_date_column</span>(<span class='no'>data</span>, <span class='kw'>date_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Date"</span>, <span class='st'>"numeric"</span>), <span class='no'>...</span>)</pre>
@@ -152,7 +146,21 @@ If all codes in the dataset have frequency "Y" the numeric output will be <code>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>original dataset with two added columns: <code>&lt;period&gt;_date</code> and
-<code>&lt;period&gt;_freq</code>. This last column is a factor with levels: <code>Y</code>, <code>Q</code> and <code>M</code></p>
+<code>&lt;period&gt;_freq</code>. See details.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Time periods in data of CBS are coded: yyyyXXww (e.g. 2018JJ00, 2018MM10, 2018KW02),
+which contains year (yyyy), type (XX) and index (ww). <code>cbs4_add_date_column</code> converts
+these codes into a <code><a href='https://rdrr.io/r/base/Dates.html'>Date()</a></code> or <code>numeric</code>. In addition it adds
+a frequency column denoting the type of the column.</p>
+<p>The <code>&lt;period_freq&gt;</code> column indicates the period type / frequency:</p><ul>
+<li><p><code>Y</code>: year</p></li>
+<li><p><code>Q</code>: quarter</p></li>
+<li><p><code>M</code>: month</p></li>
+<li><p><code>W</code>: week</p></li>
+<li><p><code>D</code>: day</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='cbs4_get_metadata.html'>cbs4_get_metadata()</a></code></p>
