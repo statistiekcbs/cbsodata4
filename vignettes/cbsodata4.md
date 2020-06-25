@@ -4,9 +4,9 @@ produces all official statistics of the Netherlands.
 
 For long CBS has put its data on the web in its online database
 [StatLine](https://opendata.cbs.nl/statline#/CBS/en/). Since 2014 this
-data base has an open data web API based on the OData protocol and other
-The [cbsodataR](https://CRAN.R-project.org/package=cbsodataR) package
-allows for retrieving data right into R using this API.
+data base has an open data web API based on the OData protocol. The
+[cbsodataR](https://CRAN.R-project.org/package=cbsodataR) package allows
+for retrieving data right into R using this API.
 
 A new version of the web api has been developed which is based on the
 OData4 protocol. This OData4 API contains major changes in how the
