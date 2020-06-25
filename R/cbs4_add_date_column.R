@@ -4,8 +4,18 @@
 #'
 #' Time periods in data of CBS are coded: yyyyXXww (e.g. 2018JJ00, 2018MM10, 2018KW02),
 #' which contains year (yyyy), type (XX) and index (ww). `cbs4_add_date_column` converts
-#' these codes into a [Date()] or `numeric`. In addition it adds
-#' a frequency column denoting the type of the column.
+#' these codes into a [Date()] or `numeric`.
+#'
+#' `"Date"` will create a date that signifies the start of the period:
+#'
+#' - "2018JJ00" will turn into "2018-01-01"
+#' - "2018KW02" will turn into "2018-04-01"
+#'
+#' `"numeric"` creates a fractional
+#' number which signs the "middle" of the period. e.g. 2018JJ00 -> 2018.5 and
+#' 2018KW01 -> 2018.167. This is for the following reasons: otherwise 2018.0 could mean
+#' 2018, 2018 Q1 or 2018 Jan, and furthermore 2018.75 is a bit strange for 2018 Q4.
+#' If all codes in the dataset have frequency "Y" the numeric output will be `integer`.
 #'
 #' The `<period_freq>` column indicates the period type / frequency:
 #'
@@ -16,13 +26,9 @@
 #' - `D`: day
 #'
 #' @param data `data.frame` retrieved using [cbs4_get_data()]
-#' @param date_type Type of date column: "Date", "numeric. Numeric creates a fractional
-#' number which signs the "middle" of the period. e.g. 2018JJ00 -> 2018.5 and
-#' 2018KW01 -> 2018.167. This is for the following reasons: otherwise 2018.0 could mean
-#' 2018, 2018 Q1 or 2018 Jan, and furthermore 2018.75 is a bit strange for 2018 Q4.
-#' If all codes in the dataset have frequency "Y" the numeric output will be `integer`.
+#' @param date_type Type of date column: "Date", "numeric". See details.
 #' @param ... future use.
-#' @return original dataset with two added columns: `<period>_date` and
+#' @return original dataset with two added columns: `<period>_Date` and
 #' `<period>_freq`. See details.
 #' @example ./example/cbs_add_date_column.R
 #' @export

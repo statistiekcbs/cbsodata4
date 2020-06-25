@@ -9,16 +9,12 @@ cbs4_add_date_column(data, date_type = c("Date", "numeric"), ...)
 \arguments{
 \item{data}{\code{data.frame} retrieved using \code{\link[=cbs4_get_data]{cbs4_get_data()}}}
 
-\item{date_type}{Type of date column: "Date", "numeric. Numeric creates a fractional
-number which signs the "middle" of the period. e.g. 2018JJ00 -> 2018.5 and
-2018KW01 -> 2018.167. This is for the following reasons: otherwise 2018.0 could mean
-2018, 2018 Q1 or 2018 Jan, and furthermore 2018.75 is a bit strange for 2018 Q4.
-If all codes in the dataset have frequency "Y" the numeric output will be \code{integer}.}
+\item{date_type}{Type of date column: "Date", "numeric. See details.}
 
 \item{...}{future use.}
 }
 \value{
-original dataset with two added columns: \verb{<period>_date} and
+original dataset with two added columns: \verb{<period>_Date} and
 \verb{<period>_freq}. See details.
 }
 \description{
@@ -27,8 +23,19 @@ Add extra date columns to data set, for the creation of time series or graphics.
 \details{
 Time periods in data of CBS are coded: yyyyXXww (e.g. 2018JJ00, 2018MM10, 2018KW02),
 which contains year (yyyy), type (XX) and index (ww). \code{cbs4_add_date_column} converts
-these codes into a \code{\link[=Date]{Date()}} or \code{numeric}. In addition it adds
-a frequency column denoting the type of the column.
+these codes into a \code{\link[=Date]{Date()}} or \code{numeric}.
+
+\code{"Date"} will create a date that signifies the start of the period:
+\itemize{
+\item "2018JJ00" will turn into "2018-01-01"
+\item "2018KW02" will turn into "2018-04-01"
+}
+
+\code{"numeric"} creates a fractional
+number which signs the "middle" of the period. e.g. 2018JJ00 -> 2018.5 and
+2018KW01 -> 2018.167. This is for the following reasons: otherwise 2018.0 could mean
+2018, 2018 Q1 or 2018 Jan, and furthermore 2018.75 is a bit strange for 2018 Q4.
+If all codes in the dataset have frequency "Y" the numeric output will be \code{integer}.
 
 The \verb{<period_freq>} column indicates the period type / frequency:
 \itemize{
@@ -71,7 +78,7 @@ if (interactive()){
 \seealso{
 \code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}
 
-Other add metadata columns: 
+Other add metadata columns:
 \code{\link{cbs4_add_label_columns}()},
 \code{\link{cbs4_add_unit_column}()}
 }

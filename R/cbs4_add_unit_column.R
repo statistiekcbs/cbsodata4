@@ -5,7 +5,7 @@
 #' [cbs4_add_unit_column()] retrieves the `Unit`s for each Measure from
 #' `MeasureCodes` in the metadata ([cbs4_get_metadata()]) and adds this to the
 #' observations data set.
-#' @returns original observations [data.frame()] with extra `Unit` column.
+#' @return original observations [data.frame()] with extra `Unit` column.
 #' @importFrom utils head tail
 #' @export
 #' @example  ./example/cbs4_add_unit_column.R

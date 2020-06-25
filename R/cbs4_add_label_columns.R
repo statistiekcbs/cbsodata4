@@ -7,7 +7,7 @@
 #' the `Title` of each code, making the table more digestible. `Title` and
 #' other metadata can also be found using [cbs4_get_metadata()].
 #'
-#' @returns original dataset with extra label columns. See details.
+#' @return original dataset with extra label columns. See details.
 #' @example ./example/cbs4_add_label_columns.R
 #' @export
 #' @param data downloaded with [cbs4_get_data()]
