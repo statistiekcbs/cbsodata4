@@ -50,7 +50,7 @@ obs <- cbs4_get_observations( id        = "80784ned"    # table id
                        , Perioden  = "2019JJ00"    # Year 2019
                        , Geslacht  = "1100"        # code for total gender
                        , RegioS    = contains("PV")
-                       , Measure   = "M003371_2"
+                       , Measure   = "D003371_2"
 )
 expect_equal(nrow(obs), 12)
 

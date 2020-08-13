@@ -32,7 +32,7 @@ phased out in due time, `cbsodata4` is the successor of `cbsodataR`.
 This document describes how to use `cbsodata4` to download data (and meta data) 
 from Statistics Netherlands. It offers very similar functions as `cbsodataR`,
 so should be familiar to users of `cbsodataR`, but there are differences so 
-check carefully your code.
+carefully check your code.
 
 
 ```{r setup}
