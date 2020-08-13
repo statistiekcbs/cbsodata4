@@ -84,7 +84,7 @@
 <p><a href="https://www.cbs.nl">Statistics Netherlands (CBS)</a> is the office that produces all official statistics of the Netherlands.</p>
 <p>For long CBS has put its data on the web in its online database <a href="https://opendata.cbs.nl/statline#/CBS/en/">StatLine</a>. Since 2014 this data base has an open data web API based on the OData protocol. The <a href="https://CRAN.R-project.org/package=cbsodataR">cbsodataR</a> package allows for retrieving data right into R using this API.</p>
 <p>A new version of the web api has been developed which is based on the OData4 protocol. This OData4 API contains major changes in how the metadata and data is transported, hence this package <code>cbsodata4</code>. Since the old web api will be phased out in due time, <code>cbsodata4</code> is the successor of <code>cbsodataR</code>.</p>
-<p>This document describes how to use <code>cbsodata4</code> to download data (and meta data) from Statistics Netherlands. It offers very similar functions as <code>cbsodataR</code>, so should be familiar to users of <code>cbsodataR</code>, but there are differences so check carefully your code.</p>
+<p>This document describes how to use <code>cbsodata4</code> to download data (and meta data) from Statistics Netherlands. It offers very similar functions as <code>cbsodataR</code>, so should be familiar to users of <code>cbsodataR</code>, but there are differences so carefully check your code.</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">cbsodata4</span>)</pre></body></html></div>
 <div id="list-of-datasets-toc" class="section level2">
 <h2 class="hasAnchor">
@@ -108,40 +108,40 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">3</td>
-<td align="left">60006</td>
-<td align="left">Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw</td>
-<td align="left">2020-05-08</td>
-</tr>
-<tr class="even">
 <td align="left">4</td>
-<td align="left">37230ned</td>
-<td align="left">Bevolkingsontwikkeling; regio per maand</td>
-<td align="left">2020-05-29</td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left">7100oogs</td>
-<td align="left">Akkerbouwgewassen; productie naar regio</td>
-<td align="left">2020-03-31</td>
+<td align="left">80072ned</td>
+<td align="left">Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte</td>
+<td align="left">2020-06-19</td>
 </tr>
 <tr class="even">
-<td align="left">6</td>
+<td align="left">5</td>
 <td align="left">80784ned</td>
 <td align="left">Landbouw; arbeidskrachten naar regio</td>
 <td align="left">2020-03-03</td>
 </tr>
 <tr class="odd">
-<td align="left">7</td>
+<td align="left">6</td>
 <td align="left">80857ned</td>
 <td align="left">Vacatures (openstaande, ontstane en vervulde); overheid en onderwijs</td>
-<td align="left">2020-05-15</td>
+<td align="left">2020-06-26</td>
 </tr>
 <tr class="even">
-<td align="left">8</td>
+<td align="left">7</td>
 <td align="left">81075ned</td>
 <td align="left">Werkloze beroepsbevolking; werkloosheidsduur en persoonskenmerken 2003-2018</td>
 <td align="left">2020-01-23</td>
+</tr>
+<tr class="odd">
+<td align="left">8</td>
+<td align="left">81575NED</td>
+<td align="left">Vestigingen van bedrijven; bedrijfstak, gemeente</td>
+<td align="left">2020-04-08</td>
+</tr>
+<tr class="even">
+<td align="left">9</td>
+<td align="left">82245NED</td>
+<td align="left">Bevolking en huishoudens; viercijferige postcode, 1 januari 2013</td>
+<td align="left">2019-08-23</td>
 </tr>
 </tbody>
 </table>
@@ -729,24 +729,15 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">146</td>
-<td align="left">2019KW01</td>
-<td align="right">146</td>
-<td align="left">2019 1e kwartaal</td>
+<td align="left">147</td>
+<td align="left">2019KW02</td>
+<td align="right">147</td>
+<td align="left">2019 2e kwartaal</td>
 <td align="left"></td>
 <td align="left">0</td>
 <td align="left">Definitief</td>
 </tr>
 <tr class="even">
-<td align="left">147</td>
-<td align="left">2019KW02</td>
-<td align="right">147</td>
-<td align="left">2019 2e kwartaal</td>
-<td align="left">Voorlopige cijfers</td>
-<td align="left">0</td>
-<td align="left">Voorlopig</td>
-</tr>
-<tr class="odd">
 <td align="left">148</td>
 <td align="left">2019KW03</td>
 <td align="right">148</td>
@@ -755,7 +746,7 @@
 <td align="left">0</td>
 <td align="left">Voorlopig</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">149</td>
 <td align="left">2019KW04</td>
 <td align="right">149</td>
@@ -764,7 +755,7 @@
 <td align="left">0</td>
 <td align="left">Voorlopig</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">150</td>
 <td align="left">2019JJ00</td>
 <td align="right">150</td>
@@ -773,11 +764,20 @@
 <td align="left">1</td>
 <td align="left">Voorlopig</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">151</td>
 <td align="left">2020KW01</td>
 <td align="right">151</td>
 <td align="left">2020 1e kwartaal</td>
+<td align="left">Voorlopige cijfers</td>
+<td align="left">0</td>
+<td align="left">Voorlopig</td>
+</tr>
+<tr class="even">
+<td align="left">152</td>
+<td align="left">2020KW02</td>
+<td align="right">152</td>
+<td align="left">2020 2e kwartaal</td>
 <td align="left">Voorlopige cijfers</td>
 <td align="left">0</td>
 <td align="left">Voorlopig</td>
@@ -869,7 +869,7 @@
 <td align="left">M003019</td>
 <td align="left">Productieve uren</td>
 <td align="left">None</td>
-<td align="right">405</td>
+<td align="right">400</td>
 <td align="left">2020KW01</td>
 <td align="left">2020 1e kwartaal</td>
 </tr>
@@ -965,7 +965,7 @@
 </tr>
 <tr class="even">
 <td align="left">2020KW01</td>
-<td align="right">405</td>
+<td align="right">400</td>
 <td align="right">520</td>
 </tr>
 </tbody>
