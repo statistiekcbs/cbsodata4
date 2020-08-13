@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+**URL address changed of odata4 service, if you have a lower version than 0.9.1, please reinstall...**
+
 # cbsodata4
 
 <!-- badges: start -->
@@ -32,14 +34,13 @@ status](https://ci.appveyor.com/api/projects/status/github/statistiekcbs/cbsodat
 
 <!-- badges: end -->
 
-The goal of cbsodata4 is allowing access to the Open Data API v4 of Statistics Netherlands, which is 
-in beta testing.
+
+
+The goal of cbsodata4 is allowing access to the Open Data API v4 of Statistics Netherlands.
 
 It is the successor of R package [cbsodataR](https://CRAN.R-project.org/package=cbsodataR).
 
 - It uses the new / more efficient OData4 API
-
-- The function names for `cbs4_add_*` are more consistent.
 
 - The download storage is faster (using `data.table`)
 

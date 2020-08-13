@@ -9,7 +9,7 @@ cbs4_add_date_column(data, date_type = c("Date", "numeric"), ...)
 \arguments{
 \item{data}{\code{data.frame} retrieved using \code{\link[=cbs4_get_data]{cbs4_get_data()}}}
 
-\item{date_type}{Type of date column: "Date", "numeric. See details.}
+\item{date_type}{Type of date column: "Date", "numeric". See details.}
 
 \item{...}{future use.}
 }
@@ -78,7 +78,7 @@ if (interactive()){
 \seealso{
 \code{\link[=cbs4_get_metadata]{cbs4_get_metadata()}}
 
-Other add metadata columns:
+Other add metadata columns: 
 \code{\link{cbs4_add_label_columns}()},
 \code{\link{cbs4_add_unit_column}()}
 }

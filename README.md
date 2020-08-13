@@ -3,6 +3,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+**URL address changed of odata4 service, if you have a lower version
+than 0.9.1, please reinstall…**
+
 # cbsodata4
 
 <!-- badges: start -->
@@ -19,14 +22,12 @@ coverage](https://codecov.io/gh/statistiekcbs/cbsodata4/branch/master/graph/badg
 <!-- badges: end -->
 
 The goal of cbsodata4 is allowing access to the Open Data API v4 of
-Statistics Netherlands, which is in beta testing.
+Statistics Netherlands.
 
 It is the successor of R package
 [cbsodataR](https://CRAN.R-project.org/package=cbsodataR).
 
   - It uses the new / more efficient OData4 API
-
-  - The function names for `cbs4_add_*` are more consistent.
 
   - The download storage is faster (using `data.table`)
 
@@ -69,13 +70,13 @@ datasets[1:5, c("Identifier", "Title")]
 
 <div class="kable-table">
 
-|   | Identifier | Title                                                                |
-| - | :--------- | :------------------------------------------------------------------- |
-| 4 | 83131NED   | Consumentenprijzen; prijsindex 2015=100                              |
-| 5 | 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw |
-| 6 | 37230ned   | Bevolkingsontwikkeling; regio per maand                              |
-| 7 | 70072ned   | Regionale kerncijfers Nederland                                      |
-| 8 | 7100oogs   | Akkerbouwgewassen; productie naar regio                              |
+|   | Identifier | Title                                                                       |
+| :- | :--------- | :-------------------------------------------------------------------------- |
+| 4 | 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte       |
+| 5 | 80784ned   | Landbouw; arbeidskrachten naar regio                                        |
+| 6 | 80857ned   | Vacatures (openstaande, ontstane en vervulde); overheid en onderwijs        |
+| 7 | 81075ned   | Werkloze beroepsbevolking; werkloosheidsduur en persoonskenmerken 2003-2018 |
+| 8 | 81575NED   | Vestigingen van bedrijven; bedrijfstak, gemeente                            |
 
 </div>
 
