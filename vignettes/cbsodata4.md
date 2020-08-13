@@ -17,7 +17,7 @@ successor of `cbsodataR`.
 This document describes how to use `cbsodata4` to download data (and
 meta data) from Statistics Netherlands. It offers very similar functions
 as `cbsodataR`, so should be familiar to users of `cbsodataR`, but there
-are differences so check carefully your code.
+are differences so carefully check your code.
 
 ``` r
 library(cbsodata4)
@@ -37,12 +37,12 @@ head(datasets[,c("Identifier", "Title", "Modified")])
 
 |   | Identifier | Title                                                                       | Modified   |
 | :- | :--------- | :-------------------------------------------------------------------------- | :--------- |
-| 3 | 60006      | Bouwnijverheid; productieve uren in de burgerlijke en utiliteitsbouw        | 2020-05-08 |
-| 4 | 37230ned   | Bevolkingsontwikkeling; regio per maand                                     | 2020-05-29 |
-| 5 | 7100oogs   | Akkerbouwgewassen; productie naar regio                                     | 2020-03-31 |
-| 6 | 80784ned   | Landbouw; arbeidskrachten naar regio                                        | 2020-03-03 |
-| 7 | 80857ned   | Vacatures (openstaande, ontstane en vervulde); overheid en onderwijs        | 2020-05-15 |
-| 8 | 81075ned   | Werkloze beroepsbevolking; werkloosheidsduur en persoonskenmerken 2003-2018 | 2020-01-23 |
+| 4 | 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte       | 2020-06-19 |
+| 5 | 80784ned   | Landbouw; arbeidskrachten naar regio                                        | 2020-03-03 |
+| 6 | 80857ned   | Vacatures (openstaande, ontstane en vervulde); overheid en onderwijs        | 2020-06-26 |
+| 7 | 81075ned   | Werkloze beroepsbevolking; werkloosheidsduur en persoonskenmerken 2003-2018 | 2020-01-23 |
+| 8 | 81575NED   | Vestigingen van bedrijven; bedrijfstak, gemeente                            | 2020-04-08 |
+| 9 | 82245NED   | Bevolking en huishoudens; viercijferige postcode, 1 januari 2013            | 2019-08-23 |
 
 </div>
 
@@ -315,12 +315,12 @@ tail(meta$PeriodenCodes)
 
 |     | Identifier | Index | Title            | Description        | DimensionGroupId | Status     |
 | :-- | :--------- | ----: | :--------------- | :----------------- | :--------------- | :--------- |
-| 146 | 2019KW01   |   146 | 2019 1e kwartaal |                    | 0                | Definitief |
-| 147 | 2019KW02   |   147 | 2019 2e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 147 | 2019KW02   |   147 | 2019 2e kwartaal |                    | 0                | Definitief |
 | 148 | 2019KW03   |   148 | 2019 3e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
 | 149 | 2019KW04   |   149 | 2019 4e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
 | 150 | 2019JJ00   |   150 | 2019             | Voorlopige cijfers | 1                | Voorlopig  |
 | 151 | 2020KW01   |   151 | 2020 1e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 152 | 2020KW02   |   152 | 2020 2e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
 
 </div>
 
@@ -361,7 +361,7 @@ cbs4_add_label_columns(obs)
 | 740 | M003026 | Theoretisch beschikbare uren | None           |   530 | 2019KW04 | 2019 4e kwartaal |
 | 744 | M003019 | Productieve uren             | None           |   370 | 2019KW04 | 2019 4e kwartaal |
 | 750 | M003026 | Theoretisch beschikbare uren | None           |   520 | 2020KW01 | 2020 1e kwartaal |
-| 754 | M003019 | Productieve uren             | None           |   405 | 2020KW01 | 2020 1e kwartaal |
+| 754 | M003019 | Productieve uren             | None           |   400 | 2020KW01 | 2020 1e kwartaal |
 
 </div>
 
@@ -413,7 +413,7 @@ data
 | 2019KW02 |              415 |                          520 |
 | 2019KW03 |              320 |                          530 |
 | 2019KW04 |              370 |                          530 |
-| 2020KW01 |              405 |                          520 |
+| 2020KW01 |              400 |                          520 |
 
 </div>
 
