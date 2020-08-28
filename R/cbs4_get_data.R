@@ -46,6 +46,7 @@ cbs4_get_data <- function( id
                               , verbose = verbose
                               , sep = sep
                               , as.data.table = TRUE # we use data.table to pivot
+                              , includeId = FALSE # not used...
                               , base_url = base_url
                               )
   is_empty <- nrow(obs) == 0

@@ -73,6 +73,9 @@ cbs4_get_observations <- function( id
                             , data.table = as.data.table
   )
 
+  if (!isTRUE(includeId)){
+    obs <- obs[,-1]
+  }
   attr(obs, "meta") <- meta
   class(obs) <- c("cbs4_observations", class(obs))
   obs
