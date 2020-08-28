@@ -3,7 +3,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-**URL address changed of odata4 service, if you have a lower version
+**URL address changed of odata4 service, if you have a version lower 
 than 0.9.1, please reinstall…**
 
 # cbsodata4
