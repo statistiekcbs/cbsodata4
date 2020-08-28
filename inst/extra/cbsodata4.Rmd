@@ -152,7 +152,7 @@ head(obs)
 
 ## Filter data before download
 
-It is possible restrict the download using filter statements. This may shorten the download time considerably.
+It is possible to restrict the download using filter statements. This may shorten the download time considerably.
 
 ### Filter
 

@@ -39,10 +39,10 @@ head(datasets[,c("Identifier", "Title", "Modified")])
 | :- | :--------- | :-------------------------------------------------------------------------- | :--------- |
 | 4 | 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte       | 2020-06-19 |
 | 5 | 80784ned   | Landbouw; arbeidskrachten naar regio                                        | 2020-03-03 |
-| 6 | 80857ned   | Vacatures (openstaande, ontstane en vervulde); overheid en onderwijs        | 2020-06-26 |
-| 7 | 81075ned   | Werkloze beroepsbevolking; werkloosheidsduur en persoonskenmerken 2003-2018 | 2020-01-23 |
-| 8 | 81575NED   | Vestigingen van bedrijven; bedrijfstak, gemeente                            | 2020-04-08 |
-| 9 | 82245NED   | Bevolking en huishoudens; viercijferige postcode, 1 januari 2013            | 2019-08-23 |
+| 6 | 81075ned   | Werkloze beroepsbevolking; werkloosheidsduur en persoonskenmerken 2003-2018 | 2020-01-23 |
+| 7 | 81575NED   | Vestigingen van bedrijven; bedrijfstak, gemeente                            | 2020-04-08 |
+| 8 | 82245NED   | Bevolking en huishoudens; viercijferige postcode, 1 januari 2013            | 2019-08-23 |
+| 9 | 82807NED   | Werkzame beroepsbevolking; bedrijf                                          | 2019-11-29 |
 
 </div>
 
@@ -292,8 +292,8 @@ head(obs)
 
 ## Filter data before download
 
-It is possible restrict the download using filter statements. This may
-shorten the download time considerably.
+It is possible to restrict the download using filter statements. This
+may shorten the download time considerably.
 
 ### Filter
 
