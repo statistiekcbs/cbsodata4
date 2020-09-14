@@ -169,9 +169,9 @@ as.character.eq_query <- function(x, column = x$column, ...){
 
 #' @rdname contains
 #' @export
-has_substring <- function(x, ...){
+has_substring <- function(x, column = NULL, allowed = NULL){
   .Deprecated("contains")
-  contains(x, ...)
+  contains(x, column = column, allowed = allowed)
 }
 
 #' @export

@@ -7,7 +7,7 @@
 \usage{
 contains(x, column = NULL, allowed = NULL)
 
-has_substring(x, ...)
+has_substring(x, column = NULL, allowed = NULL)
 }
 \arguments{
 \item{x}{substring to be detected in column}
