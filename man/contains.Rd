@@ -2,9 +2,12 @@
 % Please edit documentation in R/query.R
 \name{contains}
 \alias{contains}
+\alias{has_substring}
 \title{Detect substring in column \code{column}}
 \usage{
 contains(x, column = NULL, allowed = NULL)
+
+has_substring(x, ...)
 }
 \arguments{
 \item{x}{substring to be detected in column}

@@ -167,6 +167,13 @@ as.character.eq_query <- function(x, column = x$column, ...){
   paste(query, collapse = " or ")
 }
 
+#' @rdname contains
+#' @export
+has_substring <- function(x, ...){
+  .Deprecated("contains")
+  contains(x, ...)
+}
+
 #' @export
 print.query <-function(x, ...){
   cat("["

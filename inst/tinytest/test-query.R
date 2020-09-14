@@ -18,3 +18,9 @@ expect_equal(as.character(x), "contains(Perioden,'KW') or contains(Perioden,'JJ'
 #  it parses eq | has_substring
 x <- eq("2019JJ00", "Perioden") | contains("KW", "Perioden")
 expect_equal(as.character(x), "Perioden eq '2019JJ00' or contains(Perioden,'KW')")
+
+expect_warning({
+  x <- has_substring("KW", "Perioden")
+})
+expect_equal(as.character(x), "contains(Perioden,'KW')")
+
