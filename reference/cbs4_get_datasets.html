@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/statistiekcbs/cbsodata4/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,19 +120,19 @@
     <p>Get the available datasets from open data portal statline.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cbs4_get_datasets</span>(
-  catalog = <span class='st'>"CBS"</span>,
-  convert_dates = <span class='fl'>TRUE</span>,
-  verbose = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.verbose"</span>, <span class='fl'>FALSE</span>),
-  base_url = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.base_url"</span>, <span class='kw'>BASEURL4</span>)
-)
+    <pre class="usage"><span class='fu'>cbs4_get_datasets</span><span class='op'>(</span>
+  catalog <span class='op'>=</span> <span class='st'>"CBS"</span>,
+  convert_dates <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  verbose <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"cbsodata4.verbose"</span>, <span class='cn'>FALSE</span><span class='op'>)</span>,
+  base_url <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"cbsodata4.base_url"</span>, <span class='va'>BASEURL4</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='fu'>cbs4_get_toc</span>(
-  catalog = <span class='st'>"CBS"</span>,
-  convert_dates = <span class='fl'>TRUE</span>,
-  verbose = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.verbose"</span>, <span class='fl'>FALSE</span>),
-  base_url = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.base_url"</span>, <span class='kw'>BASEURL4</span>)
-)</pre>
+<span class='fu'>cbs4_get_toc</span><span class='op'>(</span>
+  catalog <span class='op'>=</span> <span class='st'>"CBS"</span>,
+  convert_dates <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  verbose <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"cbsodata4.verbose"</span>, <span class='cn'>FALSE</span><span class='op'>)</span>,
+  base_url <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"cbsodata4.base_url"</span>, <span class='va'>BASEURL4</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,18 +172,18 @@ all datasets of all catalogs will be returned.</p></td>
 <code><a href='cbs4_get_catalogs.html'>cbs4_get_catalogs</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()){
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
   <span class='co'># retrieve the main datasets (catalog = "CBS")</span>
-  <span class='kw'>ds</span> <span class='op'>&lt;-</span> <span class='fu'>cbs4_get_datasets</span>()
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>ds</span>))
+  <span class='va'>ds</span> <span class='op'>&lt;-</span> <span class='fu'>cbs4_get_datasets</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>ds</span><span class='op'>)</span><span class='op'>)</span>
 
   <span class='co'># see cbs4_get_catalogs() to retrieve all catalogs</span>
-  <span class='kw'>ds_asd</span> <span class='op'>&lt;-</span> <span class='fu'>cbs4_get_datasets</span>(catalog = <span class='st'>"CBS-asd"</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>ds_asd</span>))
+  <span class='va'>ds_asd</span> <span class='op'>&lt;-</span> <span class='fu'>cbs4_get_datasets</span><span class='op'>(</span>catalog <span class='op'>=</span> <span class='st'>"CBS-asd"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>ds_asd</span><span class='op'>)</span><span class='op'>)</span>
 
-  <span class='kw'>ds_all</span> <span class='op'>&lt;-</span> <span class='fu'>cbs4_get_datasets</span>(catalog = <span class='kw'>NULL</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='kw'>ds_all</span>))
-}
+  <span class='va'>ds_all</span> <span class='op'>&lt;-</span> <span class='fu'>cbs4_get_datasets</span><span class='op'>(</span>catalog <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>ds_all</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

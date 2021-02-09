@@ -83,7 +83,7 @@ into memory, but just download the data and metadata in csv format." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,7 +97,7 @@ into memory, but just download the data and metadata in csv format." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/statistiekcbs/cbsodata4/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -126,17 +126,17 @@ options. This function is useful if you do not want to load an entire dataset
 into memory, but just download the data and metadata in csv format.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cbs4_download</span>(
-  <span class='kw'>id</span>,
-  download_dir = <span class='kw'>id</span>,
-  <span class='kw'>...</span>,
-  query = <span class='kw'>NULL</span>,
-  catalog = <span class='st'>"CBS"</span>,
-  show_progress = <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>() <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='kw'>verbose</span>,
-  sep = <span class='st'>","</span>,
-  verbose = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.verbose"</span>, <span class='fl'>FALSE</span>),
-  base_url = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"cbsodata4.base_url"</span>, <span class='kw'>BASEURL4</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>cbs4_download</span><span class='op'>(</span>
+  <span class='va'>id</span>,
+  download_dir <span class='op'>=</span> <span class='va'>id</span>,
+  <span class='va'>...</span>,
+  query <span class='op'>=</span> <span class='cn'>NULL</span>,
+  catalog <span class='op'>=</span> <span class='st'>"CBS"</span>,
+  show_progress <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='va'>verbose</span>,
+  sep <span class='op'>=</span> <span class='st'>","</span>,
+  verbose <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"cbsodata4.verbose"</span>, <span class='cn'>FALSE</span><span class='op'>)</span>,
+  base_url <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"cbsodata4.base_url"</span>, <span class='va'>BASEURL4</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
