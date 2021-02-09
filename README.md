@@ -1,9 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-**URL address changed of odata4 service, if you have a version lower 
+**URL address changed of odata4 service, if you have a lower version
 than 0.9.1, please reinstall…**
 
 # cbsodata4
@@ -12,8 +11,8 @@ than 0.9.1, please reinstall…**
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/cbsodata4)](https://cran.r-project.org/package=cbsodata4)
-[![Travis build
-status](https://travis-ci.org/statistiekcbs/cbsodata4.svg?branch=master)](https://travis-ci.org/statistiekcbs/cbsodata4)
+[![R build
+status](https://github.com/statistiekcbs/cbsodata4/workflows/R-CMD-check/badge.svg)](https://github.com/statistiekcbs/cbsodata4/actions)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/statistiekcbs/cbsodata4?branch=master&svg=true)](https://ci.appveyor.com/project/edwindj/cbsodata4)
 [![Codecov test
@@ -27,11 +26,11 @@ Statistics Netherlands.
 It is the successor of R package
 [cbsodataR](https://CRAN.R-project.org/package=cbsodataR).
 
-  - It uses the new / more efficient OData4 API
+-   It uses the new / more efficient OData4 API
 
-  - The download storage is faster (using `data.table`)
+-   The download storage is faster (using `data.table`)
 
-  - It offers a familiar wide data format for users (`cbs4_get_data`) as
+-   It offers a familiar wide data format for users (`cbs4_get_data`) as
     well as the default long format (`cbs4_get_observations`).
 
 ## Installation
@@ -70,13 +69,13 @@ datasets[1:5, c("Identifier", "Title")]
 
 <div class="kable-table">
 
-|   | Identifier | Title                                                                       |
-| :- | :--------- | :-------------------------------------------------------------------------- |
-| 4 | 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte       |
-| 5 | 80784ned   | Landbouw; arbeidskrachten naar regio                                        |
-| 6 | 80857ned   | Vacatures (openstaande, ontstane en vervulde); overheid en onderwijs        |
-| 7 | 81075ned   | Werkloze beroepsbevolking; werkloosheidsduur en persoonskenmerken 2003-2018 |
-| 8 | 81575NED   | Vestigingen van bedrijven; bedrijfstak, gemeente                            |
+|     | Identifier | Title                                                                       |
+|:----|:-----------|:----------------------------------------------------------------------------|
+| 4   | 81075ned   | Werkloze beroepsbevolking; werkloosheidsduur en persoonskenmerken 2003-2018 |
+| 5   | 81575NED   | Vestigingen van bedrijven; bedrijfstak, gemeente                            |
+| 6   | 82245NED   | Bevolking en huishoudens; viercijferige postcode, 1 januari 2013            |
+| 7   | 83433NED   | Consumentenprijzen; werknemers laag, alle basisjaren 1969-1995              |
+| 8   | 83435NED   | Amsterdam Airport Schiphol; passagiersvervoer, partnerluchthaven            |
 
 </div>
 
@@ -99,7 +98,7 @@ meta$MeasureCodes[,c("Identifier", "Title")]
 <div class="kable-table">
 
 | Identifier | Title                        |
-| :--------- | :--------------------------- |
+|:-----------|:-----------------------------|
 | M003026    | Theoretisch beschikbare uren |
 | M002994\_2 | Totaal niet-productieve uren |
 | M003031    | Vorst- en neerslagverlet     |
@@ -116,7 +115,7 @@ meta$Dimensions[, c("Identifier", "Title")]
 <div class="kable-table">
 
 | Identifier | Title    |
-| :--------- | :------- |
+|:-----------|:---------|
 | Perioden   | Perioden |
 
 </div>
@@ -132,7 +131,7 @@ head(data[, 1:4])
 <div class="kable-table">
 
 | Perioden | Totaal niet-productieve uren | Overig | Productieve uren |
-| :------- | ---------------------------: | -----: | ---------------: |
+|:---------|-----------------------------:|-------:|-----------------:|
 | 1990JJ00 |                          695 |    645 |             1390 |
 | 1990KW01 |                          155 |    135 |              365 |
 | 1990KW02 |                          130 |    125 |              390 |
@@ -152,14 +151,14 @@ head(obs)
 
 <div class="kable-table">
 
-| Id | Measure    | ValueAttribute | Value | Perioden |
-| -: | :--------- | :------------- | ----: | :------- |
-|  0 | M003026    | None           |   520 | 1990KW01 |
-|  1 | M002994\_2 | None           |   155 | 1990KW01 |
-|  2 | M003031    | None           |    20 | 1990KW01 |
-|  3 | M003013    | None           |   135 | 1990KW01 |
-|  4 | M003019    | None           |   365 | 1990KW01 |
-|  5 | M003026    | None           |   520 | 1990KW02 |
+|  Id | Measure    | ValueAttribute | Value | Perioden |
+|----:|:-----------|:---------------|------:|:---------|
+|   0 | M003026    | None           |   520 | 1990KW01 |
+|   1 | M002994\_2 | None           |   155 | 1990KW01 |
+|   2 | M003031    | None           |    20 | 1990KW01 |
+|   3 | M003013    | None           |   135 | 1990KW01 |
+|   4 | M003019    | None           |   365 | 1990KW01 |
+|   5 | M003026    | None           |   520 | 1990KW02 |
 
 </div>
 
@@ -173,7 +172,7 @@ head(data[,1:5])
 <div class="kable-table">
 
 | Perioden | PeriodenLabel    | Totaal niet-productieve uren | Overig | Productieve uren |
-| :------- | :--------------- | ---------------------------: | -----: | ---------------: |
+|:---------|:-----------------|-----------------------------:|-------:|-----------------:|
 | 1990JJ00 | 1990             |                          695 |    645 |             1390 |
 | 1990KW01 | 1990 1e kwartaal |                          155 |    135 |              365 |
 | 1990KW02 | 1990 2e kwartaal |                          130 |    125 |              390 |
@@ -184,21 +183,20 @@ head(data[,1:5])
 </div>
 
 ``` r
-
 obs <- cbs4_add_label_columns(obs)
 head(obs)
 ```
 
 <div class="kable-table">
 
-| Id | Measure    | MeasureLabel                 | ValueAttribute | Value | Perioden | PeriodenLabel    |
-| -: | :--------- | :--------------------------- | :------------- | ----: | :------- | :--------------- |
-|  0 | M003026    | Theoretisch beschikbare uren | None           |   520 | 1990KW01 | 1990 1e kwartaal |
-|  1 | M002994\_2 | Totaal niet-productieve uren | None           |   155 | 1990KW01 | 1990 1e kwartaal |
-|  2 | M003031    | Vorst- en neerslagverlet     | None           |    20 | 1990KW01 | 1990 1e kwartaal |
-|  3 | M003013    | Overig                       | None           |   135 | 1990KW01 | 1990 1e kwartaal |
-|  4 | M003019    | Productieve uren             | None           |   365 | 1990KW01 | 1990 1e kwartaal |
-|  5 | M003026    | Theoretisch beschikbare uren | None           |   520 | 1990KW02 | 1990 2e kwartaal |
+|  Id | Measure    | MeasureLabel                 | ValueAttribute | Value | Perioden | PeriodenLabel    |
+|----:|:-----------|:-----------------------------|:---------------|------:|:---------|:-----------------|
+|   0 | M003026    | Theoretisch beschikbare uren | None           |   520 | 1990KW01 | 1990 1e kwartaal |
+|   1 | M002994\_2 | Totaal niet-productieve uren | None           |   155 | 1990KW01 | 1990 1e kwartaal |
+|   2 | M003031    | Vorst- en neerslagverlet     | None           |    20 | 1990KW01 | 1990 1e kwartaal |
+|   3 | M003013    | Overig                       | None           |   135 | 1990KW01 | 1990 1e kwartaal |
+|   4 | M003019    | Productieve uren             | None           |   365 | 1990KW01 | 1990 1e kwartaal |
+|   5 | M003026    | Theoretisch beschikbare uren | None           |   520 | 1990KW02 | 1990 2e kwartaal |
 
 </div>
 
@@ -212,7 +210,7 @@ catalogs[,c("Identifier", "Title")]
 <div class="kable-table">
 
 | Identifier | Title                 |
-| :--------- | :-------------------- |
+|:-----------|:----------------------|
 | CBS        | CBS databank StatLine |
 | CBS-asd    | CBS aanvullend        |
 

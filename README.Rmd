@@ -26,8 +26,7 @@ knitr::opts_chunk$set(
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/cbsodata4)](https://cran.r-project.org/package=cbsodata4)
-[![Travis build
-status](https://travis-ci.org/statistiekcbs/cbsodata4.svg?branch=master)](https://travis-ci.org/statistiekcbs/cbsodata4)
+[![R build status](https://github.com/statistiekcbs/cbsodata4/workflows/R-CMD-check/badge.svg)](https://github.com/statistiekcbs/cbsodata4/actions)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/statistiekcbs/cbsodata4?branch=master&svg=true)](https://ci.appveyor.com/project/edwindj/cbsodata4)
 [![Codecov test coverage](https://codecov.io/gh/statistiekcbs/cbsodata4/branch/master/graph/badge.svg)](https://codecov.io/gh/statistiekcbs/cbsodata4?branch=master)
