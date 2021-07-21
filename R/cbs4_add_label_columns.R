@@ -41,5 +41,7 @@ cbs4_add_label_columns <- function(data, ...){
         , match(dim_cols, nms) + 0.5
         )
   o <- order(i)
-  data[, o]
+  data <- data[, o]
+  attr(data, "meta") <- meta
+  data
 }

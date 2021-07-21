@@ -135,3 +135,25 @@ ds_cbs <- cbs4_get_datasets()
 ds_all <- cbs4_get_datasets(catalog = NULL)
 
 expect_true(nrow(ds_all) > nrow(ds_cbs))
+
+
+## cbs_add_label
+
+d <- cbs4_get_data("84287NED"
+                   , Perioden = "2019MM12" # december 2019
+)
+
+d2 <- cbs4_add_label_columns(d)
+expect_equal(d2$PeriodenLabel[1], "2019 december")
+
+m <- attr(d, "meta")
+m2 <- attr(d2, "meta")
+expect_equal(m, m2)
+
+d3 <- cbs4_add_date_column(d)
+expect_equal(d3$Perioden_Date[1], as.Date("2019-12-01"))
+expect_true(all(d3$Perioden_freq == "M"))
+
+m <- attr(d, "meta")
+m3 <- attr(d3, "meta")
+expect_equal(m, m3)
