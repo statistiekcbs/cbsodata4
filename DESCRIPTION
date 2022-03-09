@@ -1,7 +1,7 @@
 Package: cbsodata4
 Type: Package
 Title: Statistics Netherlands (CBS) Open Data API Client v4
-Version: 0.9.1.9000
+Version: 0.9.2.9000
 Authors@R: c( person("Edwin", "de Jonge", role=c("aut", "cre"), email="e.dejonge@cbs.nl"
   , comment=c(ORCID="0000-0002-6580-4718")), person("Han", "Oostdijk", role="ctb"))
 Description: The data and meta data from Statistics Netherlands (<https://www.cbs.nl>) can 
@@ -19,6 +19,6 @@ Suggests:
     covr
 URL: https://github.com/statistiekcbs/cbsodata4
 BugReports: https://github.com/statistiekcbs/cbsodata4/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
