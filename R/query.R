@@ -8,7 +8,8 @@
 #' @param allowed `character` with allowed values. If supplied it will check if `x`
 #' is a code in `allowed`.
 #' @return query object
-#' @family query
+#' @family odata4 query
+#' @rdname odata4_eq
 #' @example ./example/query.R
 eq <- function(x, column = NULL, allowed = NULL){
   values <- x
@@ -34,17 +35,18 @@ eq <- function(x, column = NULL, allowed = NULL){
   )
 }
 
-#' Detect substring in column `column`
+#' Detect substring in column
 #'
-#' Detects a substring in a column. `contains` filters the dataset at CBS:
+#' Detects a substring in a column and filters the dataset at CBS:
 #' rows that have a code that does not contain (one of) `x` are filtered out.
 #' @export
-#' @example ./example/query.R
 #' @param x substring to be detected in column
 #' @param column column name
 #' @param allowed `character` with allowed values. If supplied it will check if `x`
 #' is a code in `allowed`.
-#' @family query
+#' @family odata4 query
+#' @rdname odata4_contains
+#' @example ./example/query.R
 contains <- function(x, column = NULL, allowed = NULL){
   size <- length(x) # bad init, but I don't know another way
 
@@ -167,7 +169,7 @@ as.character.eq_query <- function(x, column = x$column, ...){
   paste(query, collapse = " or ")
 }
 
-#' @rdname contains
+#' @rdname odata4_contains
 #' @export
 has_substring <- function(x, column = NULL, allowed = NULL){
   .Deprecated("contains")

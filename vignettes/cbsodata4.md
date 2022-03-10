@@ -33,18 +33,14 @@ datasets <- cbs4_get_datasets()
 head(datasets[,c("Identifier", "Title", "Modified")])
 ```
 
-<div class="kable-table">
-
-|   | Identifier | Title                                                                       | Modified   |
-| :- | :--------- | :-------------------------------------------------------------------------- | :--------- |
-| 4 | 80072ned   | Ziekteverzuimpercentage; bedrijfstakken (SBI 2008) en bedrijfsgrootte       | 2020-06-19 |
-| 5 | 80784ned   | Landbouw; arbeidskrachten naar regio                                        | 2020-03-03 |
-| 6 | 81075ned   | Werkloze beroepsbevolking; werkloosheidsduur en persoonskenmerken 2003-2018 | 2020-01-23 |
-| 7 | 81575NED   | Vestigingen van bedrijven; bedrijfstak, gemeente                            | 2020-04-08 |
-| 8 | 82245NED   | Bevolking en huishoudens; viercijferige postcode, 1 januari 2013            | 2019-08-23 |
-| 9 | 82807NED   | Werkzame beroepsbevolking; bedrijf                                          | 2019-11-29 |
-
-</div>
+| Identifier | Title                                                                      | Modified   |
+|:-----------|:---------------------------------------------------------------------------|:-----------|
+| 03742      | Immi- en emigratie; leeftijd (31 dec.), burgerlijke staat, geboorteland    | 2021-07-14 |
+| 03759ned   | Bevolking op 1 januari en gemiddeld; geslacht, leeftijd en regio           | 2021-06-09 |
+| 37168      | Overledenen; geslacht, leeftijd en burgerlijke staat                       | 2021-09-17 |
+| 37230ned   | Bevolkingsontwikkeling; regio per maand                                    | 2022-02-28 |
+| 37296ned   | Bevolking; kerncijfers                                                     | 2021-10-13 |
+| 37325      | Bevolking; geslacht, leeftijd, generatie en migratieachtergrond, 1 januari | 2021-07-22 |
 
 Using an “Identifier” from `cbs4_get_datasets` information on the table
 can be retrieved with `cbs4_get_metadata`
@@ -60,56 +56,42 @@ meta_petrol
 
 The meta object contains all metadata properties of cbsodata in the form
 of `data.frame`s. Each `data.frame` describes properties of the CBS
-table: “Dimensions”, “MeasureCodes” and one ore more
-“\<Dimension\>Codes” describing the meta data of the borders of a SN
-table.
+table: “Dimensions”, “MeasureCodes” and one ore more “\<Dimension>Codes”
+describing the meta data of the borders of a SN table.
 
 ``` r
 names(meta_petrol)
-#> [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes" 
-#> [5] "Properties"
+#> [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes"  "Properties"
 meta_petrol$MeasureCodes[, 1:3]
 ```
 
-<div class="kable-table">
-
 | Identifier | Index | Title          |
-| :--------- | ----: | :------------- |
-| E006512    |     1 | Benzine Euro95 |
-| E006528    |     2 | Diesel         |
-| E006498    |     3 | LPG            |
-
-</div>
+|:-----------|------:|:---------------|
+| A047219    |     2 | Diesel         |
+| A047220    |     1 | Benzine Euro95 |
+| A047221    |     3 | Lpg            |
 
 ``` r
 meta_petrol$Dimensions
 ```
 
-<div class="kable-table">
-
-| Identifier | Title    | Description | Kind          | MapYear | ReleasePolicy |
-| :--------- | :------- | :---------- | :------------ | :------ | :------------ |
-| Perioden   | Perioden |             | TimeDimension | NA      | False         |
-
-</div>
+| @odata.type                   | Identifier | Title    | Description | MapYear | ReleasePolicy | Kind          | ContainsGroups | ContainsCodes |
+|:------------------------------|:-----------|:---------|:------------|:--------|:--------------|:--------------|:---------------|:--------------|
+| #Cbs.Ccb.Models.TimeDimension | Perioden   | Perioden |             | NA      | FALSE         | TimeDimension | TRUE           | TRUE          |
 
 ``` r
 # just 1 dimension with the following categories:
 head(meta_petrol$PeriodenCodes)
 ```
 
-<div class="kable-table">
-
 | Identifier | Index | Title                    | Description | DimensionGroupId | Status |
-| :--------- | ----: | :----------------------- | :---------- | :--------------- | :----- |
+|:-----------|------:|:-------------------------|:------------|:-----------------|:-------|
 | 20060101   |     1 | 2006 zondag 1 januari    |             | 0                | NA     |
 | 20060102   |     2 | 2006 maandag 2 januari   |             | 0                | NA     |
 | 20060103   |     3 | 2006 dinsdag 3 januari   |             | 0                | NA     |
 | 20060104   |     4 | 2006 woensdag 4 januari  |             | 0                | NA     |
 | 20060105   |     5 | 2006 donderdag 5 januari |             | 0                | NA     |
 | 20060106   |     6 | 2006 vrijdag 6 januari   |             | 0                | NA     |
-
-</div>
 
 ## Data retrieval
 
@@ -125,21 +107,18 @@ columns and some extra columns with value specific metadata.
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 head(obs)
 ```
 
-<div class="kable-table">
-
-| Id | Measure | ValueAttribute | Value | Perioden |
-| -: | :------ | :------------- | ----: | -------: |
-|  0 | E006512 | None           | 1.325 | 20060101 |
-|  1 | E006528 | None           | 1.003 | 20060101 |
-|  2 | E006498 | None           | 0.543 | 20060101 |
-|  3 | E006512 | None           | 1.328 | 20060102 |
-|  4 | E006528 | None           | 1.007 | 20060102 |
-|  5 | E006498 | None           | 0.542 | 20060102 |
-
-</div>
+|  Id | Measure | ValueAttribute | Value | Perioden |
+|----:|:--------|:---------------|------:|---------:|
+|   0 | A047220 | None           | 1.325 | 20060101 |
+|   1 | A047219 | None           | 1.003 | 20060101 |
+|   2 | A047221 | None           | 0.543 | 20060101 |
+|   3 | A047220 | None           | 1.328 | 20060102 |
+|   4 | A047219 | None           | 1.007 | 20060102 |
+|   5 | A047221 | None           | 0.542 | 20060102 |
 
 `cbs4_get_data` returns the data in so-called wide format in which each
 `Measure` has its own column. For many uses this is a more natural
@@ -148,17 +127,14 @@ format. It is a pivoted version of `cbs4_get_observations()`.
 ``` r
 # same data, but pivoted
 data <- cbs4_get_data("80416ned", name_measure_columns = FALSE)
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 head(data, 2)
 ```
 
-<div class="kable-table">
-
-| Perioden | E006498 | E006512 | E006528 |
-| -------: | ------: | ------: | ------: |
-| 20060101 |   0.543 |   1.325 |   1.003 |
-| 20060102 |   0.542 |   1.328 |   1.007 |
-
-</div>
+| Perioden | A047219 | A047220 | A047221 |
+|---------:|--------:|--------:|--------:|
+| 20060101 |   1.003 |   1.325 |   0.543 |
+| 20060102 |   1.007 |   1.328 |   0.542 |
 
 By default the names of the columns are more readable with
 `cbs4_get_data`
@@ -166,17 +142,14 @@ By default the names of the columns are more readable with
 ``` r
 # same data, but pivoted
 data <- cbs4_get_data("80416ned")
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 head(data, 2)
 ```
 
-<div class="kable-table">
-
-| Perioden |   LPG | Benzine Euro95 | Diesel |
-| -------: | ----: | -------------: | -----: |
-| 20060101 | 0.543 |          1.325 |  1.003 |
-| 20060102 | 0.542 |          1.328 |  1.007 |
-
-</div>
+| Perioden | Diesel | Benzine Euro95 |   Lpg |
+|---------:|-------:|---------------:|------:|
+| 20060101 |  1.003 |          1.325 | 0.543 |
+| 20060102 |  1.007 |          1.328 | 0.542 |
 
 ### Adding category label columns
 
@@ -186,39 +159,33 @@ automatically added using `cbs4_add_label_columns`.
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 obs <- cbs4_add_label_columns(obs)
 head(obs)
 ```
 
-<div class="kable-table">
-
-| Id | Measure | MeasureLabel   | ValueAttribute | Value | Perioden | PeriodenLabel          |
-| -: | :------ | :------------- | :------------- | ----: | -------: | :--------------------- |
-|  0 | E006512 | Benzine Euro95 | None           | 1.325 | 20060101 | 2006 zondag 1 januari  |
-|  1 | E006528 | Diesel         | None           | 1.003 | 20060101 | 2006 zondag 1 januari  |
-|  2 | E006498 | LPG            | None           | 0.543 | 20060101 | 2006 zondag 1 januari  |
-|  3 | E006512 | Benzine Euro95 | None           | 1.328 | 20060102 | 2006 maandag 2 januari |
-|  4 | E006528 | Diesel         | None           | 1.007 | 20060102 | 2006 maandag 2 januari |
-|  5 | E006498 | LPG            | None           | 0.542 | 20060102 | 2006 maandag 2 januari |
-
-</div>
+|  Id | Measure | MeasureLabel   | ValueAttribute | Value | Perioden | PeriodenLabel          |
+|----:|:--------|:---------------|:---------------|------:|---------:|:-----------------------|
+|   0 | A047220 | Benzine Euro95 | None           | 1.325 | 20060101 | 2006 zondag 1 januari  |
+|   1 | A047219 | Diesel         | None           | 1.003 | 20060101 | 2006 zondag 1 januari  |
+|   2 | A047221 | Lpg            | None           | 0.543 | 20060101 | 2006 zondag 1 januari  |
+|   3 | A047220 | Benzine Euro95 | None           | 1.328 | 20060102 | 2006 maandag 2 januari |
+|   4 | A047219 | Diesel         | None           | 1.007 | 20060102 | 2006 maandag 2 januari |
+|   5 | A047221 | Lpg            | None           | 0.542 | 20060102 | 2006 maandag 2 januari |
 
 or
 
 ``` r
 data <- cbs4_get_data("80416ned")
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 data <- cbs4_add_label_columns(data)
 head(data, 2)
 ```
 
-<div class="kable-table">
-
-| Perioden | PeriodenLabel          |   LPG | Benzine Euro95 | Diesel |
-| -------: | :--------------------- | ----: | -------------: | -----: |
-| 20060101 | 2006 zondag 1 januari  | 0.543 |          1.325 |  1.003 |
-| 20060102 | 2006 maandag 2 januari | 0.542 |          1.328 |  1.007 |
-
-</div>
+| Perioden | PeriodenLabel          | Diesel | Benzine Euro95 |   Lpg |
+|---------:|:-----------------------|-------:|---------------:|------:|
+| 20060101 | 2006 zondag 1 januari  |  1.003 |          1.325 | 0.543 |
+| 20060102 | 2006 maandag 2 januari |  1.007 |          1.328 | 0.542 |
 
 ### Adding Date column
 
@@ -229,42 +196,35 @@ will be converted and added to the data:
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 obs <- cbs4_add_date_column(obs)
 head(obs)
 ```
 
-<div class="kable-table">
-
-| Id | Measure | ValueAttribute | Value | Perioden | Perioden\_Date | Perioden\_freq |
-| -: | :------ | :------------- | ----: | -------: | :------------- | :------------- |
-|  0 | E006512 | None           | 1.325 | 20060101 | 2006-01-01     | D              |
-|  1 | E006528 | None           | 1.003 | 20060101 | 2006-01-01     | D              |
-|  2 | E006498 | None           | 0.543 | 20060101 | 2006-01-01     | D              |
-|  3 | E006512 | None           | 1.328 | 20060102 | 2006-01-02     | D              |
-|  4 | E006528 | None           | 1.007 | 20060102 | 2006-01-02     | D              |
-|  5 | E006498 | None           | 0.542 | 20060102 | 2006-01-02     | D              |
-
-</div>
+|  Id | Measure | ValueAttribute | Value | Perioden | Perioden_Date | Perioden_freq |
+|----:|:--------|:---------------|------:|---------:|:--------------|:--------------|
+|   0 | A047220 | None           | 1.325 | 20060101 | 2006-01-01    | D             |
+|   1 | A047219 | None           | 1.003 | 20060101 | 2006-01-01    | D             |
+|   2 | A047221 | None           | 0.543 | 20060101 | 2006-01-01    | D             |
+|   3 | A047220 | None           | 1.328 | 20060102 | 2006-01-02    | D             |
+|   4 | A047219 | None           | 1.007 | 20060102 | 2006-01-02    | D             |
+|   5 | A047221 | None           | 0.542 | 20060102 | 2006-01-02    | D             |
 
 ``` r
-
 data <- cbs4_get_data("80416ned")
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 data <- cbs4_add_date_column(data)
 head(data)
 ```
 
-<div class="kable-table">
-
-| Perioden | Perioden\_Date | Perioden\_freq |   LPG | Benzine Euro95 | Diesel |
-| -------: | :------------- | :------------- | ----: | -------------: | -----: |
-| 20060101 | 2006-01-01     | D              | 0.543 |          1.325 |  1.003 |
-| 20060102 | 2006-01-02     | D              | 0.542 |          1.328 |  1.007 |
-| 20060103 | 2006-01-03     | D              | 0.540 |          1.332 |  1.007 |
-| 20060104 | 2006-01-04     | D              | 0.550 |          1.348 |  1.020 |
-| 20060105 | 2006-01-05     | D              | 0.550 |          1.347 |  1.021 |
-| 20060106 | 2006-01-06     | D              | 0.549 |          1.353 |  1.023 |
-
-</div>
+| Perioden | Perioden_Date | Perioden_freq | Diesel | Benzine Euro95 |   Lpg |
+|---------:|:--------------|:--------------|-------:|---------------:|------:|
+| 20060101 | 2006-01-01    | D             |  1.003 |          1.325 | 0.543 |
+| 20060102 | 2006-01-02    | D             |  1.007 |          1.328 | 0.542 |
+| 20060103 | 2006-01-03    | D             |  1.007 |          1.332 | 0.540 |
+| 20060104 | 2006-01-04    | D             |  1.020 |          1.348 | 0.550 |
+| 20060105 | 2006-01-05    | D             |  1.021 |          1.347 | 0.550 |
+| 20060106 | 2006-01-06    | D             |  1.023 |          1.353 | 0.549 |
 
 ### Adding a Unit column
 
@@ -273,22 +233,19 @@ with `cbs4_add_unit_column()`
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 obs <- cbs4_add_unit_column(obs)
 head(obs)
 ```
 
-<div class="kable-table">
-
-| Id | Measure | ValueAttribute | Value | Unit       |
-| -: | :------ | :------------- | ----: | :--------- |
-|  0 | E006512 | None           | 1.325 | euro/liter |
-|  1 | E006528 | None           | 1.003 | euro/liter |
-|  2 | E006498 | None           | 0.543 | euro/liter |
-|  3 | E006512 | None           | 1.328 | euro/liter |
-|  4 | E006528 | None           | 1.007 | euro/liter |
-|  5 | E006498 | None           | 0.542 | euro/liter |
-
-</div>
+|  Id | Measure | ValueAttribute | Value | Unit       |
+|----:|:--------|:---------------|------:|:-----------|
+|   0 | A047220 | None           | 1.325 | euro/liter |
+|   1 | A047219 | None           | 1.003 | euro/liter |
+|   2 | A047221 | None           | 0.543 | euro/liter |
+|   3 | A047220 | None           | 1.328 | euro/liter |
+|   4 | A047219 | None           | 1.007 | euro/liter |
+|   5 | A047221 | None           | 0.542 | euro/liter |
 
 ## Filter data before download
 
@@ -300,122 +257,97 @@ may shorten the download time considerably.
 Filter statements for the columns can be used to restrict the download.
 Note the following:
 
-  - To filter you will need to use the values found in the `Identifier`
+-   To filter you will need to use the values found in the `Identifier`
     column in the `cbs4_get_metadata` objects. e.g. for year 2020, the
     code is “2020JJ00”.
-
-<!-- end list -->
 
 ``` r
 meta <- cbs4_get_metadata("60006")
 tail(meta$PeriodenCodes)
 ```
 
-<div class="kable-table">
-
 |     | Identifier | Index | Title            | Description        | DimensionGroupId | Status     |
-| :-- | :--------- | ----: | :--------------- | :----------------- | :--------------- | :--------- |
-| 147 | 2019KW02   |   147 | 2019 2e kwartaal |                    | 0                | Definitief |
-| 148 | 2019KW03   |   148 | 2019 3e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
-| 149 | 2019KW04   |   149 | 2019 4e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
-| 150 | 2019JJ00   |   150 | 2019             | Voorlopige cijfers | 1                | Voorlopig  |
-| 151 | 2020KW01   |   151 | 2020 1e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
-| 152 | 2020KW02   |   152 | 2020 2e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
-
-</div>
+|:----|:-----------|------:|:-----------------|:-------------------|:-----------------|:-----------|
+| 155 | 2020KW04   |   154 | 2020 4e kwartaal |                    | 0                | Definitief |
+| 156 | 2021JJ00   |   160 | 2021             | Voorlopige cijfers | 1                | Voorlopig  |
+| 157 | 2021KW01   |   156 | 2021 1e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 158 | 2021KW02   |   157 | 2021 2e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 159 | 2021KW03   |   158 | 2021 3e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 160 | 2021KW04   |   159 | 2021 4e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
 
 ``` r
 meta$MeasureCodes[,c("Identifier","Title")]
 ```
 
-<div class="kable-table">
-
 | Identifier | Title                        |
-| :--------- | :--------------------------- |
-| M003026    | Theoretisch beschikbare uren |
-| M002994\_2 | Totaal niet-productieve uren |
-| M003031    | Vorst- en neerslagverlet     |
+|:-----------|:-----------------------------|
+| M002994_2  | Totaal niet-productieve uren |
 | M003013    | Overig                       |
 | M003019    | Productieve uren             |
+| M003026    | Theoretisch beschikbare uren |
+| M003031    | Vorst- en neerslagverlet     |
 
-</div>
-
-  - To filter for values in a column add `<column_name> = values` to
-    `cbs4_get_observations` (or `cbs4_get_data`) e.g. `Perioden =
-    c("2019KW04", "2020KW01")`
-
-<!-- end list -->
+-   To filter for values in a column add `<column_name> = values` to
+    `cbs4_get_observations` (or `cbs4_get_data`)
+    e.g. `Perioden = c("2019KW04", "2020KW01")`
 
 ``` r
 obs <- cbs4_get_observations("60006"
                             , Measure = c("M003026","M003019")     # selection on Measures
                             , Perioden = c("2019KW04", "2020KW01") # selection on Perioden
                             )
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |=                                                                                                                                                                                            |   0%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 cbs4_add_label_columns(obs)
 ```
 
-<div class="kable-table">
-
 |  Id | Measure | MeasureLabel                 | ValueAttribute | Value | Perioden | PeriodenLabel    |
-| --: | :------ | :--------------------------- | :------------- | ----: | :------- | :--------------- |
+|----:|:--------|:-----------------------------|:---------------|------:|:---------|:-----------------|
 | 740 | M003026 | Theoretisch beschikbare uren | None           |   530 | 2019KW04 | 2019 4e kwartaal |
 | 744 | M003019 | Productieve uren             | None           |   370 | 2019KW04 | 2019 4e kwartaal |
 | 750 | M003026 | Theoretisch beschikbare uren | None           |   520 | 2020KW01 | 2020 1e kwartaal |
 | 754 | M003019 | Productieve uren             | None           |   400 | 2020KW01 | 2020 1e kwartaal |
 
-</div>
-
-  - To filter for values in a column that have a substring e.g. “JJ” you
+-   To filter for values in a column that have a substring e.g. “JJ” you
     can use `<column_name> = contains(<substring>)` to `cbs4_get_data`
     e.g.  `Perioden = contains("JJ")`
-
-<!-- end list -->
 
 ``` r
 data <- cbs4_get_data("60006"
                      , Measure = c("M003026","M003019")     # selection on Measures
                      , Perioden = contains("2019") # retrieve all periods with 2019
                      )
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |==                                                                                                                                                                                           |   1%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 data
 ```
 
-<div class="kable-table">
-
 | Perioden | Productieve uren | Theoretisch beschikbare uren |
-| :------- | ---------------: | ---------------------------: |
+|:---------|-----------------:|-----------------------------:|
 | 2019JJ00 |             1475 |                         2090 |
 | 2019KW01 |              375 |                          510 |
 | 2019KW02 |              415 |                          520 |
 | 2019KW03 |              320 |                          530 |
 | 2019KW04 |              370 |                          530 |
 
-</div>
-
-  - To combine values and substring use the “|” operator: `Periods =
-    contains("2019") | "2020KW01"`
-
-<!-- end list -->
+-   To combine values and substring use the “\|” operator:
+    `Periods = contains("2019") | "2020KW01"`
 
 ``` r
 data <- cbs4_get_data("60006"
                      , Measure = c("M003026","M003019")         # selection on Measures
                      , Perioden = contains("2019") | "2020KW01" # retrieve all periods with 2019
                      )
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |===                                                                                                                                                                                          |   2%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 data
 ```
 
-<div class="kable-table">
-
 | Perioden | Productieve uren | Theoretisch beschikbare uren |
-| :------- | ---------------: | ---------------------------: |
+|:---------|-----------------:|-----------------------------:|
 | 2019JJ00 |             1475 |                         2090 |
 | 2019KW01 |              375 |                          510 |
 | 2019KW02 |              415 |                          520 |
 | 2019KW03 |              320 |                          530 |
 | 2019KW04 |              370 |                          530 |
 | 2020KW01 |              400 |                          520 |
-
-</div>
 
 ### query with odata v4 syntax
 
@@ -425,18 +357,15 @@ query](https://www.odata.org/documentation/) themselves.
 ``` r
   # supply your own odata 4 query
   cbs4_get_data("84287NED", query = "$filter=Perioden eq '2019MM12'")
+#>   |                                                                                                                                                                                                     |                                                                                                                                                                                             |   0%  |                                                                                                                                                                                                     |=                                                                                                                                                                                            |   0%  |                                                                                                                                                                                                     |=============================================================================================================================================================================================| 100%
 ```
 
-<div class="kable-table">
-
 | BedrijfstakkenBranchesSBI2008 | Perioden | Vacature-indicator |
-| :---------------------------- | :------- | -----------------: |
+|:------------------------------|:---------|-------------------:|
 | 300007                        | 2019MM12 |               0.23 |
 | 307500                        | 2019MM12 |               0.07 |
 | 350000                        | 2019MM12 |               0.15 |
 | T001081                       | 2019MM12 |               0.21 |
-
-</div>
 
 ## Download data
 
@@ -460,14 +389,10 @@ catalogs <- cbs4_get_catalogs()
 catalogs[,1:2]
 ```
 
-<div class="kable-table">
-
-| Identifier | Title                 |
-| :--------- | :-------------------- |
-| CBS        | CBS databank StatLine |
-| CBS-asd    | CBS aanvullend        |
-
-</div>
+| Identifier | Title          |
+|:-----------|:---------------|
+| CBS        | CBS databank   |
+| CBS-asd    | CBS aanvullend |
 
 Another options is to set the `catalog` argument in `cbs4_get_datasets`
 to `NULL`
@@ -475,11 +400,11 @@ to `NULL`
 ``` r
 ds <- cbs4_get_datasets()
 nrow(ds)
-#> [1] 53
+#> [1] 234
 
 ds_all <- cbs4_get_datasets(catalog = NULL)
 nrow(ds_all)
-#> [1] 56
+#> [1] 237
 
 ds_asd <- cbs4_get_datasets(catalog = "CBS-asd")
 nrow(ds_asd)

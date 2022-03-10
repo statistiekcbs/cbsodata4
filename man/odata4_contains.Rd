@@ -3,7 +3,7 @@
 \name{contains}
 \alias{contains}
 \alias{has_substring}
-\title{Detect substring in column \code{column}}
+\title{Detect substring in column}
 \usage{
 contains(x, column = NULL, allowed = NULL)
 
@@ -18,7 +18,7 @@ has_substring(x, column = NULL, allowed = NULL)
 is a code in \code{allowed}.}
 }
 \description{
-Detects a substring in a column. \code{contains} filters the dataset at CBS:
+Detects a substring in a column and filters the dataset at CBS:
 rows that have a code that does not contain (one of) \code{x} are filtered out.
 }
 \examples{
@@ -91,7 +91,7 @@ if (interactive()){
 }
 }
 \seealso{
-Other query: 
+Other odata4 query: 
 \code{\link{eq}()}
 }
-\concept{query}
+\concept{odata4 query}

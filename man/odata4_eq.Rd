@@ -91,7 +91,7 @@ if (interactive()){
 }
 }
 \seealso{
-Other query: 
+Other odata4 query: 
 \code{\link{contains}()}
 }
-\concept{query}
+\concept{odata4 query}

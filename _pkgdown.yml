@@ -1,0 +1,11 @@
+template:
+  bootstrap: 5
+reference:
+- title: Data and metadata retrieval
+- contents:
+  - starts_with("cbs4_")
+- title: OData4 subquery
+  desc:  Some odata4 constructs are supported with R syntax
+- contents:
+  - has_substring
+  - eq
