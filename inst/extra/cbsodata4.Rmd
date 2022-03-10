@@ -48,6 +48,14 @@ datasets <- cbs4_get_datasets()
 head(datasets[,c("Identifier", "Title", "Modified")])
 ```
 
+Using `cbs4_search` a list of tables can be found that contain desired search 
+terms, e.g. "Diesel":
+
+```{r}
+datasets <- cbs4_search("Diesel")
+head(datasets[,c("Identifier", "Title", "rel")])
+```
+
 Using an “Identifier” from `cbs4_get_datasets` information on the table can be
 retrieved with `cbs4_get_metadata`
 

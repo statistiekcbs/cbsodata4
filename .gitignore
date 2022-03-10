@@ -8,3 +8,5 @@ Meta
 docs/
 docs
 .Renviron
+/doc/
+/Meta/
