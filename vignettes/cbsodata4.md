@@ -33,14 +33,14 @@ datasets <- cbs4_get_datasets()
 head(datasets[,c("Identifier", "Title", "Modified")])
 ```
 
-| Identifier | Title                                                                      | Modified   |
-|:-----------|:---------------------------------------------------------------------------|:-----------|
-| 03742      | Immi- en emigratie; leeftijd (31 dec.), burgerlijke staat, geboorteland    | 2021-07-14 |
-| 03759ned   | Bevolking op 1 januari en gemiddeld; geslacht, leeftijd en regio           | 2021-06-09 |
-| 37168      | Overledenen; geslacht, leeftijd en burgerlijke staat                       | 2021-09-17 |
-| 37230ned   | Bevolkingsontwikkeling; regio per maand                                    | 2022-02-28 |
-| 37296ned   | Bevolking; kerncijfers                                                     | 2021-10-13 |
-| 37325      | Bevolking; geslacht, leeftijd, generatie en migratieachtergrond, 1 januari | 2021-07-22 |
+| Identifier | Title                                                                   | Modified   |
+|:-----------|:------------------------------------------------------------------------|:-----------|
+| 00371edu   | Basiseducatie; deelnemers naar leeftijd, 1993-2006                      | 2013-06-05 |
+| 00372      | Aardgasbalans; aanbod en verbruik                                       | 2022-03-31 |
+| 00377      | Elektriciteitsbalans; aanbod en verbruik 1919-2018                      | 2019-08-13 |
+| 03742      | Immi- en emigratie; leeftijd (31 dec.), burgerlijke staat, geboorteland | 2021-07-14 |
+| 03747      | Overledenen; geslacht, leeftijd, burgerlijke staat, regio               | 2021-09-06 |
+| 03753      | Onderwijsinstellingen; grootte, soort, levensbeschouwelijke grondslag   | 2021-06-30 |
 
 Using `cbs4_search` a list of tables can be found that contain desired
 search terms, e.g. “Diesel”:
@@ -50,14 +50,14 @@ datasets <- cbs4_search("Diesel")
 head(datasets[,c("Identifier", "Title", "rel")])
 ```
 
-|     | Identifier | Title                                                                     |        rel |
-|:----|:-----------|:--------------------------------------------------------------------------|-----------:|
-| 124 | 83406NED   | Motorbrandstoffen; afzet in petajoule, gewicht en volume, 1946-april 2021 | 28.2703752 |
-| 44  | 80416ned   | Pompprijzen motorbrandstoffen; brandstofsoort, per dag                    | 15.9674366 |
-| 110 | 83131NED   | Consumentenprijzen; prijsindex 2015=100                                   |  8.7145291 |
-| 30  | 71405ned   | Personenauto’s; voertuigkenmerken, regio’s, 1 januari                     |  7.4378526 |
-| 219 | 84799NED   | Kerncijfers wijken en buurten 2020                                        |  0.9817778 |
-| 234 | 85039NED   | Kerncijfers wijken en buurten 2021                                        |  0.4324965 |
+|      | Identifier | Title                                                                     |      rel |
+|:-----|:-----------|:--------------------------------------------------------------------------|---------:|
+| 1549 | 84991NED   | Pompprijzen motorbrandstoffen; brandstofsoort, per kwartaal               | 21.11548 |
+| 312  | 80416ned   | Pompprijzen motorbrandstoffen; brandstofsoort, per dag                    | 13.86831 |
+| 1374 | 84596NED   | Aardoliegrondstoffen- en aardolieproductenbalans; aanbod en verbruik      | 13.52961 |
+| 457  | 81567NED   | Pompprijzen motorbrandstoffen; locatie tankstation, brandstofsoort        | 13.31090 |
+| 867  | 83406NED   | Motorbrandstoffen; afzet in petajoule, gewicht en volume, 1946-april 2021 | 13.22250 |
+| 156  | 71107ned   | Verkeersprestaties personenauto’s; eigendom, brandstof, gewicht, leeftijd | 12.49479 |
 
 Using an “Identifier” from `cbs4_get_datasets` information on the table
 can be retrieved with `cbs4_get_metadata`
@@ -78,15 +78,14 @@ describing the meta data of the borders of a SN table.
 
 ``` r
 names(meta_petrol)
-#> [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes" 
-#> [5] "Properties"
+#> [1] "Dimensions"     "MeasureCodes"   "PeriodenGroups" "PeriodenCodes"  "Properties"
 meta_petrol$MeasureCodes[, 1:3]
 ```
 
 | Identifier | Index | Title          |
 |:-----------|------:|:---------------|
-| A047219    |     2 | Diesel         |
 | A047220    |     1 | Benzine Euro95 |
+| A047219    |     2 | Diesel         |
 | A047221    |     3 | Lpg            |
 
 ``` r
@@ -125,6 +124,7 @@ columns and some extra columns with value specific metadata.
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |===============================================================================================================================| 100%
 head(obs)
 ```
 
@@ -144,6 +144,7 @@ format. It is a pivoted version of `cbs4_get_observations()`.
 ``` r
 # same data, but pivoted
 data <- cbs4_get_data("80416ned", name_measure_columns = FALSE)
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |===============================================================================================================================| 100%
 head(data, 2)
 ```
 
@@ -158,6 +159,7 @@ By default the names of the columns are more readable with
 ``` r
 # same data, but pivoted
 data <- cbs4_get_data("80416ned")
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |===============================================================================================================================| 100%
 head(data, 2)
 ```
 
@@ -174,6 +176,7 @@ automatically added using `cbs4_add_label_columns`.
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |===============================================================================================================================| 100%
 obs <- cbs4_add_label_columns(obs)
 head(obs)
 ```
@@ -191,6 +194,7 @@ or
 
 ``` r
 data <- cbs4_get_data("80416ned")
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |===============================================================================================================================| 100%
 data <- cbs4_add_label_columns(data)
 head(data, 2)
 ```
@@ -209,6 +213,7 @@ will be converted and added to the data:
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |===============================================================================================================================| 100%
 obs <- cbs4_add_date_column(obs)
 head(obs)
 ```
@@ -224,6 +229,7 @@ head(obs)
 
 ``` r
 data <- cbs4_get_data("80416ned")
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |===============================================================================================================================| 100%
 data <- cbs4_add_date_column(data)
 head(data)
 ```
@@ -244,6 +250,7 @@ with `cbs4_add_unit_column()`
 
 ``` r
 obs <- cbs4_get_observations("80416ned")
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |===============================================================================================================================| 100%
 obs <- cbs4_add_unit_column(obs)
 head(obs)
 ```
@@ -278,12 +285,12 @@ tail(meta$PeriodenCodes)
 
 |     | Identifier | Index | Title            | Description        | DimensionGroupId | Status     |
 |:----|:-----------|------:|:-----------------|:-------------------|:-----------------|:-----------|
-| 155 | 2020KW04   |   154 | 2020 4e kwartaal |                    | 0                | Definitief |
-| 156 | 2021JJ00   |   160 | 2021             | Voorlopige cijfers | 1                | Voorlopig  |
-| 157 | 2021KW01   |   156 | 2021 1e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
-| 158 | 2021KW02   |   157 | 2021 2e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
-| 159 | 2021KW03   |   158 | 2021 3e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
-| 160 | 2021KW04   |   159 | 2021 4e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 155 | 2020JJ00   |   155 | 2020             |                    | 1                | Definitief |
+| 156 | 2021KW01   |   156 | 2021 1e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 157 | 2021KW02   |   157 | 2021 2e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 158 | 2021KW03   |   158 | 2021 3e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 159 | 2021KW04   |   159 | 2021 4e kwartaal | Voorlopige cijfers | 0                | Voorlopig  |
+| 160 | 2021JJ00   |   160 | 2021             | Voorlopige cijfers | 1                | Voorlopig  |
 
 ``` r
 meta$MeasureCodes[,c("Identifier","Title")]
@@ -291,11 +298,11 @@ meta$MeasureCodes[,c("Identifier","Title")]
 
 | Identifier | Title                        |
 |:-----------|:-----------------------------|
+| M003026    | Theoretisch beschikbare uren |
 | M002994_2  | Totaal niet-productieve uren |
+| M003031    | Vorst- en neerslagverlet     |
 | M003013    | Overig                       |
 | M003019    | Productieve uren             |
-| M003026    | Theoretisch beschikbare uren |
-| M003031    | Vorst- en neerslagverlet     |
 
 -   To filter for values in a column add `<column_name> = values` to
     `cbs4_get_observations` (or `cbs4_get_data`)
@@ -306,6 +313,7 @@ obs <- cbs4_get_observations("60006"
                             , Measure = c("M003026","M003019")     # selection on Measures
                             , Perioden = c("2019KW04", "2020KW01") # selection on Perioden
                             )
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |=                                                                                                                              |   0%  |                                                                                                                                       |===============================================================================================================================| 100%
 cbs4_add_label_columns(obs)
 ```
 
@@ -325,6 +333,7 @@ data <- cbs4_get_data("60006"
                      , Measure = c("M003026","M003019")     # selection on Measures
                      , Perioden = contains("2019") # retrieve all periods with 2019
                      )
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |==                                                                                                                             |   1%  |                                                                                                                                       |===============================================================================================================================| 100%
 data
 ```
 
@@ -344,6 +353,7 @@ data <- cbs4_get_data("60006"
                      , Measure = c("M003026","M003019")         # selection on Measures
                      , Perioden = contains("2019") | "2020KW01" # retrieve all periods with 2019
                      )
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |==                                                                                                                             |   2%  |                                                                                                                                       |===============================================================================================================================| 100%
 data
 ```
 
@@ -364,6 +374,7 @@ query](https://www.odata.org/documentation/) themselves.
 ``` r
   # supply your own odata 4 query
   cbs4_get_data("84287NED", query = "$filter=Perioden eq '2019MM12'")
+#>   |                                                                                                                                       |                                                                                                                               |   0%  |                                                                                                                                       |===============================================================================================================================| 100%
 ```
 
 | BedrijfstakkenBranchesSBI2008 | Perioden | Vacature-indicator |
@@ -395,10 +406,10 @@ catalogs <- cbs4_get_catalogs()
 catalogs[,1:2]
 ```
 
-| Identifier | Title          |
-|:-----------|:---------------|
-| CBS        | CBS databank   |
-| CBS-asd    | CBS aanvullend |
+| Identifier | Index |
+|:-----------|------:|
+| CBS        |     1 |
+| CBS-asd    |     2 |
 
 Another options is to set the `catalog` argument in `cbs4_get_datasets`
 to `NULL`
@@ -406,11 +417,11 @@ to `NULL`
 ``` r
 ds <- cbs4_get_datasets()
 nrow(ds)
-#> [1] 234
+#> [1] 1620
 
 ds_all <- cbs4_get_datasets(catalog = NULL)
 nrow(ds_all)
-#> [1] 237
+#> [1] 1623
 
 ds_asd <- cbs4_get_datasets(catalog = "CBS-asd")
 nrow(ds_asd)
